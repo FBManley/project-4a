@@ -1,5 +1,5 @@
 # Project Template: React/Rails API
-57th iteration of creating phase-4-project-operation-stop-fucking-up
+Movie Reviewer MVP: -Sign up for an account (create/read) -Log in to the site & remain logged in - sessions -Log out - delete session -View home listings in area -create, read, update, delete REVIEW (full crud of order) -create and read new order (create/read) () stetch: -see available houses on a map -filter avalability by location/proximity, filter by rating, filter by price
 
 ## Description
 
