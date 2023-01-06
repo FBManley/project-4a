@@ -7,7 +7,8 @@ class ReviewsController < ApplicationController
             if @review.save 
                 render json: @review, status: 201   
             else 
-                render json: { errors: @review.errors.full_messages }, status : 422
+                # render json: { errors: @review.errors.full_messages }, status : 422
+                unprocessable_entity_error(@review)
             end
         else 
             must_be_logged_in
@@ -17,7 +18,7 @@ class ReviewsController < ApplicationController
     def update 
       review = Review.find_by(id: params[:id])
       review.update(review_params)
-      renderjson: review, status: :accepted
+      render json: review, status: :accepted
     end
     # DELETE /reviews/:id
     def destroy
@@ -28,7 +29,9 @@ class ReviewsController < ApplicationController
     private 
     def review_params
         params.require(:review).permit(:review, :movie_id, :like)
+    end
     def find_review
         @review = Review.find_by_id(params[:id])
     end
+
 end
