@@ -8,6 +8,29 @@ In the project directory, you can run:
 
 ### `npm start`
 
+
+NOTES
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import Home from "./components/safekeeping/Home";
+// import Navigation from "./components/safekeeping/Navigation";
+
+<!-- function App() {
+  return (
+      <Router>
+        <Navigation/>
+        <div className="App">      
+        <Routes>
+          <Route exact path="/" element={<Home/>} />
+        </Routes>
+        </div>    
+      </Router>
+  );
+}
+
+export default App; -->
+
+
+
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
