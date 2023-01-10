@@ -20,6 +20,7 @@ const LoginA = () => {
           })
         })
         .then(user => {
+          console.log(user)
           if (!user.errors) {
             login(user)
             navigate('/')
@@ -41,7 +42,7 @@ const LoginA = () => {
             <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
             <br/>
             <input type="submit"></input>
-      </form>
+        </form>
       <ul>{errorsList}</ul>
     </div>
   )

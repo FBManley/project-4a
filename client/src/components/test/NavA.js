@@ -16,14 +16,20 @@ const NavA = () => {
             navigate('/')
         })
     }
+    if (loggedIn){
+        <div>
+            <h3>Hello {user.username}</h3>
+            <button onClick={logoutUser}>Logout</button>
+        </div>
+    }
 
-  return (
-    <div>
-        <NavLink to="/"><button>Home</button></NavLink>
-        <NavLink to="/login"><button>Login</button></NavLink>
-        <NavLink to="/login"><button onClick={logoutUser}>Logout</button></NavLink>
+    return (
+        <div>
+            <NavLink to="/"><button>Home</button></NavLink>
+            <NavLink to="/login"><button>Login</button></NavLink>
+            {/* <NavLink to="/login"><button onClick={logoutUser}>Logout</button></NavLink> */}
         <h3>Hello {user.username}</h3>
-    </div>
+        </div>
   )
 }
 export default NavA
