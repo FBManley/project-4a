@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errorsList, setErrorsList] = useState([])
-  const {login, user } = useContext(UserContext)
+  const {login } = useContext(UserContext)
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {
@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router-dom';
         password: password
       })
     })
+    .then(response => response.json())
     .then(user => {
       if (!user.errors) {
         login(user)

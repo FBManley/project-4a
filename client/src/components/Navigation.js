@@ -1,8 +1,5 @@
 import React, { useContext } from 'react'
-// import { UserContext } from "../context/user"
 import { UserContext } from './User';
-// import { NavLink } from "react-router-dom";
-// import { NavbarLink, NavigationContainer, usedNavigate } from './styles/StyledNav';
 import { NavLink, useNavigate } from 'react-router-dom'
 
  const Navigation = () => {
@@ -29,12 +26,10 @@ import { NavLink, useNavigate } from 'react-router-dom'
     } else {
         return (
          <div>
-            {/* <NavLink to="/" >Home</NavLink> */}
             <NavLink to="/login" ><button>Login</button></NavLink>
             <NavLink to="/signup" ><button>Signup</button></NavLink>
         </div>   
         )
-        
     }
 }
 export default Navigation;

@@ -21,6 +21,7 @@ function UserProvider({ children }) {
         setUser(user)
         setLoggedIn(true)
     }
+    
     const logout = () => {
         setUser({})
         setLoggedIn(false) 
