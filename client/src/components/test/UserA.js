@@ -27,8 +27,12 @@ function UserProvider({ children }) {
         setUser({})
         setLoggedIn(false) 
     }
+    const signup = (user) => {
+        setUser(user)
+        setLoggedIn(true)
+    }
 
-    return <UserContext.Provider value={{user, login, logout, loggedIn}}>{children}</UserContext.Provider>
+    return <UserContext.Provider value={{user, login, logout, loggedIn, signup}}>{children}</UserContext.Provider>
     // the value prop of the provider will be our context data
     // this value will be available to child components of this provider
 }

@@ -3,7 +3,6 @@ import { UserContext } from './UserA'
 
  const HomeA = () => {
     const { user, loggedIn} = useContext(UserContext)
-    // console.log(user)
     if (loggedIn) {
         return (
         <div><h1>{user.username}'s Home Page</h1></div>

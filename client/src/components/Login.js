@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react'
-import { UserContext } from '../User';
+import { UserContext } from './User';
 import { useNavigate } from 'react-router-dom';
 
  const Login = () => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errorsList, setErrorsList] = useState([])
-  const {login} = useContext(UserContext)
+  const {login, user } = useContext(UserContext)
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {

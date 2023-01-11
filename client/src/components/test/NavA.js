@@ -21,14 +21,15 @@ const NavA = () => {
             <h3>Hello {user.username}</h3>
             <button onClick={logoutUser}>Logout</button>
         </div>
+    } else {
+        
     }
 
     return (
         <div>
-            <NavLink to="/"><button>Home</button></NavLink>
+            {/* <NavLink to="/"><button>Home</button></NavLink> */}
             <NavLink to="/login"><button>Login</button></NavLink>
-            {/* <NavLink to="/login"><button onClick={logoutUser}>Logout</button></NavLink> */}
-        <h3>Hello {user.username}</h3>
+            <NavLink to="/signup"><button>Signup</button></NavLink>
         </div>
   )
 }

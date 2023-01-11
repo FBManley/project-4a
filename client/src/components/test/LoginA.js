@@ -6,7 +6,7 @@ const LoginA = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [errorsList, setErrorsList] = useState([])
-    const {login, user} = useContext(UserContext)
+    const {login} = useContext(UserContext)
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {
@@ -24,6 +24,12 @@ const LoginA = () => {
           if (!user.errors) {
             login(user)
             navigate('/')
+            // return {
+            //   username: user.username,
+            //   id: user.id,
+            //   errors: user.errors
+            //   console.log(user)
+            // }
           } else {
             setUsername("")
             setPassword("")

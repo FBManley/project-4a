@@ -27,11 +27,14 @@ import { NavLink, useNavigate } from 'react-router-dom'
             </div>
         )
     } else {
-        <div>
-            <NavLink to="/" >Home</NavLink>
+        return (
+         <div>
+            {/* <NavLink to="/" >Home</NavLink> */}
             <NavLink to="/login" ><button>Login</button></NavLink>
             <NavLink to="/signup" ><button>Signup</button></NavLink>
-        </div>
+        </div>   
+        )
+        
     }
 }
 export default Navigation;

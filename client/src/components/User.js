@@ -14,7 +14,6 @@ function UserProvider({ children }) {
         .then(data => {
             setUser(data)
             data.error ? setLoggedIn(false) : setLoggedIn(true) // set boolean if logged in or not
-            console.log(user)
         })
     }, [])
 
