@@ -27,7 +27,7 @@ import { useNavigate } from 'react-router-dom';
       } else {
         setUsername("")
         setPassword("")
-        const errorsList = user.errors.map(e => <li>{e}</li>)
+        const errorsList = user.errors.map(e => <li key={user.e}>{e}</li>)
         setErrorsList(errorsList)
       }
     })

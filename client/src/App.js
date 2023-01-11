@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Navigation from "./components/Navigation";
 import Login from "./components/Login";
 import { UserProvider} from "./components/User.js";
+import Signup from "./components/Signup";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route exact path="/" element={<Home/>} />
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/logout" element={<Login/>} />
+          <Route exact path="/signup" element={<Signup/>} />
         </Routes>
         </UserProvider>
         </div>    

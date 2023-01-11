@@ -26,6 +26,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
     } else {
         return (
          <div>
+            <NavLink to="/" ><button>Home</button></NavLink>
             <NavLink to="/login" ><button>Login</button></NavLink>
             <NavLink to="/signup" ><button>Signup</button></NavLink>
         </div>   

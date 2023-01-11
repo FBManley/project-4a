@@ -11,9 +11,9 @@ function UserProvider({ children }) {
     useEffect(() => {
         fetch('/me')
         .then(response => response.json())
-        .then(data => {
-            setUser(data)
-            data.error ? setLoggedIn(false) : setLoggedIn(true) // set boolean if logged in or not
+        .then(user => {
+            setUser(user)
+            user.error ? setLoggedIn(false) : setLoggedIn(true) // set boolean if logged in or not
         })
     }, [])
 

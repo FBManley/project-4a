@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { UserContext } from '../User';
+import { UserContext } from './User';
 import { useNavigate } from 'react-router-dom';
 
  const Signup = () => {
@@ -15,8 +15,10 @@ import { useNavigate } from 'react-router-dom';
       method: 'POST', 
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        username: username, 
-        password: password,
+        user: {
+          username, 
+          password
+        }
       })
     })
     .then(response => response.json())
@@ -27,7 +29,7 @@ import { useNavigate } from 'react-router-dom';
       } else {
         setUsername("")
         setPassword("")
-        const errorsList = user.errors.map(e => <li>{e}</li>)
+        const errorsList = user.errors.map(e => <li key={user.e}>{e}</li>)
         setErrorsList(errorsList)
       }
     })
