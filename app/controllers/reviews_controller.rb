@@ -1,5 +1,10 @@
 class ReviewsController < ApplicationController
     before_action :find_review, only: [:update, :delete]
+    # GET /reviews -> index
+    def index 
+        @reviews = Review.all
+        render json: @reviews
+    end
     # POST /reviews 
     def create 
         if logged_in? 

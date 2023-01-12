@@ -7,15 +7,29 @@ const UserContext = React.createContext();
 function UserProvider({ children }) {
     const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false) // begins as not loggedIn
-
+    const [reviews, setReviews] = useState([])
     useEffect(() => {
         fetch('/me')
         .then(response => response.json())
         .then(user => {
             setUser(user)
-            user.error ? setLoggedIn(false) : setLoggedIn(true) // set boolean if logged in or not
+            if (user.error) {
+                setLoggedIn(false)
+            } else {
+                setLoggedIn(true)
+                fetchReviews()
+            }
         })
     }, [])
+
+    const fetchReviews = () => {
+        fetch('/reviews')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            setReviews(data)
+        })
+    }
 
     const login = (user) => {
         setUser(user)
@@ -31,7 +45,7 @@ function UserProvider({ children }) {
         setUser(user)
         setLoggedIn(true)
     } 
-    return <UserContext.Provider value={{user, login, logout, signup, loggedIn}}>{children}</UserContext.Provider>
+    return <UserContext.Provider value={{user, login, logout, signup, loggedIn, reviews}}>{children}</UserContext.Provider>
     // the value prop of the provider will be our context data
     // this value will be available to child components of this provider
     // 

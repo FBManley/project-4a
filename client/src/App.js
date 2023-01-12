@@ -5,6 +5,7 @@ import Navigation from "./components/Navigation";
 import Login from "./components/Login";
 import { UserProvider} from "./components/User.js";
 import Signup from "./components/Signup";
+import Reviews from "./components/Reviews";
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/logout" element={<Login/>} />
           <Route exact path="/signup" element={<Signup/>} />
+          <Route exact path="/reviews" element={<Reviews/>} />
+
         </Routes>
         </UserProvider>
         </div>    
@@ -26,3 +29,5 @@ function App() {
 }
 
 export default App;
+
+// must add index of movies to the database
