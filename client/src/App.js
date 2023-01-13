@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import { UserProvider} from "./components/User.js";
 import Signup from "./components/Signup";
 import Reviews from "./components/Reviews";
+import Movies from "./components/Movies";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           <Route exact path="/logout" element={<Login/>} />
           <Route exact path="/signup" element={<Signup/>} />
           <Route exact path="/reviews" element={<Reviews/>} />
-
+          <Route exact path="/movies" element={<Movies/>} />
         </Routes>
         </UserProvider>
         </div>    

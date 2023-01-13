@@ -21,6 +21,8 @@ import { NavLink, useNavigate } from 'react-router-dom'
             <div>
                 <h3>Hello {user.username}</h3>
                 <button onClick={logoutUser}>Logout</button>
+                <NavLink to="/reviews" ><button>My Reviews</button></NavLink>
+                <NavLink to="/movies" ><button>My Movies</button></NavLink>
             </div>
         )
     } else {

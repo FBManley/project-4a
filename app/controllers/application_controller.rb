@@ -6,6 +6,10 @@ class ApplicationController < ActionController::API
     logged_in?
   end
 
+  def authorozed_user(object)
+    object.user_id == current_user.id
+  end
+
   def logged_in?  # return boolean
     !!session[:user_id]
   end

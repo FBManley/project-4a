@@ -1,8 +1,10 @@
 class ReviewsController < ApplicationController
     before_action :find_review, only: [:update, :delete]
-    # GET /reviews -> index
+    # GET /reviews -> index getting ALL reviews I need just users reveiws
+    # @reviews = current_user.Review.all
     def index 
-        @reviews = Review.all
+        # current users reviews 
+        @reviews = current_user.reviews
         render json: @reviews
     end
     # POST /reviews 
@@ -20,6 +22,8 @@ class ReviewsController < ApplicationController
         end
     end
     # PATCH /reviews/:id
+    # @review.update(status: "approved")
+    # use foriegn key to find user # if authoriz_user(@review.user)
     def update 
       review = Review.find_by(id: params[:id])
       review.update(review_params)

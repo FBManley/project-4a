@@ -8,6 +8,12 @@ class MoviesController < ApplicationController
         end
     end
 
+    # GET /movies
+    def index 
+        @movies = Movie.all
+        render json: @movies
+    end
+
     private 
 
     def movie_params 
