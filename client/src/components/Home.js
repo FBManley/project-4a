@@ -9,7 +9,7 @@ const Home = () => {
         <div>
             <h1>{user.username}'s Home Page</h1>
             {/* do i render  whole list or just the users */}
-            <h3><MoviesList /></h3>
+            {/* <h3><MoviesList /></h3> */}
         </div>
     )
   } else {

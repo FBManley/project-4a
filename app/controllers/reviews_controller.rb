@@ -7,6 +7,11 @@ class ReviewsController < ApplicationController
         @reviews = current_user.reviews
         render json: @reviews
     end
+
+    def show 
+        @user = User.find_by(id: params[:id])
+        render json: @user, serializer: MovieReviewSerializer
+    end
     # POST /reviews 
     def create 
         if logged_in? 
