@@ -2,7 +2,7 @@ import React, {  useContext } from 'react'
 import { UserContext } from './User';
 
  const Reviews = () => {
-    const { reviews, loggedIn, movies } = useContext(UserContext)
+    const { reviews, loggedIn } = useContext(UserContext)
     // fetch to get index of reviews from database
     // form to post new review -> attach to each movie? 
     // fetch to post reviews to database
@@ -34,9 +34,10 @@ import { UserContext } from './User';
                 <ul>
                     {reviews.map((review) => {
                         return (
-                            <li key={review.id}>
+                            <li key={review.movie}>
                                 <h3>{review.review}</h3>
                                 <h3>{review.like}</h3>
+                                <h3>{review.movie_id}</h3>
                             </li>
                         )
                     })}
