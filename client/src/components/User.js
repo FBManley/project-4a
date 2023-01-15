@@ -8,7 +8,7 @@ function UserProvider({ children }) {
     const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false) // begins as not loggedIn
     // const [reviews, setReviews] = useState([])
-    // const [movies, setMovies] = useState([])
+    const [movies, setMovies] = useState([])
 
     useEffect(() => {
         fetch('/me')
@@ -46,20 +46,20 @@ function UserProvider({ children }) {
     //         setReviews([...reviews, data])
     //     })
     // }
-    // const fetchMovies = () => {
-    //     fetch('/movies')
-    //     .then(response => response.json())
-    //     .then(movies => {
-    //         console.log(movies)
-    //         setMovies(movies)
-    //     })
-    // }
+    const fetchMovies = () => {
+        fetch('/movies')
+        .then(response => response.json())
+        .then(movies => {
+            console.log(movies)
+            setMovies(movies)
+        })
+    }
 
     const login = (user) => {
         setUser(user)
         setLoggedIn(true)
         // fetchReviews()
-        // fetchMovies()
+        fetchMovies(movies)
     }
     
     const logout = () => {
@@ -75,7 +75,7 @@ function UserProvider({ children }) {
         // fetchReviews()
         // fetchMovies()
     } //, movies , reviews, addReview
-    return <UserContext.Provider value={{user, login, logout, signup, loggedIn}}>{children}</UserContext.Provider>
+    return <UserContext.Provider value={{user, login, logout, signup, loggedIn, movies}}>{children}</UserContext.Provider>
     // the value prop of the provider will be our context data
     // this value will be available to child components of this provider
     // 

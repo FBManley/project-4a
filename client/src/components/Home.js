@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { UserContext } from './User';
 import MoviesList from './MoviesList';
+
 const Home = () => {
     const { user, loggedIn } = useContext(UserContext)
   

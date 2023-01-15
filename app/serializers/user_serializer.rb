@@ -1,6 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :username, :password_digest
-  # has_many :reviews, serializer: ReviewMovieSerializer
+  has_many :reviews, serializer: ReviewMovieSerializer
   has_many :movies
   # , serializer: MovieReviewSerializer
   # the keyword object represents what ever object has been passed to the serializer.

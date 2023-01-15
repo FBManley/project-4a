@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import MovieCard from './MovieCard'
-// import { UserContext } from './User';
+import { UserContext } from './User';
 
- const MoviesList = ({movies}) => {
-    // const { movies } = useContext(UserContext)
+ const MoviesList = () => {
+    const { movies } = useContext(UserContext)
     // const moviesList = movies.map((movie) => {console.log(movie)})
+    
     return (
         <div>
         {movies.map(movie => (
