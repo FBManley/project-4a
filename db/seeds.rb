@@ -10,8 +10,8 @@ User.destroy_all
 Movie.destroy_all
 Review.destroy_all
 # seed first to establish associations before we start on controllers- ensure models talk to each other correctly first. then establish attributes then connections . 
-test_user = User.create(username: "test", password: "123", admin: true)
-test_user_1 = User.create(username: "test1", password: "123", admin: false)
+test_user = User.create(username: "test", password: "123")
+test_user_1 = User.create(username: "test1", password: "123")
 
 test_movie = Movie.create(title: "Point Break", genre: "Action", summary: "lorem ipsum surfer bank rob bro down", director: "Tim Allen", release_date: 1993)
 test_movie_1 = Movie.create(title: "Loba", genre: "Comedy", summary: "lorem ipsum blahhhhhh", director: "John Brody", release_date: 1956)

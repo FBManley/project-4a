@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-    before_action :find_review, only: [:update, :delete]
+    # before_action :find_review, only: [:update, :delete]
     # GET /reviews -> index getting ALL reviews I need just users reveiws
     # @reviews = current_user.Review.all
     def index 
@@ -30,9 +30,14 @@ class ReviewsController < ApplicationController
     # @review.update(status: "approved")
     # use foriegn key to find user # if authoriz_user(@review.user)
     def update 
-      review = Review.find_by(id: params[:id])
-      review.update(review_params)
-      render json: review, status: :accepted
+        if authorozed_user(@review)
+        @review.update(review_params)
+    #   review = Review.find_by(id: params[:id])
+    #   review.update(review_params)
+        render json: review, status: :accepted
+        else  
+        render json: { errors: ["Not authorized"] }, status: 401
+        end
     end
     # DELETE /reviews/:id
     def destroy

@@ -1,12 +1,12 @@
 class SessionsController < ApplicationController
-        # POST /login
+        # POST /login  MUST NOT  BE WRAPPED IN USER OBJECT FOR USE_PARAMS
         def create 
-            @user = User.find_by_username(params[:username])
-            if @user && @user.authenticate(params[:password])
+            @user = User.find_by(username: params[:username])
+            if @user&.authenticate(params[:password])
                 session[:user_id] = @user.id 
                 render json: @user, status: 200
             else 
-                render json: { errors: ["Username or Password doesn't match"] }, status: 422 
+                render json: { errors: ["Invalid Credentials"] }, status: 422
             end
         end
         #DELETE /logout

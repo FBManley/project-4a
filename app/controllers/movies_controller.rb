@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+    # before_action :find_movie, only: [:update, :delete]
     def create 
         @movie = Movie.new(movie_params)
         if @movie.save 
@@ -10,7 +11,7 @@ class MoviesController < ApplicationController
 
     # GET /movies
     def index 
-        @movies = Movie.all
+        @movies = current_user.movies 
         render json: @movies
     end
 
@@ -18,5 +19,9 @@ class MoviesController < ApplicationController
 
     def movie_params 
         params.require(:movie).permit(:title, :genre, :summary, :director, :release_date)
+    end
+
+    def find_movie
+        @movie = Movie.find_by_id(params[:id])
     end
 end

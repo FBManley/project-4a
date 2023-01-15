@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-        # POST /signup
+        # POST /signup MUST BE IN USER OBJECT FOR USE_PARAMS
+        # is @user supposed to be current_user?
         def create 
             @user = User.new(user_params)
             if @user.save 
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
         # GET /me
         def show 
             if logged_in?
-                render json: current_user 
+                render json: current_user
             else 
                 render json: { error: "Not authorized" }, status: 401
             end
