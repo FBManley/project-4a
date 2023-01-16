@@ -1,5 +1,5 @@
 import React, {  useContext } from 'react'
-import { UserContext } from './User';
+import { UserContext } from '../User';
 
  const Reviews = () => {
     const { reviews, loggedIn } = useContext(UserContext)

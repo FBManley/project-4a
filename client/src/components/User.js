@@ -19,10 +19,7 @@ function UserProvider({ children }) {
                 setLoggedIn(false)
             } else {
                 setLoggedIn(true)
-                // nested json instead of sending another fetch request?
-                // send nested json so that if you get user you get user and its reviews and then set them into two diff part of state
-                // fetchReviews()
-                // fetchMovies()
+                fetchMovies()
             }
         })
     }, [])
@@ -49,9 +46,9 @@ function UserProvider({ children }) {
     const fetchMovies = () => {
         fetch('/movies')
         .then(response => response.json())
-        .then(movies => {
-            console.log(movies)
-            setMovies(movies)
+        .then(data => {
+            console.log(data)
+            setMovies(data)
         })
     }
 
@@ -59,7 +56,7 @@ function UserProvider({ children }) {
         setUser(user)
         setLoggedIn(true)
         // fetchReviews()
-        fetchMovies(movies)
+        fetchMovies()
     }
     
     const logout = () => {

@@ -5,11 +5,12 @@ import Navigation from "./components/Navigation";
 import Login from "./components/Login";
 import { UserProvider} from "./components/User.js";
 import Signup from "./components/Signup";
-import Reviews from "./components/Reviews";
+// import Reviews from "./components/trash/Reviews";
 import MoviesList from "./components/MoviesList";
 
 
 function App() {
+  
   return (
       <Router>
         <div className="App"> 
@@ -20,7 +21,7 @@ function App() {
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/logout" element={<Login/>} />
           <Route exact path="/signup" element={<Signup/>} />
-          <Route exact path="/reviews" element={<Reviews/>} />
+          {/* <Route exact path="/reviews" element={<Reviews/>} /> */}
           <Route exact path="/movies" element={<MoviesList/>} />
         </Routes>
         </UserProvider>

@@ -7,9 +7,10 @@ import { UserContext } from './User';
     // const moviesList = movies.map((movie) => {console.log(movie)})
     
     return (
+      
         <div>
         {movies.map(movie => (
-        <MovieCard key={movie.id} movie={movie} />
+        <MovieCard  />
       ))}
         </div>
     )

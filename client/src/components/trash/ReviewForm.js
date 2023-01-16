@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 // need form to take in review (refiew and like)
-import { UserContext } from './User';
+import { UserContext } from '../User';
 
  const ReviewForm = () => {
     const [review, setReview] = useState("")

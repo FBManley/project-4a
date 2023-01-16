@@ -3,16 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import ReviewProvider from './components/ReviewProvider';
 import { UserProvider } from './components/User';
+
 ReactDOM.render(
   <React.StrictMode>
-  <UserProvider >
-    <ReviewProvider>
-    <App /> 
-    </ReviewProvider>
-  </UserProvider>
-    
+    <UserProvider >
+      <App /> 
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
