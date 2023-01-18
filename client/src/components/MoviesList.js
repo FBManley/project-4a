@@ -3,15 +3,16 @@ import MovieCard from './MovieCard'
 import { UserContext } from './User';
 
  const MoviesList = () => {
-    const { movies } = useContext(UserContext)
+    // const [movie, setMovie] = useState([])
+    const { movies, user, reviews  } = useContext(UserContext)
     // const moviesList = movies.map((movie) => {console.log(movie)})
     
     return (
-      
         <div>
-        {movies.map(movie => (
-        <MovieCard  />
-      ))}
+        <UserContext.Provider value={user}>
+          {movies.map(movie => <MovieCard movie={movie} key={movie.id}  reviews={reviews} />)}
+        </UserContext.Provider>
+          
         </div>
     )
     // <h1>Movies</h1>

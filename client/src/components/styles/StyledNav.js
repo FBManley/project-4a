@@ -18,3 +18,5 @@ export const NavigationContainer = styled.nav `
   export const usedNavigate = styled(useNavigate)`
   color: black;
   `
+
+  
