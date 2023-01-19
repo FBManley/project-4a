@@ -26,13 +26,30 @@ function UserProvider({ children }) {
             }
         })
     }, [])
-    
-    const updateUser = (newData) => {
-        // must fetch to update the user in the database
-        setUser((prevUser) => {
-            return {...prevUser, ...newData};
-        });
+    const updateUser = (newData, movieId) => {
+        // Make a POST request to the /reviews endpoint
+        fetch('/reviews', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ review: {...newData, movie_id: movieId } })
+            })
+            .then(res => res.json())
+            .then(data => {
+            // Update the user state with the new review
+            setUser((prevUser) => {
+            return { ...prevUser, reviews: [...prevUser.reviews, data.review] };
+            });
+            })
+            .catch(err => console.log(err))
+            
     }
+    // const updateUser = (newData) => {
+    //     // must fetch to update the user in the database
+
+    //     setUser((prevUser) => {
+    //         return {...prevUser, ...newData};
+    //     });
+    // }
     // getting all reviews - not just the ones for the logged in user
     // const fetchReviews = () => {
     //     fetch('/reviews')

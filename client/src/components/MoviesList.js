@@ -6,16 +6,20 @@ import { UserContext } from './User';
     // const [movie, setMovie] = useState([])
     const { movies, user, reviews  } = useContext(UserContext)
     // const moviesList = movies.map((movie) => {console.log(movie)})
-    
+    // key={movie.id}  reviews={reviews}
     return (
         <div>
-        <UserContext.Provider value={user}>
-          {movies.map(movie => <MovieCard movie={movie} key={movie.id}  reviews={reviews} />)}
-        </UserContext.Provider>
+        
+          {movies.map((movie, index) => <MovieCard movie={movie} key={index} reviews={reviews.filter((review) => review.movie === movie.id)}
+          user={user}/>)}
+        
           
         </div>
     )
-    // <h1>Movies</h1>
+    }
+    
+export default MoviesList;
+// <h1>Movies</h1>
     //         <ul>
     //             {movies.map((movie) => {
     //                 return (
@@ -49,9 +53,4 @@ import { UserContext } from './User';
     //         </ul>
     //       </div>
     //     )
-    //   } 
-      
-    }
-    // Also, the code on the top is commented out and not being used, you can remove it.
-
-export default MoviesList;
+    //   }

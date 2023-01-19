@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+    # rescue_from ActionController::ParameterMissing, with: :parameter_missing
     # before_action :find_review, only: [:update, :delete]
     # GET /reviews -> index getting ALL reviews I need just users reveiws
     # @reviews = current_user.Review.all
