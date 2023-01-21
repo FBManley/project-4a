@@ -12,8 +12,16 @@ class MoviesController < ApplicationController
     # GET /movies
     def index 
         @movies = current_user.movies 
-        render json: @movies
+        render json: @movies.to_json(include: [:reviews, :movies])
     end
+    # def show 
+    #     @movie = Movie.includes(:reviews).find(params[:id])
+    #     render json: @movie.to_json(include: [:reviews, :movies])
+    # end
+    # def show 
+    #     movie = Movie.find_by(id: params[:id])
+    #     render json: movie, include: review
+    # end
 
     private 
 

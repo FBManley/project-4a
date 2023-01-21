@@ -6,7 +6,7 @@ import Login from "./components/Login";
 import { UserProvider} from "./components/User.js";
 import Signup from "./components/Signup";
 // import Reviews from "./components/trash/Reviews";
-import MoviesList from "./components/MoviesList";
+import MoviesList from "./components/contexttrash/MoviesList";
 
 
 function App() {

@@ -53,5 +53,8 @@ class ReviewsController < ApplicationController
     def find_review
         @review = Review.find_by_id(params[:id])
     end
+    def parameter_missing
+        render json: { error: "parameter is missing" }, status: :unprocessable_entity
+    end
 
 end
