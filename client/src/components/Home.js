@@ -1,23 +1,22 @@
-import React, { useContext } from 'react'
-import { UserContext } from './User';
-import MoviesList from './contexttrash/MoviesList';
+import React from 'react'
 
-const Home = () => {
-    const { user, loggedIn } = useContext(UserContext)
-  
-  if (loggedIn) {
-    return (
+// import MoviesList from './contexttrash/MoviesList';
+
+const Home = ({user}) => {
+  return (
+    <div>
+      {user ? (
+        <>
+          <h1>{user.username}'s Home Page</h1>
+          <Movies user={user}/>
+        </>
+      ) : (
         <div>
-            <h1>{user.username}'s Home Page</h1>
-            {/* do i render  whole list or just the users */}
-            {/* <h3><MoviesList /></h3> */}
+          <h1>Home Page: Please login or signup</h1>
         </div>
-    )
-  } else {
-    
-    return (<h3>Please Login or Signup</h3>)
-  }
+      )}
+    </div>
+  )
 }
 
 export default Home;
-// render list of reviews

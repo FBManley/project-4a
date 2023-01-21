@@ -1,36 +1,39 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Navigation from "./components/Navigation";
 import Login from "./components/Login";
-import { UserProvider} from "./components/User.js";
 import Signup from "./components/Signup";
-// import Reviews from "./components/trash/Reviews";
-import MoviesList from "./components/contexttrash/MoviesList";
+
 
 
 function App() {
-  
-  return (
-      <Router>
-        <div className="App"> 
-        <UserProvider>
-        <Navigation/>
-        <Routes>
-          <Route exact path="/" element={<Home/>} />
-          <Route exact path="/login" element={<Login/>} />
-          <Route exact path="/logout" element={<Login/>} />
-          <Route exact path="/signup" element={<Signup/>} />
-          {/* <Route exact path="/reviews" element={<Reviews/>} /> */}
-          <Route exact path="/movies" element={<MoviesList/>} />
-        </Routes>
-        </UserProvider>
-        </div>    
-      </Router>
+  [user, setUser] = useState(null);
 
-  );
+  useEffect(() => {
+    fetch('/me')
+    .then((response) => {
+      if (response.ok) {
+        response.json().then((user) => setUser(user))
+      }
+    })
+  }, [])
+  return (
+    <div>
+      <Navigation user={user} setUser={setUser}/>
+      {user ? (
+        <Routes>
+          <Route exact path="/" element={<Home user={user}/>} />
+          <Route exact path="/logout" element={<Login setUser={setUser}/>} />
+        </Routes>
+      ) : ( 
+        <Routes>
+          <Route exact path="/login" element={<Login setUser={setUser}/>} />
+          <Route exact path="/signup" element={<Signup setUser={setUser}/>} />
+        </Routes>
+      )}
+    </div>
+  )
 }
 
 export default App;
-
-// must add index of movies to the database

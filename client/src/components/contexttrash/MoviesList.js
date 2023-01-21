@@ -1,28 +1,28 @@
-import React, { useContext } from 'react'
-import MovieCard from './MovieCard'
-import { UserContext } from '../User';
+// import React, { useContext } from 'react'
+// import MovieCard from './MovieCard'
+// import { UserContext } from './UserC';
 
- const MoviesList = () => {
-  // const [list, setList] = useState([])
-    // const [movie, setMovie] = useState([])
-    const { movies,  reviews  } = useContext(UserContext)
-    // const moviesList = movies.map((movie) => {console.log(movie)})
-    // key={movie.id}  reviews={reviews}
-    console.log("inList-reviews", reviews)
-    return (
-        <div>
+//  const MoviesList = () => {
+//   // const [list, setList] = useState([])
+//     // const [movie, setMovie] = useState([])
+//     const { movies,  reviews  } = useContext(UserContext)
+//     // const moviesList = movies.map((movie) => {console.log(movie)})
+//     // key={movie.id}  reviews={reviews}
+//     console.log("inList-reviews", reviews)
+//     return (
+//         <div>
         
-          {/* {movies.map((movie) => <MovieCard movie={movie} key={movie.id} user={user}/>)} */}
-          {movies.map((movie, index) => {
-            const movieReviews = reviews.filter(review => review.movie_id === movie.id)
-            return <MovieCard movie={movie} key={index} movieReviews={movieReviews}  />
-          })}
+//           {/* {movies.map((movie) => <MovieCard movie={movie} key={movie.id} user={user}/>)} */}
+//           {movies.map((movie, index) => {
+//             const movieReviews = reviews.filter(review => review.movie_id === movie.id)
+//             return <MovieCard movie={movie} key={index} movieReviews={movieReviews}  />
+//           })}
           
-        </div>
-    )
-    }
+//         </div>
+//     )
+//     }
     
-export default MoviesList;
+// export default MoviesList;
 // <h1>Movies</h1>
     //         <ul>
     //             {movies.map((movie) => {
