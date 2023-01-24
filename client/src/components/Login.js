@@ -1,12 +1,10 @@
 import React, { useState, useContext } from 'react'
-import { UserContext } from './contexttrash/UserC';
 import { useNavigate } from 'react-router-dom';
 
  const Login = () => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errorsList, setErrorsList] = useState([])
-  const {login } = useContext(UserContext)
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {

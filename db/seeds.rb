@@ -22,3 +22,5 @@ review_3 = Review.create(review: "I heart this flcik", like: false, user: test_u
 review_4 = Review.create(review: "rofl", like: false, user: test_user, movie: test_movie_1)
 puts "✅ Done seeding!"
 # rails g resource review review:text like:boolean user:belongs_to  movie:belongs_to
+
+Blog.create({title: "My First Blog", content: "This", user: test_user}, {title: "My Second Blog", content: "This", user: test_user_1})
