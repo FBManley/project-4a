@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react'
+// import { useNavigate } from 'react-router-dom';
 
- const Login = () => {
+ const Login = ({setUser}) => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errorsList, setErrorsList] = useState([])
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -19,9 +19,10 @@ import { useNavigate } from 'react-router-dom';
     })
     .then(response => response.json())
     .then(user => {
-      if (!user.errors) {
-        login(user)
-        navigate('/')
+      if (user.ok) {
+        setUser(user)
+        setUsername("")
+        setPassword("")
       } else {
         setUsername("")
         setPassword("")

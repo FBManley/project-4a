@@ -1,35 +1,38 @@
 import React, {useState, useEffect} from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Navigation from "./components/Navigation";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 
-
-
 function App() {
-  [user, setUser] = useState(null);
+  [user, setUser] = useState();
 
   useEffect(() => {
     fetch('/me')
     .then((response) => {
       if (response.ok) {
+        console.log(response)
         response.json().then((user) => setUser(user))
+        console.log(user)
       }
     })
   }, [])
+
   return (
     <div>
       <Navigation user={user} setUser={setUser}/>
       {user ? (
         <Routes>
           <Route exact path="/" element={<Home user={user}/>} />
-          <Route exact path="/logout" element={<Login setUser={setUser}/>} />
+          <Route path='*' element={<Home user={user}/>} />
         </Routes>
       ) : ( 
         <Routes>
+          <Route exact path="/" element={<Home />} />
           <Route exact path="/login" element={<Login setUser={setUser}/>} />
           <Route exact path="/signup" element={<Signup setUser={setUser}/>} />
+          <Route path='*' element={<Login setUser={setUser}/>} />
         </Routes>
       )}
     </div>

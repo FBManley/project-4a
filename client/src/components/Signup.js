@@ -1,13 +1,9 @@
-import React, { useState, useContext } from 'react'
-import { UserContext } from './contexttrash/UserC';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react'
 
- const Signup = () => {
+ const Signup = ({ setUser }) => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errorsList, setErrorsList] = useState([])
-  const {signup} = useContext(UserContext)
-  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -15,17 +11,16 @@ import { useNavigate } from 'react-router-dom';
       method: 'POST', 
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        user: {
           username, 
           password
-        }
       })
     })
     .then(response => response.json())
     .then(user => {
-      if (!user.errors) {
-        signup(user)
-        navigate('/')
+      if (user.ok) {
+        setUser(user)
+        setUsername("")
+        setPassword("")
       } else {
         setUsername("")
         setPassword("")

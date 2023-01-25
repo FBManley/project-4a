@@ -7,13 +7,6 @@ class ApplicationController < ActionController::API
   def current_user
     # retrieve the user from the database every time it is called and check if the user exists in the database before trying to return it
     @current_user = User.find_by(id: session[:user_id]) if logged_in? && User.exists?(session[:user_id])
-    # @current_user = User.find_by_id(session[:user_id]) 
-    # if
-    #   logged_in? 
-    # if logged_in?
-    #   @current_user || = User.find_by_id(session[:user_id]) 
-    # end
-    # end
   end
 
   # def authorozed_user(object)

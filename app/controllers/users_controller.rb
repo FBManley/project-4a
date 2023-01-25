@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
         # POST /signup MUST BE IN USER OBJECT FOR USE_PARAMS
         # is @user supposed to be current_user?
+        # the “!” version will raise an exception if the record is invalid. 
+        # The “?” version will return false if the record is invalid.
         def create 
-            @user = User.new(user_params)
+            user = User.create(user_params)
             if @user.save 
                 session[:user_id] = @user.id
                 render json: @user, status: 201
@@ -12,11 +14,8 @@ class UsersController < ApplicationController
         end
         # GET /me
         def show 
-            if logged_in?
-                render json: current_user
-            else 
-                render json: { error: "Not authorized" }, status: 401
-            end
+            user = User.find_by(id: session[:user_id])
+            render json: user, status: 200
         end
     
         private 

@@ -1,4 +1,5 @@
 import React from 'react'
+import Movies from './Movies';
 
 // import MoviesList from './contexttrash/MoviesList';
 
