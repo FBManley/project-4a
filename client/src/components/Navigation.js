@@ -1,9 +1,9 @@
 import React from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
  const Navigation = ({user, setUser}) => {
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     // delete session hash
     const logoutUser = () => {
         fetch('/logout', {
@@ -11,8 +11,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
             headers: { 'Content-Type': 'application/json'}
         })
         .then(() => {
-            logout()
-            navigate('/')
+            setUser(null)
         })
     }
     return (

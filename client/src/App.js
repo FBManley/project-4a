@@ -6,7 +6,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 
 function App() {
-  [user, setUser] = useState();
+  const [user, setUser] = useState();
 
   useEffect(() => {
     fetch('/me')
@@ -15,6 +15,10 @@ function App() {
         console.log(response)
         response.json().then((user) => setUser(user))
         console.log(user)
+      }
+      else {
+        setUser(null)
+
       }
     })
   }, [])

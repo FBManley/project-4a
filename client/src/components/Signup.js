@@ -6,29 +6,32 @@ import React, { useState } from 'react'
   const [errorsList, setErrorsList] = useState([])
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     fetch('/signup', {
-      method: 'POST', 
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-          username, 
-          password
-      })
+        method: 'POST', 
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          user: {
+            username,
+            password
+          }
+        })
     })
-    .then(response => response.json())
-    .then(user => {
-      if (user.ok) {
-        setUser(user)
-        setUsername("")
-        setPassword("")
-      } else {
-        setUsername("")
-        setPassword("")
-        const errorsList = user.errors.map(e => <li key={user.e}>{e}</li>)
-        setErrorsList(errorsList)
-      }
-    })
+    .then((response) => {
+        if (response.ok) {
+            response.json().then((user) => {
+                setUser(user);
+                setUsername("");
+                setPassword("");
+            });
+        } else {
+            response.json().then((error) => setErrorsList(error.error));
+            // setUsername("")
+            // setPassword("")
+        }
+    });
   }
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -45,3 +48,29 @@ import React, { useState } from 'react'
   )
 }
 export default Signup;
+// const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   // const user = {
+  //   //   username,
+  //   //   password
+  //   // }
+  //   fetch('/signup', {
+  //     method: 'POST', 
+  //     headers: {'Content-Type': 'application/json'},
+  //     body: JSON.stringify({
+  //         username, 
+  //         password
+  //     })
+  //   })
+  //   .then((response) => {
+  //     if (response.ok) {
+  //       response.json().then((user) => {
+  //         setUser(user)
+  //         setUsername("")
+  //         setPassword("")
+  //       })
+  //     } else {
+  //       response.json().then((error) => setErrorsList(error.error)));
+  //     }
+  //   }
+  // }
