@@ -7,12 +7,11 @@ import MovieCard from './MovieCard'
 
   useEffect(() => {
     fetch('/movies')
-    .then((response) => {
-        response.json().then((movies) => setMovies(movies))
+    .then((response) => response.json())
+    .then((movies) => setMovies(movies))
         console.log(movies)
     }, [])
     // returned function use as cleanup in a useEffect will be called on unmount/navigate away
-  })
   return (
     <div>Movies List
       <div>

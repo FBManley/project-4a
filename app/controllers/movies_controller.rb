@@ -12,11 +12,9 @@ class MoviesController < ApplicationController
 
     # GET /movies
     def index 
-        
         # movies = current_user.movies
         movies = Movie.all
         render json: movies, inclue: :reviews
-        # byebug
     end
     # def index
     #     movies = Movie.all 

@@ -1,7 +1,9 @@
 import React from 'react'
+// import Movies from './Movies';
 
  const MovieCard = ({user, movie}) => {
-    console.log(movie, user)
+    console.log(movie)
+
   return (
     <div>
       <h3>Title: {movie.title}</h3>
@@ -10,8 +12,14 @@ import React from 'react'
       <h3>Description: {movie.summary}</h3>
       <h3>Director: {movie.director}</h3>
       <br></br>
-      {/* <p>{user.username.review}</p> */}
+      Reviews:
+      {movie.reviews.map(review => <div>{review.user_id}: {review.review}</div>)}
+      {/* {movie.map(movie => <div>{movie.reviews}</div>)} */}
+      {/* <h3>Reviews: {movie.reviews}</h3>
+      <p>{user.username.review}</p> */}
     </div>
   )
 }
 export default MovieCard;
+// how to I display the username for each review for each movie?
+// need to add a review form somewhere
