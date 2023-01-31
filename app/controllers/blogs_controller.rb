@@ -1,4 +1,5 @@
 class BlogsController < ApplicationController
+    
 
     def index 
         @blogs = Blog.all
@@ -6,7 +7,11 @@ class BlogsController < ApplicationController
     end
     def create 
         blog = Blog.create(blog_params) 
-        render json: blog, status: 201
+        if blog.valid?
+            render json: blog, status: 201
+        else 
+            render json: { errors: blog.errors.full_messages }, status: 422
+        end
     end
     
     # config/puma.rb = set PORT port ENV.fetch("PORT") { 3000 }vs changing frontend port

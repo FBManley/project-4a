@@ -9,7 +9,7 @@ class ApplicationController < ActionController::API
   #   @current_user = User.find_by(id: session[:user_id]) if logged_in? && User.exists?(session[:user_id])
   # end
 
-  # def authorozed_user(object)
+  # def authorized_user(object)
   #   object.user_id == current_user.id
   # end
   # checking if session[:user_id] has a value or not
@@ -19,6 +19,10 @@ class ApplicationController < ActionController::API
 
   # def must_be_logged_in
   #   render json: { errors: ["YOU DUMB IDIOT. Must be logged in first"] }
+  # end
+  # def authorized
+  #   authorized_user = User.find_by(id: session[:user_id])
+  #   render json: { errors: ["Not authorized"] }, status: 401 unless authorized_user
   # end
 
   def unprocessable_entity_error(object)

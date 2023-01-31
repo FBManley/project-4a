@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+// ERROR WITH MOUTNING COMPONENT IN SIGNUP
  const Signup = ({ setUser }) => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -26,8 +26,6 @@ import React, { useState } from 'react'
             });
         } else {
             response.json().then((error) => setErrorsList(error.error));
-            // setUsername("")
-            // setPassword("")
         }
     });
   }
@@ -48,29 +46,3 @@ import React, { useState } from 'react'
   )
 }
 export default Signup;
-// const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   // const user = {
-  //   //   username,
-  //   //   password
-  //   // }
-  //   fetch('/signup', {
-  //     method: 'POST', 
-  //     headers: {'Content-Type': 'application/json'},
-  //     body: JSON.stringify({
-  //         username, 
-  //         password
-  //     })
-  //   })
-  //   .then((response) => {
-  //     if (response.ok) {
-  //       response.json().then((user) => {
-  //         setUser(user)
-  //         setUsername("")
-  //         setPassword("")
-  //       })
-  //     } else {
-  //       response.json().then((error) => setErrorsList(error.error)));
-  //     }
-  //   }
-  // }
