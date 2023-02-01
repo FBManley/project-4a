@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {v4 as uuidv4} from 'uuid'
 // import Movies from './Movies';
 
- const MovieCard = ({user, movie}) => {
+const MovieCard = ({user, movie, handleReviewsUpdate}) => {
   // state for reviews
   const [reviews, setReviews] = useState([])
 
@@ -23,12 +23,14 @@ import {v4 as uuidv4} from 'uuid'
       },
       body: JSON.stringify({
         reviewObj
-      }
-      ),
+      }),
     })
     .then((response) => {
       console.log("response",response)
-      response.json().then((review) => setReviews([...reviews, review]))
+      response.json().then((review) => {
+        setReviews([...reviews, review])
+        handleReviewsUpdate(review)
+      })
     })    
   }
 
