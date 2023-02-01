@@ -1,8 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
+import {v4 as uuidv4} from 'uuid'
 // import Movies from './Movies';
 
  const MovieCard = ({user, movie}) => {
-    console.log(movie)
+  // state for reviews
+  const [reviews, setReviews] = useState([])
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const review = event.target[0].value
+    const movie_id = movie.id
+    const user_id = user.id
+    const reviewObj = {
+      review,
+      movie_id,
+      user_id
+    }
+    fetch('/reviews', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        reviewObj
+      }
+      ),
+    })
+    .then((response) => {
+      console.log("response",response)
+      response.json().then((review) => setReviews([...reviews, review]))
+    })    
+  }
 
   return (
     <div>
@@ -13,13 +41,16 @@ import React from 'react'
       <h3>Director: {movie.director}</h3>
       <br></br>
       Reviews:
-      {movie.reviews.map(review => <div>{review.user_id}: {review.review}</div>)}
-      {/* {movie.map(movie => <div>{movie.reviews}</div>)} */}
-      {/* <h3>Reviews: {movie.reviews}</h3>
-      <p>{user.username.review}</p> */}
+      {movie.reviews.map(review => <div key={uuidv4()} >{review.user_id}: {review.review}</div>)}
+      <form onSubmit={handleSubmit}>
+        <input type="text" placeholder="Add a review" />
+        <br/> 
+        <input type="submit"></input>
+      </form>
     </div>
   )
 }
 export default MovieCard;
 // how to I display the username for each review for each movie?
 // need to add a review form somewhere
+// need to add a delete button for each review

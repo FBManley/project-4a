@@ -11,7 +11,6 @@ import MovieCard from './MovieCard'
     .then((movies) => setMovies(movies))
         console.log(movies)
     }, [])
-    // returned function use as cleanup in a useEffect will be called on unmount/navigate away
   return (
     <div>Movies List
       <div>

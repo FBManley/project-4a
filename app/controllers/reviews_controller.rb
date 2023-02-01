@@ -11,35 +11,44 @@ class ReviewsController < ApplicationController
 
     def show 
         @user = User.find_by(id: params[:id])
-        render json: @user, serializer: MovieReviewSerializer
+        render json: @user
     end
     # POST /reviews 
+    # def create 
+    #     if logged_in? 
+    #         @review = current_user.reviews.build(review_params)
+    #         if @review.save 
+    #             render json: @review, status: 201   
+    #         else 
+    #             # render json: { errors: @review.errors.full_messages }, status : 422
+    #             unprocessable_entity_error(@review)
+    #         end
+    #     else 
+    #         must_be_logged_in
+    #     end
+    # end
     def create 
-        if logged_in? 
-            @review = current_user.reviews.build(review_params)
-            if @review.save 
-                render json: @review, status: 201   
-            else 
-                # render json: { errors: @review.errors.full_messages }, status : 422
-                unprocessable_entity_error(@review)
-            end
-        else 
-            must_be_logged_in
+        @review = Review.new(review_params)
+        if @review.save
+            render json: @review, status: :created
+        else
+            render json: { errors: @review.errors.full_messages }, status: :unprocessable_entity
         end
     end
+
     # PATCH /reviews/:id
     # @review.update(status: "approved")
     # use foriegn key to find user # if authoriz_user(@review.user)
-    def update 
-        if authorozed_user(@review)
-        @review.update(review_params)
-    #   review = Review.find_by(id: params[:id])
-    #   review.update(review_params)
-        render json: review, status: :accepted
-        else  
-        render json: { errors: ["Not authorized"] }, status: 401
-        end
-    end
+    # def update 
+    #     if authorozed_user(@review)
+    #     @review.update(review_params)
+    # #   review = Review.find_by(id: params[:id])
+    # #   review.update(review_params)
+    #     render json: review, status: :accepted
+    #     else  
+    #     render json: { errors: ["Not authorized"] }, status: 401
+    #     end
+    # end
     # DELETE /reviews/:id
     def destroy
         review = Review.find(params[:id])
@@ -48,7 +57,7 @@ class ReviewsController < ApplicationController
 
     private 
     def review_params
-        params.require(:review).permit(:review, :movie_id, :like)
+        params.require(:reviewObj).permit(:review, :movie_id, :user_id)
     end
     def find_review
         @review = Review.find_by_id(params[:id])
