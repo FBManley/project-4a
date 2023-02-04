@@ -24,32 +24,11 @@ const Movies = ({user}) => {
       return movie
     }))
   }
-  const handleDelete = (review) => {
-    if (review.user_id === user.id) {
-      fetch(`/reviews/${review.id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => {
-          response.json().then(() => {
-            const updatedMovies = movies.map(movie => {
-              if (movie.id === review.movie_id) {
-                movie.reviews = movie.reviews.filter(r => r.id !== review.id)
-              }
-              return movie
-            })
-            setMovies(updatedMovies)
-          })
-        })
-    }
-  }
 
   return (
     <div>Movies List
       <div>
-        {movies.map((movie) => (<MovieCard key={uuidv4()} user={user} movie={movie} handleReviewsUpdate={handleReviewsUpdate} handleDelete={handleDelete}/>))}
+        {movies.map((movie) => (<MovieCard key={uuidv4()} user={user} movie={movie} handleReviewsUpdate={handleReviewsUpdate} />))}
       </div>
     </div>
   )

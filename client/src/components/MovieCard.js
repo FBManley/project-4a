@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {v4 as uuidv4} from 'uuid'
 // import Movies from './Movies';
 
-const MovieCard = ({user, movie, handleReviewsUpdate, handleDelete}) => {
+const MovieCard = ({user, movie, handleReviewsUpdate}) => {
   // state for reviews
   const [reviews, setReviews] = useState([])
 
@@ -43,21 +43,11 @@ const MovieCard = ({user, movie, handleReviewsUpdate, handleDelete}) => {
       <h3>Director: {movie.director}</h3>
       <br></br>
       Reviews:
-      {movie.reviews.map(review => (
-        <div key={uuidv4()}>
-          {review.user_id === user.id ? (
-            <div>
-              {review.user_id}: {review.review}
-              <button onClick={() => handleDelete(review)}>Delete</button>
-            </div>
-          ) : (
-            <div>{review.user_id}: {review.review}</div>
-          )}
-        </div>
-      ))}
+      {movie.reviews.map(review => <div key={uuidv4()} >{review.user_id}: {review.review}</div>)}
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Add a review"/>
-        <button type="submit">Add Review</button>
+        <input type="text" placeholder="Add a review" />
+        <br/> 
+        <input type="submit"></input>
       </form>
     </div>
   )
