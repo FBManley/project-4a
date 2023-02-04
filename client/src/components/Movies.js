@@ -46,14 +46,10 @@ const Movies = ({user}) => {
     }
   }
 
- 
-
-
-
   return (
     <div>Movies List
       <div>
-        {movies.map((movie) => (<MovieCard key={uuidv4()} user={user} movie={movie} handleReviewsUpdate={handleReviewsUpdate} handleDelete={handleDelete} />))}
+        {movies.map((movie) => (<MovieCard key={uuidv4()} user={user} movie={movie} handleReviewsUpdate={handleReviewsUpdate} handleDelete={handleDelete}/>))}
       </div>
     </div>
   )

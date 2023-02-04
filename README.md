@@ -9,12 +9,8 @@ npm install --save styled-components
 
 
 
-CHECKLIST 
-signup - CHECK
-login - CHECK
-user - READ AND WRITE
-movie - read only - NEED ADD MOVIE
-review - CREATE, DELETE, READ- NEED UPDATE 
+
+
 
 
 ## Description
