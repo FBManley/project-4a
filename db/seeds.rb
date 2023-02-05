@@ -16,10 +16,10 @@ test_user_1 = User.create(username: "test1", password: "123")
 test_movie = Movie.create(title: "Point Break", genre: "Action", summary: "lorem ipsum surfer bank rob bro down", director: "Tim Allen", release_date: 1993)
 test_movie_1 = Movie.create(title: "James Bond", genre: "Comedy", summary: "lorem ipsum blahhhhhh", director: "John Brody", release_date: 1956)
 
-review_1 = Review.create(review: "THIS MOVIE ROCKS BOTTOMS", user: test_user, movie: test_movie)
-review_2 = Review.create(review: "THIS MOVIE GAVE ME SHINGLES", user: test_user_1, movie: test_movie_1)
-review_3 = Review.create(review: "I heart this flcik", user: test_user_1, movie: test_movie_1)
-review_4 = Review.create(review: "rofl", user: test_user, movie: test_movie_1)
+review_1 = Review.create(review: "THIS MOVIE ROCKS BOTTOMS", like: true, user: test_user, movie: test_movie)
+review_2 = Review.create(review: "THIS MOVIE GAVE ME SHINGLES", like: false, user: test_user_1, movie: test_movie_1)
+review_3 = Review.create(review: "I heart this flcik", like: false, user: test_user_1, movie: test_movie_1)
+review_4 = Review.create(review: "rofl", like: false, user: test_user, movie: test_movie_1)
 puts "✅ Done seeding!"
 # rails g resource review review:text like:boolean user:belongs_to  movie:belongs_to
 

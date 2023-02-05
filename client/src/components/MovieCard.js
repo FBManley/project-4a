@@ -69,6 +69,7 @@ const MovieCard = ({user, movie, handleReviewsUpdate}) => {
         <input type="text" placeholder="Add a review" />
         <br/> 
         <input type="submit"></input>
+        
       </form>
     </div>
   )

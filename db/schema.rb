@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(version: 2023_01_24_221500) do
   end
 
   create_table "movies", force: :cascade do |t|
-    t.text "title"
-    t.text "genre"
+    t.string "title"
+    t.string "genre"
     t.text "summary"
-    t.text "director"
+    t.string "director"
     t.integer "release_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2023_01_24_221500) do
 
   create_table "reviews", force: :cascade do |t|
     t.text "review"
+    t.boolean "like"
     t.integer "user_id", null: false
     t.integer "movie_id", null: false
     t.datetime "created_at", precision: 6, null: false
