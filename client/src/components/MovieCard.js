@@ -33,6 +33,17 @@ const MovieCard = ({user, movie, handleReviewsUpdate}) => {
       })
     })    
   }
+  const deleteReview = (review) => {
+    fetch(`/reviews/${review.id}`, {
+      method: 'DELETE',
+    })
+    .then((response) => {
+      if (response.ok) {
+        setReviews(reviews.filter(r => r.id !== review.id))
+        handleReviewsUpdate(null, review)
+      }
+    })
+  }
 
   return (
     <div>
@@ -51,6 +62,7 @@ const MovieCard = ({user, movie, handleReviewsUpdate}) => {
       </form>
     </div>
   )
+  
 }
 export default MovieCard;
 // how to I display the username for each review for each movie?

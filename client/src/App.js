@@ -7,20 +7,33 @@ import Signup from "./components/Signup";
 
 function App() {
   const [user, setUser] = useState();
-
+  // this works
+  // useEffect(() => {
+  //   fetch('/me')
+  //   .then((response) => {
+  //     if (response.ok) {
+  //       console.log(response)
+  //       response.json().then((user) => setUser(user))
+  //       console.log(user)
+  //     }
+  //     else {
+  //       setUser(null)
+  //     }
+  //   })
+  // }, [])
   useEffect(() => {
     fetch('/me')
     .then((response) => {
       if (response.ok) {
-        console.log(response)
-        response.json().then((user) => setUser(user))
-        console.log(user)
+        response.json().then((user) => {
+          setUser(user);
+          console.log(user);
+        });
+      } else {
+        setUser(null);
       }
-      else {
-        setUser(null)
-      }
-    })
-  }, [])
+    });
+  }, []);
 
   return (
     <div>

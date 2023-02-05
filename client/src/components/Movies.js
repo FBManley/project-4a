@@ -24,6 +24,7 @@ const Movies = ({user}) => {
       return movie
     }))
   }
+  
 
   return (
     <div>Movies List

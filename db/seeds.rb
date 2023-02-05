@@ -14,7 +14,7 @@ test_user = User.create(username: "test", password: "123")
 test_user_1 = User.create(username: "test1", password: "123")
 
 test_movie = Movie.create(title: "Point Break", genre: "Action", summary: "lorem ipsum surfer bank rob bro down", director: "Tim Allen", release_date: 1993)
-test_movie_1 = Movie.create(title: "Loba", genre: "Comedy", summary: "lorem ipsum blahhhhhh", director: "John Brody", release_date: 1956)
+test_movie_1 = Movie.create(title: "James Bond", genre: "Comedy", summary: "lorem ipsum blahhhhhh", director: "John Brody", release_date: 1956)
 
 review_1 = Review.create(review: "THIS MOVIE ROCKS BOTTOMS", like: true, user: test_user, movie: test_movie)
 review_2 = Review.create(review: "THIS MOVIE GAVE ME SHINGLES", like: false, user: test_user_1, movie: test_movie_1)
