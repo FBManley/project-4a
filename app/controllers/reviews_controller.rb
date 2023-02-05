@@ -13,20 +13,7 @@ class ReviewsController < ApplicationController
         @user = User.find_by(id: params[:id])
         render json: @user
     end
-    # POST /reviews 
-    # def create 
-    #     if logged_in? 
-    #         @review = current_user.reviews.build(review_params)
-    #         if @review.save 
-    #             render json: @review, status: 201   
-    #         else 
-    #             # render json: { errors: @review.errors.full_messages }, status : 422
-    #             unprocessable_entity_error(@review)
-    #         end
-    #     else 
-    #         must_be_logged_in
-    #     end
-    # end
+   
     def create 
         @review = Review.new(review_params)
         if @review.save
@@ -36,19 +23,6 @@ class ReviewsController < ApplicationController
         end
     end
 
-    # PATCH /reviews/:id
-    # @review.update(status: "approved")
-    # use foriegn key to find user # if authoriz_user(@review.user)
-    # def update 
-    #     if authorozed_user(@review)
-    #     @review.update(review_params)
-    # #   review = Review.find_by(id: params[:id])
-    # #   review.update(review_params)
-    #     render json: review, status: :accepted
-    #     else  
-    #     render json: { errors: ["Not authorized"] }, status: 401
-    #     end
-    # end
     # DELETE /reviews/:id
     def destroy
         review = Review.find(params[:id])
@@ -67,3 +41,30 @@ class ReviewsController < ApplicationController
     end
 
 end
+# PATCH /reviews/:id
+    # @review.update(status: "approved")
+    # use foriegn key to find user # if authoriz_user(@review.user)
+    # def update 
+    #     if authorozed_user(@review)
+    #     @review.update(review_params)
+    # #   review = Review.find_by(id: params[:id])
+    # #   review.update(review_params)
+    #     render json: review, status: :accepted
+    #     else  
+    #     render json: { errors: ["Not authorized"] }, status: 401
+    #     end
+    # end
+     # POST /reviews 
+    # def create 
+    #     if logged_in? 
+    #         @review = current_user.reviews.build(review_params)
+    #         if @review.save 
+    #             render json: @review, status: 201   
+    #         else 
+    #             # render json: { errors: @review.errors.full_messages }, status : 422
+    #             unprocessable_entity_error(@review)
+    #         end
+    #     else 
+    #         must_be_logged_in
+    #     end
+    # end

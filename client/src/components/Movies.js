@@ -5,11 +5,11 @@ import MovieCard from './MovieCard'
 const Movies = ({user}) => {
   const [movies, setMovies] = useState([])
 
-  useEffect(() => {
-    fetch('/movies')
-    .then((response) => response.json())
-    .then((movies) => setMovies(movies))
-        console.log(movies)
+    useEffect(() => {
+      fetch('/movies')
+        .then((response) => response.json())
+        .then((movies) => setMovies(movies))
+        .catch((error) => console.error(error))
     }, [])
 
   // added handleReviewsUpdate function
@@ -25,11 +25,15 @@ const Movies = ({user}) => {
     }))
   }
   
-
   return (
     <div>Movies List
       <div>
-        {movies.map((movie) => (<MovieCard key={uuidv4()} user={user} movie={movie} handleReviewsUpdate={handleReviewsUpdate} />))}
+        {movies.map((movie) => 
+        (<MovieCard 
+        key={uuidv4()} 
+        user={user} 
+        movie={movie} 
+        handleReviewsUpdate={handleReviewsUpdate} />))}
       </div>
     </div>
   )

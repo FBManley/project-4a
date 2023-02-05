@@ -6,7 +6,7 @@ const MovieCard = ({user, movie, handleReviewsUpdate}) => {
   // state for reviews
   const [reviews, setReviews] = useState([])
 
-  const handleSubmit = (event) => {
+  const handleReviewSubmit = (event) => {
     event.preventDefault()
     const review = event.target[0].value
     const movie_id = movie.id
@@ -33,16 +33,22 @@ const MovieCard = ({user, movie, handleReviewsUpdate}) => {
       })
     })    
   }
-  const deleteReview = (review) => {
-    fetch(`/reviews/${review.id}`, {
+
+  const handleReviewDelete = (review_id) => {
+    fetch(`/reviews/${review_id}`, {
       method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        review_id
+      }),
     })
     .then((response) => {
-      if (response.ok) {
-        setReviews(reviews.filter(r => r.id !== review.id))
-        handleReviewsUpdate(null, review)
-      }
-    })
+      console.log("response", response)
+      setReviews(reviews.filter((review) => review.id !== review_id))
+      handleReviewsUpdate()
+    })    
   }
 
   return (
@@ -54,11 +60,16 @@ const MovieCard = ({user, movie, handleReviewsUpdate}) => {
       <h3>Director: {movie.director}</h3>
       <br></br>
       Reviews:
-      {movie.reviews.map(review => <div key={uuidv4()} >{review.user_id}: {review.review}</div>)}
-      <form onSubmit={handleSubmit}>
+      {movie.reviews.map(review => 
+      <div key={uuidv4()}>
+        {review.user_id}: {review.review} 
+        <button onClick={() => handleReviewDelete(review.id)}>Delete</button>
+      </div>)}
+      <form onSubmit={handleReviewSubmit}>
         <input type="text" placeholder="Add a review" />
         <br/> 
         <input type="submit"></input>
+        
       </form>
     </div>
   )
