@@ -16,6 +16,14 @@ class MoviesController < ApplicationController
         movies = Movie.all
         render json: movies, inclue: :reviews
     end
+    def destroy 
+        @movie = Movie.find(params[:id])
+        if @movie.destroy
+            render json: { message: "Movie deleted" }, status: 200
+        else
+            render json: { errors: @movie.errors.full_messages }, status: 422
+        end
+    end
     # def index
     #     movies = Movie.all 
     #     render json: movies.to_json()
@@ -32,7 +40,7 @@ class MoviesController < ApplicationController
     private 
 
     def movie_params 
-        params.require(:movie).permit(:title, :genre, :summary, :director, :release_date)
+        params.require(:movieFormInput).permit(:title, :genre, :summary, :director, :release_date)
     end
 
     # def find_movie

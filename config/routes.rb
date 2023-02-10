@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :blogs
   resources :reviews, only: [:index, :show, :create, :update]
   resources :movies, only: [:index, :show, :create]
-  
+  delete "/movies/:id", to: "movies#destroy"
   # resources :users
   # just a read- not sending anything to the server
   delete "/reviews/:id", to: "reviews#destroy"

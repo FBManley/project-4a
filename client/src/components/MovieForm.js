@@ -6,7 +6,8 @@ const startingState = {
     director: '',
     release_date: ''
   }
-const CreateMovie = ({addMovie, handleClick}) => {
+
+const CreateMovie = ({addMovie}) => {
     const [movieFormInput, setMovieFormInput] = useState(startingState)
 
     const handleSubmit = (e) => {
@@ -14,7 +15,7 @@ const CreateMovie = ({addMovie, handleClick}) => {
         fetch('/movies', {
             method: 'POST',
             headers: {
-                'Accept': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({movieFormInput})
         }).then((response) => {
@@ -22,7 +23,7 @@ const CreateMovie = ({addMovie, handleClick}) => {
                 response.json().then(movie => {
                 setMovieFormInput(movieFormInput)
                 addMovie(movie)
-                handleClick()
+                // handleClick()
             })
             } else {
                 response.json().then((errors) => {
@@ -50,7 +51,8 @@ const CreateMovie = ({addMovie, handleClick}) => {
             <label>Release Date</label>
             <input type="integer" name="release_date" value={movieFormInput.release_date} onChange={handleChange} />
             <button type="submit">Submit</button>
-            <button type ="button" onClick={handleClick}>Close</button>
+            <button type ="button" >Close</button>
+            {/* onClick={handleClick} */}
         </form>
     </div>
   )

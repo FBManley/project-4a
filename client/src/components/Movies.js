@@ -15,7 +15,8 @@ const Movies = ({user}) => {
         .catch((error) => console.error(error))
     }, [])
     
-  const onAddMovie = (newMovie) => {
+  const addMovie = (newMovie) => {
+    console.log([movies])
     setMovies((movies) => [...movies, newMovie])
   }
   const enterMovieEditMode = (movie_id) => {
@@ -23,7 +24,7 @@ const Movies = ({user}) => {
   }
   const renderMovieForm = () => {
      if (!movieID) {
-      return <MovieForm updateMovies={onAddMovie}/>
+      return <MovieForm addMovie={addMovie}/>
     } else {
       return <MovieEditForm movieID={movieID} editMovie={editMovie}/>
     }
@@ -47,6 +48,13 @@ const Movies = ({user}) => {
       return filteredMoviesArray 
     })
   }
+  const onDeleteMovie = (movie_id) => {
+    console.log(movie_id)
+    setMovies(prevMovies => {
+      const filteredMoviesArray = prevMovies.filter(movie => movie.id !== movie_id)
+      return filteredMoviesArray 
+    })
+  }
   const MovieListCards = movies.map((movie) => 
     (<MovieCard 
     key={uuidv4()} 
@@ -54,6 +62,7 @@ const Movies = ({user}) => {
     movie={movie} 
     // handleReviewsUpdate={handleReviewsUpdate} 
     onDeleteReview={onDeleteReview}
+    onDeleteMovie={onDeleteMovie}
     />
     
   ))
