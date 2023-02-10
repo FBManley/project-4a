@@ -26,10 +26,10 @@ const Movies = ({user}) => {
      if (!movieID) {
       return <MovieForm addMovie={addMovie}/>
     } else {
-      return <MovieEditForm movieID={movieID} editMovie={editMovie}/>
+      return <MovieEditForm movieID={movieID} onEditMovie={onEditMovie}/>
     }
   }
-  const editMovie = (updatedMov) => {
+  const onEditMovie = (updatedMov) => {
     setMovies(prevMovies => {
       const newMovArray = prevMovies.map(movie => {
         if (movie.id === updatedMov.id) {
@@ -41,13 +41,7 @@ const Movies = ({user}) => {
       return newMovArray
     })
   }
-  const onDeleteReview = (review_id) => {
-    console.log(review_id)
-    setMovies(prevMovies => {
-      const filteredMoviesArray = prevMovies.filter(movie => movie.review_id !== review_id)
-      return filteredMoviesArray 
-    })
-  }
+  
   const onDeleteMovie = (movie_id) => {
     console.log(movie_id)
     setMovies(prevMovies => {
@@ -61,8 +55,9 @@ const Movies = ({user}) => {
     user={user} 
     movie={movie} 
     // handleReviewsUpdate={handleReviewsUpdate} 
-    onDeleteReview={onDeleteReview}
+    // onDeleteReview={onDeleteReview}
     onDeleteMovie={onDeleteMovie}
+    enterMovieEditMode={enterMovieEditMode}
     />
     
   ))
@@ -88,4 +83,11 @@ export default Movies;
   //     }
   //     return movie
   //   }))
+  // }
+  // const onDeleteReview = (review_id) => {
+  //   console.log(review_id)
+  //   setMovies(prevMovies => {
+  //     const filteredMoviesArray = prevMovies.filter(movie => movie.review_id !== review_id)
+  //     return filteredMoviesArray 
+  //   })
   // }

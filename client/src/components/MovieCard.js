@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
 import {v4 as uuidv4} from 'uuid'
 // import Movies from './Movies';
-
-const MovieCard = ({user, movie, onDeleteReview, onDeleteMovie}) => {
+// onDeleteReview,
+const MovieCard = ({user, movie, onDeleteMovie, enterMovieEditMode}) => {
   // state for reviews
-  const [reviews, setReviews] = useState([])
+  // const [reviews, setReviews] = useState([])
  
-  const handleReviewDeleteClick = (review_id) => {
-    fetch(`/reviews/${review_id}`, {
-      method: 'DELETE'
-    })
-    .then(response => response.json())
-    .then(() => onDeleteReview(review_id))
-  }
+  // const handleReviewDeleteClick = (review_id) => {
+  //   fetch(`/reviews/${review_id}`, {
+  //     method: 'DELETE'
+  //   })
+  //   .then(response => response.json())
+  //   .then(() => onDeleteReview(review_id))
+  // }
+
   // delete function for movie
   const handleMovieDeleteClick = (movie_id) => {
     fetch(`/movies/${movie_id}`, {
@@ -31,7 +32,7 @@ const MovieCard = ({user, movie, onDeleteReview, onDeleteMovie}) => {
       <h3>Director: {movie.director}</h3>
       <br></br>
       <button onClick={() => handleMovieDeleteClick(movie.id)}>Delete</button>
-     
+      <button onClick={() => enterMovieEditMode(movie)}>Edit</button>
     </div>
   )
   
