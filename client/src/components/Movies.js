@@ -6,8 +6,8 @@ import MovieEditForm from './MovieEditForm'
 
 const Movies = ({user}) => {
   const [movies, setMovies] = useState([])
-  const [movieID, setMovieID] = useState(false)
-
+  const [movieID, setMovieID] = useState(true)
+  console.timeLog({movieID})
     useEffect(() => {
       fetch('/movies')
         .then((response) => response.json())
@@ -30,8 +30,8 @@ const Movies = ({user}) => {
     }
   }
   const onEditMovie = (updatedMov) => {
-    setMovies(prevMovies => {
-      const newMovArray = prevMovies.map(movie => {
+    setMovies(movies => {
+      const newMovArray = movies.map(movie => {
         if (movie.id === updatedMov.id) {
           return updatedMov
         } else {
@@ -65,7 +65,13 @@ const Movies = ({user}) => {
   return (
     <div>Movies List
       <div>
+        {/* need tenary. if addMovie is clicked render MovieForm else render editMovieForm */}
+        {movies ? (
+          <div><MovieForm addMovie={addMovie}/> </div> 
+          ) : (
+          <div><MovieEditForm movieID={movieID} onEditMovie={onEditMovie}/></div>)} 
         {renderMovieForm()}
+
         {MovieListCards}
       </div>
     </div>

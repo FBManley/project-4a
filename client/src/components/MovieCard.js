@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import {v4 as uuidv4} from 'uuid'
+import React from 'react'
+// import {v4 as uuidv4} from 'uuid'
 // import Movies from './Movies';
-// onDeleteReview,
-const MovieCard = ({user, movie, onDeleteMovie, enterMovieEditMode}) => {
+// onDeleteReview, user, 
+const MovieCard = ({movie, onDeleteMovie, enterMovieEditMode}) => {
   // state for reviews
   // const [reviews, setReviews] = useState([])
  
@@ -22,6 +22,11 @@ const MovieCard = ({user, movie, onDeleteMovie, enterMovieEditMode}) => {
     .then(response => response.json())
     .then(() => onDeleteMovie(movie_id))
   }
+  
+  const handleEditClick = (movie_id) => {
+    enterMovieEditMode(movie_id)
+    console.log(movie_id)
+  }
 
   return (
     <div>
@@ -32,7 +37,7 @@ const MovieCard = ({user, movie, onDeleteMovie, enterMovieEditMode}) => {
       <h3>Director: {movie.director}</h3>
       <br></br>
       <button onClick={() => handleMovieDeleteClick(movie.id)}>Delete</button>
-      <button onClick={() => enterMovieEditMode(movie)}>Edit</button>
+      <button onClick={() => handleEditClick(movie.id)}>Edit</button>
     </div>
   )
   

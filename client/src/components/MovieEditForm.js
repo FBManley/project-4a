@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
- const MovieEditForm = ({movieID, editMovie}) => {
+ const MovieEditForm = ({movieID, onEditMovie}) => {
+    console.timeLog({movieID})
     const [formData, setFormData] = useState({
         title: '',
         genre: '',
@@ -9,8 +10,9 @@ import React, { useState } from 'react'
         release_date: ''
     })
     const {title, genre, summary, director, release_date} = formData;
+
     useEffect(() => {
-        fetch(`/movies/${movie.id}`)
+        fetch(`/movies/${movieID}`)
         .then(response => response.json())
         .then(movie => setFormData(movie))
     }, [movieID])
@@ -20,7 +22,7 @@ import React, { useState } from 'react'
     }
     function handleSubmit(e) {
         e.preventDefault();
-        fetch(`/movies/${movie_id}`, {
+        fetch(`/movies/${movieID}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -28,7 +30,7 @@ import React, { useState } from 'react'
             body: JSON.stringify(formData)
         })
         .then(response => response.json())
-        .then(data => editMovie(data))
+        .then(data => onEditMovie(data))
     }
 
   return (
@@ -46,7 +48,6 @@ import React, { useState } from 'react'
             <label>Release Date</label>
             <input type="integer" name="release_date" value={release_date} onChange={handleChange} />
             <button type="submit">Submit</button>
-    
         </form>
     </div>
   )
