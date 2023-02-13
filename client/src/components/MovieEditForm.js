@@ -6,34 +6,34 @@ const startingState = {
     director: '',
     release_date: ''
   }
-// , onEditMovie
- const MovieEditForm = ({movieID}) => {
+// , 
+ const MovieEditForm = ({movieID, onEditMovie}) => {
     console.timeLog({movieID})
-    const [formData, setFormData] = useState(startingState)
+    const [movieFormInput, setmovieFormInput] = useState(startingState)
 
-    const {title, genre, summary, director, release_date} = formData;
+    const {title, genre, summary, director, release_date} = movieFormInput;
 
     useEffect(() => {
         fetch(`/movies/${movieID}`)
         .then(response => response.json())
-        .then(movie => setFormData(movie))
+        .then(movie => setmovieFormInput(movie))
     }, [movieID])
 
     const handleChange = (e) => {
         const {name, value} = e.target;
-        setFormData({...formData, [name]: value})
+        setmovieFormInput({...movieFormInput, [name]: value})
     }
     function handleSubmit(e) {
         e.preventDefault();
-        // fetch(`/movies/${movieID}`, {
-        //     method: 'PATCH',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(formData)
-        // })
-        // .then(response => response.json())
-        // .then(data => onEditMovie(data))
+        fetch(`/movies/${movieID}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(movieFormInput)
+        })
+        .then(response => response.json())
+        .then(data => onEditMovie(data))
     }
 
   return (

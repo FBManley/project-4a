@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :movies, only: [:index, :show, :create, :update]
   
   delete "/movies/:id", to: "movies#destroy"
+  
   # resources :users
   # just a read- not sending anything to the server
   delete "/reviews/:id", to: "reviews#destroy"
