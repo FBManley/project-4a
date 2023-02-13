@@ -6,7 +6,7 @@ import MovieEditForm from './MovieEditForm'
 
 const Movies = ({user}) => {
   const [movies, setMovies] = useState([])
-  const [movieID, setMovieID] = useState(true)
+  const [movieID, setMovieID] = useState(false)
   console.timeLog({movieID})
     useEffect(() => {
       fetch('/movies')
@@ -20,6 +20,7 @@ const Movies = ({user}) => {
     setMovies((movies) => [...movies, newMovie])
   }
   const enterMovieEditMode = (movie_id) => {
+    console.log("enterMovieEditMode",movie_id)
     setMovieID(movie_id)
   }
   const renderMovieForm = () => {
@@ -66,10 +67,10 @@ const Movies = ({user}) => {
     <div>Movies List
       <div>
         {/* need tenary. if addMovie is clicked render MovieForm else render editMovieForm */}
-        {movies ? (
+        {/* {movies ? (
           <div><MovieForm addMovie={addMovie}/> </div> 
           ) : (
-          <div><MovieEditForm movieID={movieID} onEditMovie={onEditMovie}/></div>)} 
+          <div><MovieEditForm movieID={movieID} onEditMovie={onEditMovie}/></div>)}  */}
         {renderMovieForm()}
 
         {MovieListCards}

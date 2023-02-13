@@ -1,6 +1,15 @@
 class MoviesController < ApplicationController
     # before_action :find_movie, only: [:update, :delete]
     # before_action :authorized, only: [:create, :update, :delete]
+    # GET /movies/:id
+    def show 
+        @movie = Movie.find(params[:id])
+        if @movie 
+            render json: @movie, status: 200
+        else
+            render json: { errors: @movie.errors.full_messages }, status: 422
+        end
+    end
     def create 
         @movie = Movie.new(movie_params)
         if @movie.save 
