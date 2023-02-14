@@ -3,11 +3,11 @@ class ReviewsController < ApplicationController
     # before_action :find_review, only: [:update, :delete]
     # GET /reviews -> index getting ALL reviews I need just users reveiws
     # @reviews = current_user.Review.all
-    def index 
-        # current users reviews 
-        @reviews = current_user.reviews
-        render json: @reviews
-    end
+    # def index 
+    #     # current users reviews 
+    #     reviews = current_user.reviews
+    #     render json: reviews
+    # end
 
     def show 
         @user = User.find_by(id: params[:id])
@@ -31,7 +31,7 @@ class ReviewsController < ApplicationController
 
     private 
     def review_params
-        params.require(:reviewObj).permit(:review, :movie_id, :user_id)
+        params.require(:reviewFormData).permit(:review, :movie_id, :user_id)
     end
     def find_review
         @review = Review.find_by_id(params[:id])

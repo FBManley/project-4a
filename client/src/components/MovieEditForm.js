@@ -56,9 +56,3 @@ const startingState = {
 }
 
 export default MovieEditForm; 
-
-
-  // const handleChange = (e) => {
-    //     const {name, value} = e.target;
-    //     setmovieFormInput({...movieFormInput, [name]: value})
-    // }

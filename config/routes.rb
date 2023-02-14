@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :blogs
-  resources :reviews, only: [:index, :show, :create, :update]
+  resources :reviews, only: [:index, :show, :create]
   resources :movies, only: [:index, :show, :create, :update]
   
   delete "/movies/:id", to: "movies#destroy"

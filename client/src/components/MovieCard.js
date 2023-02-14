@@ -1,11 +1,12 @@
-import React from 'react'
-// import {v4 as uuidv4} from 'uuid'
+import React, { useState } from 'react'
+import {v4 as uuidv4} from 'uuid'
+import ReviewForm from './ReviewForm'
 // import Movies from './Movies';
 // onDeleteReview, user, 
 const MovieCard = ({movie, onDeleteMovie, enterMovieEditMode}) => {
   // state for reviews
-  // const [reviews, setReviews] = useState([])
- 
+  const [reviews, setReviews] = useState(movie.reviews)
+ console.log(movie.reviews)
   // const handleReviewDeleteClick = (review_id) => {
   //   fetch(`/reviews/${review_id}`, {
   //     method: 'DELETE'
@@ -38,6 +39,12 @@ const MovieCard = ({movie, onDeleteMovie, enterMovieEditMode}) => {
       <br></br>
       <button onClick={() => handleMovieDeleteClick(movie.id)}>Delete</button>
       <button onClick={() => handleEditClick(movie.id)}>Edit</button>
+      <br></br>
+      {/* Reviews */}
+      <h4>Reviews:</h4>
+      {movie.reviews.map(movie => <h3 key={uuidv4()}>{movie.review}</h3>)}
+      <br></br>
+      <ReviewForm setReviews={setReviews}/>
       <div>
        
       </div>

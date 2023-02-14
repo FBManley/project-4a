@@ -6,7 +6,7 @@ const startingState = {
     director: '',
     release_date: ''
   }
-// , editMovie
+
 const CreateMovie = ({addMovie}) => {
     const [movieFormInput, setMovieFormInput] = useState(startingState)
 
@@ -23,32 +23,22 @@ const CreateMovie = ({addMovie}) => {
                 response.json().then(movie => {
                 setMovieFormInput(movieFormInput)
                 addMovie(movie)
+                handleClear()
             })
             } else {
                 response.json().then((errors) => {
                     console.log(errors)
                 })
             }
+            
         })
+        
     }
-    // handleSubmit for edit
-    // const handleSubmit = (e) => { 
-    //     e.preventDefault();
-    //     fetch(`/movies/${movie.id}`, {
-    //         method: 'PATCH',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({movieFormInput})
-    //     }).then((response) => {
-    //         if (response.ok) {
-    //             response.json().then(movie => {
-    //             setMovieFormInput(movieFormInput)
-    //             editMovie(movie)
-    //         })
-    // }
     const handleChange = (e) => {
         setMovieFormInput({...movieFormInput, [e.target.name]: e.target.value})
+    }
+    const handleClear = (e) => {
+        setMovieFormInput(startingState)
     }
 
   return (
@@ -66,7 +56,7 @@ const CreateMovie = ({addMovie}) => {
             <label>Release Date</label>
             <input type="integer" name="release_date" value={movieFormInput.release_date} onChange={handleChange} />
             <button type="submit">Submit</button>
-            <button type ="button" >Close</button>
+            <button type ="button" onClick={handleClear}>Clear</button>
         </form>
     </div>
   )
