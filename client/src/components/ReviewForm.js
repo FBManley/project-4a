@@ -18,7 +18,7 @@ const startingState = {
             },
             body: JSON.stringify({reviewFormData})
         }).then(response => response.json())
-          .then(reviews => setReviews(reviews))
+          .then(reviews => console.log(reviews))
 
     }
   return (

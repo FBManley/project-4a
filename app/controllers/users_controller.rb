@@ -4,7 +4,9 @@ class UsersController < ApplicationController
         # the “!” version will raise an exception if the record is invalid. 
         # The “?” version will return false if the record is invalid.
         def create 
+            
             user = User.create!(user_params)
+            
             if user.valid? 
                 session[:user_id] = user.id
                 render json: user, status: 201

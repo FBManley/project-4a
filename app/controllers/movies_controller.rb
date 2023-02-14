@@ -11,6 +11,7 @@ class MoviesController < ApplicationController
         end
     end
     def create 
+        byebug
         @movie = Movie.new(movie_params)
         if @movie.save 
             render json: @movie, status: 201
