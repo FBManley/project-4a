@@ -4,7 +4,7 @@ const startingState = {
     }
  const ReviewForm = ({setReviews}) => {
     const [reviewFormData, setReviewFormData] = useState(startingState)
-    const {review} = reviewFormData
+    // const {review} = reviewFormData
 
     const handleChange = (e) => {
         setReviewFormData({...reviewFormData, [e.target.name]: e.target.value})
@@ -25,7 +25,7 @@ const startingState = {
     <div>ReviewForm
         <form onSubmit={handleSubmit}>
             <label>Review</label>
-            <input type="text" name="review" value={review} onChange={handleChange} />
+            <input type="text" name="review" value={reviewFormData.review} onChange={handleChange} />
             <button type="submit">Submit</button>
         </form>
     </div>
