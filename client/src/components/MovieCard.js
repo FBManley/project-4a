@@ -25,7 +25,7 @@ const MovieCard = ({movie, onDeleteMovie, enterMovieEditMode}) => {
 
   const handleEditClick = (movie_id) => {
     enterMovieEditMode(movie_id)
-    console.log(movie_id)
+    // console.log(movie_id)
   }
 
   return (

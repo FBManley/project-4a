@@ -39,8 +39,11 @@ const Movies = ({user}) => {
           return movie
         }
       })
+      // setMovies(newMovArray)
       return newMovArray
+      
     })
+    
   }
   
   const onDeleteMovie = (movie_id) => {
@@ -65,6 +68,8 @@ const Movies = ({user}) => {
 
   return (
     <div>Movies List
+      {/* Add Movie Button */}
+      <button onClick={() => setMovieID(false)}>Add Movie</button>
       <div>
         {/* need tenary. if addMovie is clicked render MovieForm else render editMovieForm */}
         {/* {movies ? (
