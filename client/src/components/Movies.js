@@ -7,12 +7,13 @@ import MovieEditForm from './MovieEditForm'
 const Movies = ({user}) => {
   const [movies, setMovies] = useState([])
   const [movieID, setMovieID] = useState(false)
-  console.timeLog({movieID})
+  console.log("in movies", user)
     useEffect(() => {
       fetch('/movies')
         .then((response) => response.json())
         .then((movies) => setMovies(movies))
         .catch((error) => console.error(error))
+        // console.log(movies)
     }, [])
     
   const addMovie = (newMovie) => {
@@ -58,6 +59,7 @@ const Movies = ({user}) => {
     key={uuidv4()} 
     user={user} 
     movie={movie} 
+    reviews={movie.reviews}
     // handleReviewsUpdate={handleReviewsUpdate} 
     // onDeleteReview={onDeleteReview}
     onDeleteMovie={onDeleteMovie}

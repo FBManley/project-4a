@@ -6,7 +6,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 
 function App() {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState([]);
   useEffect(() => {
     fetch('/me')
     .then((response) => {
@@ -36,6 +36,7 @@ function App() {
           <Route exact path="/login" element={<Login setUser={setUser}/>} />
           <Route exact path="/signup" element={<Signup setUser={setUser}/>} />
           <Route path='*' element={<Login setUser={setUser}/>} />
+          {/* <Route exact path="user/reviews" setUser={setUser} element={UserReviewDetails}/> */}
         </Routes>
       )}
     </div>

@@ -1,12 +1,24 @@
 import React, { useState } from 'react'
 import {v4 as uuidv4} from 'uuid'
 import ReviewForm from './ReviewForm'
+import Reviews from './Reviews'
+
 // import Movies from './Movies';
 // onDeleteReview, user, 
-const MovieCard = ({movie, onDeleteMovie, enterMovieEditMode}) => {
+const MovieCard = ({reviews, movie, onDeleteMovie, enterMovieEditMode, user}) => {
+  // destructure movie object
+  const {id, title, genre, director, release_date, summary} = movie
+  // just one cards review
+  // const {reviews} = reviews
+  // const {reviews} = reviews
+  // console.log(reviews)
+// reviews is an object getting addded to the array of reviews. need to make it an array of review objects 
+
+ 
   // state for reviews
-  const [reviews, setReviews] = useState(movie.reviews)
- console.log(movie.reviews)
+const [cardReviews, setCardReviews] = useState([reviews])
+//  console.log(movie.reviews)
+ 
   // const handleReviewDeleteClick = (review_id) => {
   //   fetch(`/reviews/${review_id}`, {
   //     method: 'DELETE'
@@ -14,6 +26,15 @@ const MovieCard = ({movie, onDeleteMovie, enterMovieEditMode}) => {
   //   .then(response => response.json())
   //   .then(() => onDeleteReview(review_id))
   // }
+  console.log(reviews)
+  // add review function
+  const addReview = (newReview) => {
+    console.log("in addReview", newReview)
+    console.log("in addReview", cardReviews)
+    setCardReviews((cardReviews) => [...cardReviews, newReview])
+    console.log(cardReviews)  
+  }
+  console.log("newly added review",cardReviews)
 
   // delete function for movie
   const handleMovieDeleteClick = (movie_id) => {
@@ -28,26 +49,32 @@ const MovieCard = ({movie, onDeleteMovie, enterMovieEditMode}) => {
     enterMovieEditMode(movie_id)
     // console.log(movie_id)
   }
+  const movieReviews = cardReviews.map((review) => {
+    return (
+      <div key={uuidv4()}>
+        <h4>{review.review}</h4>
+      </div>
+    )
+  })
 
   return (
     <div>
-      <h3>Title: {movie.title}</h3>
-      <h3>Genre: {movie.genre}</h3>
-      <h3>Release Date: {movie.release_date}</h3>
-      <h3>Description: {movie.summary}</h3>
-      <h3>Director: {movie.director}</h3>
+      <h3>Title: {title}</h3>
+      <h3>Genre: {genre}</h3>
+      <h3>Release Date: {release_date}</h3>
+      <h3>Description: {summary}</h3>
+      <h3>Director: {director}</h3>
       <br></br>
-      <button onClick={() => handleMovieDeleteClick(movie.id)}>Delete</button>
-      <button onClick={() => handleEditClick(movie.id)}>Edit</button>
+      <button onClick={() => handleMovieDeleteClick(id)}>Delete</button>
+      <button onClick={() => handleEditClick(id)}>Edit</button>
       <br></br>
-      {/* Reviews */}
       <h4>Reviews:</h4>
-      {movie.reviews.map(movie => <h3 key={uuidv4()}>{movie.review}</h3>)}
-      <br></br>
-      <ReviewForm setReviews={setReviews}/>
+      {/* map to render Reviews for each moviecard  */}
+      {movieReviews}
+      
       <div>
-       
-      </div>
+          <ReviewForm key={uuidv4()} user={user} movie={movie} addReview={addReview} />
+        </div>
     </div>
   )
   
@@ -94,3 +121,12 @@ export default MovieCard;
   //   <br/> 
   //   <input type="submit"></input>
   // </form>
+  // {reviews.map((review) => {
+  //   return (
+  //     <div key={uuidv4()}>
+  //       <h4>{review.review}</h4>
+  //       {/* <h4>{review.user.username}</h4> */}
+  //     </div>
+  //   )
+  // }
+  // )}

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
         # the “!” version will raise an exception if the record is invalid. 
         # The “?” version will return false if the record is invalid.
         def create 
-            
+            # byebug
             user = User.create!(user_params)
             
             if user.valid? 

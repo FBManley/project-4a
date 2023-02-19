@@ -8,16 +8,32 @@ class ReviewsController < ApplicationController
     #     reviews = current_user.reviews
     #     render json: reviews
     # end
-
-    def show 
-        @user = User.find_by(id: params[:id])
-        render json: @user
+    def index
+        # binding.pry 
+        if params[:uer_id]
+            user = User.find_by_id(params[:user_id])
+            render json: user.reviews
+        else 
+        @reviews = Review.all
+        end
+        render json: @reviews, include: [:user, :movie]
     end
+
+    # def show 
+    #     @user = User.find_by(id: params[:id])
+    #     render json: @user
+    # end
+    def show
+        @review = Review.find_by(id: params[:id])
+        render json: @review
+    end
+
    
     def create 
-        @review = Review.create(review_params)
+        # byebug
+        @review = Review.new(review_params)
         if @review.save
-            render json: @review, status: :created
+            render json: @review, status: 201
         else
             render json: { errors: @review.errors.full_messages }, status: :unprocessable_entity
         end
@@ -30,8 +46,9 @@ class ReviewsController < ApplicationController
     end
 
     private 
+    # , :movie_id, 
     def review_params
-        params.require(:reviewFormData).permit(:review, :movie_id, :user_id)
+        params.require(:reviewFormData).permit(:review, :user_id, :movie_id)
     end
     def find_review
         @review = Review.find_by_id(params[:id])

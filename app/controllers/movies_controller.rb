@@ -2,6 +2,7 @@ class MoviesController < ApplicationController
     # before_action :find_movie, only: [:update, :delete]
     # before_action :authorized, only: [:create, :update, :delete]
     # GET /movies/:id
+    # , inclue:[:reviews, :users]
     def show 
         @movie = Movie.find(params[:id])
         if @movie 
@@ -11,7 +12,7 @@ class MoviesController < ApplicationController
         end
     end
     def create 
-        byebug
+        # byebug
         @movie = Movie.new(movie_params)
         if @movie.save 
             render json: @movie, status: 201
@@ -24,7 +25,7 @@ class MoviesController < ApplicationController
     def index 
         # movies = current_user.movies
         movies = Movie.all
-        render json: movies, inclue: :reviews
+        render json: movies
     end
     # DELETE /movies/:id
     def destroy 

@@ -29,6 +29,7 @@ import { NavLink } from 'react-router-dom'
               <li><NavLink to='/signup'>Sign-Up</NavLink></li>
               <li><NavLink to='/login'>Log In</NavLink></li>
               <li><NavLink to='/'>Home</NavLink></li>
+              {/* <li><NavLink to='user/reviews'>ReviewDetails</NavLink></li> */}
             </ul>
           </div>
         )}
