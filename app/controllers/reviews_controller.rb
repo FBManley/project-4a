@@ -1,15 +1,8 @@
 class ReviewsController < ApplicationController
     # rescue_from ActionController::ParameterMissing, with: :parameter_missing
     # before_action :find_review, only: [:update, :delete]
-    # GET /reviews -> index getting ALL reviews I need just users reveiws
-    # @reviews = current_user.Review.all
-    # def index 
-    #     # current users reviews 
-    #     reviews = current_user.reviews
-    #     render json: reviews
-    # end
+    
     def index
-        # binding.pry 
         if params[:uer_id]
             user = User.find_by_id(params[:user_id])
             render json: user.reviews
@@ -19,10 +12,7 @@ class ReviewsController < ApplicationController
         render json: @reviews, include: [:user, :movie]
     end
 
-    # def show 
-    #     @user = User.find_by(id: params[:id])
-    #     render json: @user
-    # end
+  
     def show
         @review = Review.find_by(id: params[:id])
         render json: @review
@@ -30,7 +20,6 @@ class ReviewsController < ApplicationController
 
    
     def create 
-        # byebug
         @review = Review.new(review_params)
         if @review.save
             render json: @review, status: 201
@@ -46,7 +35,6 @@ class ReviewsController < ApplicationController
     end
 
     private 
-    # , :movie_id, 
     def review_params
         params.require(:reviewFormData).permit(:review, :user_id, :movie_id)
     end
@@ -84,4 +72,15 @@ end
     #     else 
     #         must_be_logged_in
     #     end
+    # end
+      # def show 
+    #     @user = User.find_by(id: params[:id])
+    #     render json: @user
+    # end
+    # GET /reviews -> index getting ALL reviews I need just users reveiws
+    # @reviews = current_user.Review.all
+    # def index 
+    #     # current users reviews 
+    #     reviews = current_user.reviews
+    #     render json: reviews
     # end

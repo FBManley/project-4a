@@ -30,9 +30,7 @@ const CreateMovie = ({addMovie}) => {
                     console.log(errors)
                 })
             }
-            
         })
-        
     }
     const handleChange = (e) => {
         setMovieFormInput({...movieFormInput, [e.target.name]: e.target.value})

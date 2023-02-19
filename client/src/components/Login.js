@@ -2,10 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
  const Login = ({setUser}) => {
-  // const [formData, setFormData] = useState({
-  //   username: "",
-  //   password: ""
-  // })
+
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
@@ -31,28 +28,6 @@ import { useNavigate } from 'react-router-dom';
        else response.json().then((error) => { setError(error.error) })
     })
   }
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   fetch('/login', {
-  //     method: 'POST',
-  //     headers: {'Content-Type': 'application/json'},
-  //     body: JSON.stringify({
-  //       username: username,
-  //       password: password
-  //     })
-  //   })
-  //   .then((response) => 
-  //     if (response.ok) {
-  //       response.json().then((user) => {
-  //         setUser(user)
-  //       })
-  //     }
-  //   else {
-  //     response.json().then((error) => { setError(error.error) }
-  //   )}
-  //   )
-  //   // in wrong place-> move response.json() down
-  // }
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -64,6 +39,7 @@ import { useNavigate } from 'react-router-dom';
         <br/> 
         <input type="submit"></input>
       </form>
+      <ul>{error}</ul>
     </div>
   )
 }

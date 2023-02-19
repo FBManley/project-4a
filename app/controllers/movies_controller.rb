@@ -2,7 +2,6 @@ class MoviesController < ApplicationController
     # before_action :find_movie, only: [:update, :delete]
     # before_action :authorized, only: [:create, :update, :delete]
     # GET /movies/:id
-    # , inclue:[:reviews, :users]
     def show 
         @movie = Movie.find(params[:id])
         if @movie 
@@ -53,10 +52,6 @@ class MoviesController < ApplicationController
     def movie_params 
         params.require(:movieFormInput).permit(:title, :genre, :summary, :director, :release_date)
     end
-
-    # def find_movie
-    #     @movie = Movie.find_by_id(params[:id])
-    # end
 end
 
   # def index
@@ -70,4 +65,7 @@ end
     # def show 
     #     movie = Movie.find_by(id: params[:id])
     #     render json: movie, include: review
+    # end
+    # def find_movie
+    #     @movie = Movie.find_by_id(params[:id])
     # end

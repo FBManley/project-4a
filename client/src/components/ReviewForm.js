@@ -23,7 +23,6 @@ const startingState = {
         setReviewFormData({...reviewFormData, [e.target.name]: e.target.value})
     }
  
-    console.log(reviewFormData)
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch(`/reviews`, {
@@ -36,7 +35,6 @@ const startingState = {
           .then(reviews => {
             if (reviews.errors) {
               setErrors(reviews.errors)
-              // console.log(reviews.errors)
             }
             else {
                 setReviewFormData(startingState)
@@ -45,9 +43,8 @@ const startingState = {
           }
             )
     }
-    // DO NOT KNOW WHY IM USING USER.ID OR MOVIE_ID IN THE USEEFFECT
+
     useEffect(() => {
-        // if (user.id === movie.movie_id)
         setIsReviewer(true)
     }, [user.id, movie_id])
     const onErrors = (reviews) => {

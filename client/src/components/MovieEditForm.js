@@ -6,7 +6,7 @@ const startingState = {
     director: '',
     release_date: ''
   }
-// , 
+
  const MovieEditForm = ({movieID, onEditMovie}) => {
     const [movieFormInput, setmovieFormInput] = useState(startingState)
     const {title, genre, summary, director, release_date} = movieFormInput;
@@ -20,7 +20,7 @@ const startingState = {
     const handleChange = (e) => {
         setmovieFormInput({...movieFormInput, [e.target.name]: e.target.value})
     }
-    // console.log("patch",movieFormInput)
+   
     function handleSubmit(e) {
         e.preventDefault();
         fetch(`/movies/${movieID}`, {
