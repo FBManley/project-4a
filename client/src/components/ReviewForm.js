@@ -22,11 +22,7 @@ const startingState = {
     const handleChange = (e) => {
         setReviewFormData({...reviewFormData, [e.target.name]: e.target.value})
     }
-    // const handleSubmit = (e) => {
-    //   e.preventDefault();
-    //   // console.log("in handleSubmit", reviewFormData)
-    //   addReview(reviewFormData)
-    // }
+ 
     console.log(reviewFormData)
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -45,15 +41,13 @@ const startingState = {
             else {
                 setReviewFormData(startingState)
                 addReview(reviewFormData)
-                // console.log("in fetch",reviews)
             }
-            // addReview("in fetch",reviews)
           }
             )
     }
     // DO NOT KNOW WHY IM USING USER.ID OR MOVIE_ID IN THE USEEFFECT
     useEffect(() => {
-        if (user.id === movie.movie_id)
+        // if (user.id === movie.movie_id)
         setIsReviewer(true)
     }, [user.id, movie_id])
     const onErrors = (reviews) => {
