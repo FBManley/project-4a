@@ -1,9 +1,11 @@
 class Review < ApplicationRecord
 
     belongs_to :user
-    validates :user_id, presence: :true
+    # error-> user cant be blank
+    # validates :user_id, presence: :true
     belongs_to :movie
-    validates :movie_id, presence: :true
+    # error-> movie cant be blank
+    # validates :movie_id, presence: :true
 
     validates :review, presence: :true
 end

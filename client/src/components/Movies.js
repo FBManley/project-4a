@@ -17,7 +17,7 @@ const Movies = ({user}) => {
     }, [])
     
   const addMovie = (newMovie) => {
-    console.log([movies])
+    console.log("movies",[movies])
     setMovies((movies) => [...movies, newMovie])
   }
   const enterMovieEditMode = (movie_id) => {
