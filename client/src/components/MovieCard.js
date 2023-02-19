@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {v4 as uuidv4} from 'uuid'
 import ReviewForm from './ReviewForm'
-import Reviews from './Reviews'
+
 
 // import Movies from './Movies';
 // onDeleteReview, user, 
@@ -16,7 +16,7 @@ const MovieCard = ({reviews, movie, onDeleteMovie, enterMovieEditMode, user}) =>
 
  
   // state for reviews
-const [cardReviews, setCardReviews] = useState([reviews])
+const [cardReviews, setCardReviews] = useState([...reviews])
 //  console.log(movie.reviews)
  
   // const handleReviewDeleteClick = (review_id) => {
@@ -26,7 +26,8 @@ const [cardReviews, setCardReviews] = useState([reviews])
   //   .then(response => response.json())
   //   .then(() => onDeleteReview(review_id))
   // }
-  console.log(reviews)
+  // reviews is an array of review objects
+  console.log("imported review from movie object",reviews)
   // add review function
   const addReview = (newReview) => {
     console.log("in addReview", newReview)
@@ -34,8 +35,9 @@ const [cardReviews, setCardReviews] = useState([reviews])
     setCardReviews((cardReviews) => [...cardReviews, newReview])
     console.log(cardReviews)  
   }
+  // send cardReviews to backened for post
   console.log("newly added review",cardReviews)
-
+  
   // delete function for movie
   const handleMovieDeleteClick = (movie_id) => {
     fetch(`/movies/${movie_id}`, {
@@ -56,7 +58,8 @@ const [cardReviews, setCardReviews] = useState([reviews])
       </div>
     )
   })
-
+  // this is error messages
+  console.log("movieReviews-mapped",movieReviews)
   return (
     <div>
       <h3>Title: {title}</h3>
