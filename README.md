@@ -7,6 +7,7 @@ npm install --save styled-components
 rails s
 
 BLOG LINK:
+https://medium.com/@jbmanley45/serialization-5b7c93144f94
 
 YOUTUBELINK:
 https://youtu.be/gFYEKFUJi0Q
