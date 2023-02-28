@@ -53,7 +53,7 @@ const [cardReviews, setCardReviews] = useState([...reviews])
       <h4>Reviews:</h4>
       {movieReviews}
       <div>
-          <ReviewForm key={uuidv4()} user={user} movie={movie} addReview={addReview} />
+          <ReviewForm key={uuidv4()} movie={movie} user={user}reviews={reviews} addReview={addReview} />
         </div>
     </div>
   )
