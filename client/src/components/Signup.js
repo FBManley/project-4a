@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-// ERROR WITH MOUTNING COMPONENT IN SIGNUP
+
  const Signup = ({ setUser }) => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const [errorsList, setErrorsList] = useState([])
+  const [errors, setErrors] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +25,10 @@ import React, { useState } from 'react'
                 setPassword("");
             });
         } else {
-            response.json().then((error) => setErrorsList(error.error));
+            response.json().then((errors) => {
+              setErrors(errors.errors)
+              console.log(errors.errors)
+            });
         }
     });
   }
@@ -41,7 +44,8 @@ import React, { useState } from 'react'
         <br/>
         <input type="submit"></input>
       </form>
-      <ul>{errorsList}</ul>
+      <br></br>
+      <ul>{errors}</ul>
     </div>
   )
 }

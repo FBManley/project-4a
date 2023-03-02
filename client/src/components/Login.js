@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const [error, setError] = useState([])
+  const [errors, setError] = useState("")
   const navigate = useNavigate()
   
   const handleSubmit = (e) => {
@@ -19,20 +19,20 @@ import { useNavigate } from 'react-router-dom';
       })
     })
     .then(response => {
-       if(response.ok) {
-          response .json().then((user) => {
+       if (response.ok) {
+          response.json().then((user) => {
             setUser(user)
             navigate('/')
           })
+       } else {
+        response.json().then((errors) =>{ 
+          setError(errors.errors)
+          console.log(errors.errors)
+       })
        }
-       else response.json()
-       .then((error) => { 
-        setError(error) 
-      })
-       
     })
   }
-  // const errorList = error.map((error) => <li>{error}</li>)
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -44,7 +44,10 @@ import { useNavigate } from 'react-router-dom';
         <br/> 
         <input type="submit"></input>
       </form>
-      <ul>{error}</ul>
+      <br></br>
+      <div>
+        {errors}
+      </div>
     </div>
   )
 }

@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::API
   include ActionController::Cookies
   # all controllers inherit from ApplicationController
-  before_action :authorized, only: [:create, :update, :delete]
+  before_action :authorized, only: [:create, :update]
+  # before_action :require_login
   # session contains user_id when signed in - retireve logged in user
   # avoid unnecessary database queries by caching the current_user in an instance variable.
   # def current_user
@@ -14,7 +15,11 @@ class ApplicationController < ActionController::API
   # a. yes
   
 
-
+  # def require_login
+  #   unless logged_in?
+  #     render json: { error: "You must be logged in to access this section" }, status: :unauthorized
+  #   end
+  # end
 
 
   def authorized_user(object)

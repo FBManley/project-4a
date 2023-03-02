@@ -7,12 +7,13 @@ import MovieEditForm from './MovieEditForm'
 const Movies = ({user}) => {
   const [movies, setMovies] = useState([])
   const [movieID, setMovieID] = useState(false)
-  console.log("in movies", user)
+  const [errors, setErrors] = useState([])
+  // console.log("in movies", user)
     useEffect(() => {
       fetch('/movies')
         .then((response) => response.json())
         .then((movies) => setMovies(movies))
-        .catch((error) => console.error(error))
+        .catch((error) => setErrors(error))
     }, [])
     
   const addMovie = (newMovie) => {
@@ -72,6 +73,9 @@ const Movies = ({user}) => {
         {renderMovieForm()}
 
         {MovieListCards}
+      </div>
+      <div>
+        {[errors]}
       </div>
     </div>
   )

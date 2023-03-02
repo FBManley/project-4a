@@ -3,6 +3,7 @@ class MoviesController < ApplicationController
     # before_action :authorized only: [:update, :delete]
     before_action :authorization, only: [:show]
     skip_before_action :authorized, only: [:index, :show]
+    skip_before_action :authorized, only: [:update]
     # q. how do I refactor this so that only the user that created the  movie can edit the movie?
     # a. add a before_action :authorized, only: [:create, :update, :delete]
     # q. how do I use authorized method in my application controller here in MoviesCOntroller?

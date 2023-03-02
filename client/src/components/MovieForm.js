@@ -9,6 +9,7 @@ const startingState = {
 
 const CreateMovie = ({addMovie}) => {
     const [movieFormInput, setMovieFormInput] = useState(startingState)
+    const [errors, setErrors] = useState([])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,9 +27,7 @@ const CreateMovie = ({addMovie}) => {
                 handleClear()
             })
             } else {
-                response.json().then((errors) => {
-                    console.log(errors)
-                })
+                response.json().then((errors) => (setErrors(errors.errors)))
             }
         })
     }
@@ -56,6 +55,10 @@ const CreateMovie = ({addMovie}) => {
             <button type="submit">Submit</button>
             <button type ="button" onClick={handleClear}>Clear</button>
         </form>
+        <br></br>
+        <div>
+            {errors}
+        </div>
     </div>
   )
 }
