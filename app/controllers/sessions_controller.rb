@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+    skip_before_action :authorized, only: [:create]
     # session is a connection between the client and the server
     # data flow: user submits login form-> then session creates a user by session by finding the username with the params username. 
 

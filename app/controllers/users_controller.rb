@@ -3,6 +3,9 @@ class UsersController < ApplicationController
         # is @user supposed to be current_user?
         # the “!” version will raise an exception if the record is invalid. 
         # The “?” version will return false if the record is invalid.
+        before_action :authorized, only: [:show]
+        skip_before_action :authorized, only: [:create]
+
         def create 
             # byebug
             user = User.create!(user_params)
@@ -25,5 +28,8 @@ class UsersController < ApplicationController
     
         def user_params
             params.require(:user).permit(:username, :password)
+        end
+        def authorization 
+           return render json: { error: "Unauthorized user" }, status: :unauthorized unless session.include? :user_id
         end
 end

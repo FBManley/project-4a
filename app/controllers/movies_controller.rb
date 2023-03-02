@@ -1,6 +1,12 @@
 class MoviesController < ApplicationController
     # before_action :find_movie, only: [:update, :delete]
-    # before_action :authorized, only: [:create, :update, :delete]
+    # before_action :authorized only: [:update, :delete]
+    before_action :authorization, only: [:show]
+    skip_before_action :authorized, only: [:index, :show]
+    # q. how do I refactor this so that only the user that created the  movie can edit the movie?
+    # a. add a before_action :authorized, only: [:create, :update, :delete]
+    # q. how do I use authorized method in my application controller here in MoviesCOntroller?
+    # a. 
     # GET /movies/:id
     def show 
         @movie = Movie.find(params[:id])
@@ -36,6 +42,12 @@ class MoviesController < ApplicationController
         end
     end
     # PATCH /movies/:id
+    # q. how do I refactor this so that only the user that created the  movie can edit the movie?
+    # a. add a before_action :authorized, only: [:create, :update, :delete]
+    # q. do I add the authroized method to applicationcontroller or to moviescontroller?
+    # a. applicationcontroller
+    
+
     def update
         @movie = Movie.find(params[:id])
         if @movie.update(movie_params)
@@ -44,6 +56,17 @@ class MoviesController < ApplicationController
             render json: { errors: @movie.errors.full_messages }, status: 422
         end
     end
+    # def update
+    #     movie = Movie.find_by(id: params[:id])
+    #     user_id = session[:user_id]
+    #     if movie && movie.user_id == user_id
+    #         movie.update(movie_params)
+    #         render json: movie, status: 200
+    #     else
+    #         render json: { errors: ["Not authorized"] }, status: 401
+    #     end
+    # end
+
     
 
 
@@ -51,6 +74,9 @@ class MoviesController < ApplicationController
 
     def movie_params 
         params.require(:movieFormInput).permit(:title, :genre, :summary, :director, :release_date)
+    end
+    def authorization
+        return render json: { errors: ["Not authorized"] }, status: 401 unless session.include? :user_id
     end
 end
 
