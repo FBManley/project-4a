@@ -1,12 +1,5 @@
 class SessionsController < ApplicationController
     skip_before_action :authorized, only: [:create]
-    # session is a connection between the client and the server
-    # data flow: user submits login form-> then session creates a user by session by finding the username with the params username. 
-    # then it authenticates the user by comparing the password with the params password.
-    # then it sets the session hash to the users id.
-    # then it renders the user as json
-    # then the user is logged in
-    
 
         # POST /login  MUST NOT  BE WRAPPED IN USER OBJECT FOR USE_PARAMS
         def create 
@@ -17,7 +10,7 @@ class SessionsController < ApplicationController
                 session[:user_id] = user.id 
                 render json: user, status: 200
             else 
-                render json: { errors: ["Invalid Credentials"] }, status: 422
+                render json: { errors: ["Invalid Credentials"] }, status: 401
             end
         end
         #DELETE /logout -> logging out is deleting the session. session always exists from ActionController Cookies

@@ -14,8 +14,8 @@ const [cardReviews, setCardReviews] = useState([...reviews])
   console.log("imported review from movie object",reviews)
   // add review function
   const addReview = (newReview) => {
-    console.log("in addReview", newReview)
-    console.log("in addReview", cardReviews)
+    // console.log("in addReview", newReview)
+    // console.log("in addReview", cardReviews)
     setCardReviews((cardReviews) => [...cardReviews, newReview])
     console.log(cardReviews)  
   }
