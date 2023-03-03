@@ -1,13 +1,12 @@
 class MoviesController < ApplicationController
     # before_action :find_movie, only: [:update, :delete]
     # before_action :authorized only: [:update, :delete]
-    before_action :authorization, only: [:show]
+    before_action :authorization, only: [:update, :delete]
+    # before_action :authorize_user, only: [:update, :delete]
     skip_before_action :authorized, only: [:index, :show]
     skip_before_action :authorized, only: [:update]
-    # q. how do I refactor this so that only the user that created the  movie can edit the movie?
-    # a. add a before_action :authorized, only: [:create, :update, :delete]
-    # q. how do I use authorized method in my application controller here in MoviesCOntroller?
-    # a. 
+    
+
     # GET /movies/:id
     def show 
         @movie = Movie.find(params[:id])
@@ -42,11 +41,6 @@ class MoviesController < ApplicationController
             render json: { errors: @movie.errors.full_messages }, status: 422
         end
     end
-    # PATCH /movies/:id
-    # q. how do I refactor this so that only the user that created the  movie can edit the movie?
-    # a. add a before_action :authorized, only: [:create, :update, :delete]
-    # q. do I add the authroized method to applicationcontroller or to moviescontroller?
-    # a. applicationcontroller
     
 
     def update
@@ -54,22 +48,10 @@ class MoviesController < ApplicationController
         if @movie.update(movie_params)
             render json: @movie, status: 200
         else
-            render json: { errors: @movie.errors.full_messages }, status: 422
+            render json: { errors: movie.errors.full_messages }, status: 422
         end
     end
-    # def update
-    #     movie = Movie.find_by(id: params[:id])
-    #     user_id = session[:user_id]
-    #     if movie && movie.user_id == user_id
-    #         movie.update(movie_params)
-    #         render json: movie, status: 200
-    #     else
-    #         render json: { errors: ["Not authorized"] }, status: 401
-    #     end
-    # end
-
     
-
 
     private 
 
@@ -79,6 +61,13 @@ class MoviesController < ApplicationController
     def authorization
         return render json: { errors: ["Not authorized"] }, status: 401 unless session.include? :user_id
     end
+    # def authorize_user 
+    #     @movie = Movie.find(params[:id])
+    #     unless @movie.user_id == current_user.id
+    #         render json: { errors: @movie.errors.full_messages }, status: 422
+    #     end
+    # end
+
 end
 
   # def index
