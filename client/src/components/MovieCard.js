@@ -4,7 +4,7 @@ import ReviewForm from './ReviewForm'
 
 // selected card to be edited removes new review
 
-const MovieCard = ({reviews, movie, onDeleteMovie, enterMovieEditMode, user}) => {
+const MovieCard = ({reviews, movie, onDeleteMovie, enterMovieEditMode, user, setMovies}) => {
   // destructure movie object
   const {id, title, genre, director, release_date, summary} = movie
 
@@ -17,8 +17,21 @@ const [cardReviews, setCardReviews] = useState([...reviews])
   const addReview = (newReview) => {
     // console.log("in addReview", newReview)
     // console.log("in addReview", cardReviews)
+    // q. I need to add newReview to full movie object
+
+
     setCardReviews((cardReviews) => [...cardReviews, newReview])
-    console.log(cardReviews)  
+    // setMovies((movies) => {
+    //   const newMovArray = movies.map(movie => {
+    //     if (movie.id === newReview.movie_id) {
+    //       return newReview
+    //     } else {
+    //       return movie
+    //     }
+    //   })
+    //   return newMovArray
+    // })
+    // console.log(cardReviews)  
   }
   
   // delete function for movie
