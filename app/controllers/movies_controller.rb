@@ -48,7 +48,7 @@ class MoviesController < ApplicationController
         if @movie.update(movie_params)
             render json: @movie, status: 200
         else
-            render json: { errors: movie.errors.full_messages }, status: 422
+            render json: { errors: @movie.errors.full_messages }, status: 422
         end
     end
     

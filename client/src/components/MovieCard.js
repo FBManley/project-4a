@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {v4 as uuidv4} from 'uuid'
 import ReviewForm from './ReviewForm'
 
+// selected card to be edited removes new review
 
 const MovieCard = ({reviews, movie, onDeleteMovie, enterMovieEditMode, user}) => {
   // destructure movie object
