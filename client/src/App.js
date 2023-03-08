@@ -28,7 +28,7 @@ function App() {
       {user ? (
         <Routes>
           <Route exact path="/" element={<Home user={user}/>} />
-          <Route path='*' element={<Home user={user}/>} />
+          <Route path='*' element={<Home user={user} setUser={setUser}/>} />
         </Routes>
       ) : ( 
         <Routes>

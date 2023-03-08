@@ -11,11 +11,11 @@ import MovieEditForm from './MovieEditForm'
 // q. I need to pass the movie card the reviews for the movie. how?
 
 
-const Movies = ({user}) => {
+const Movies = ({user, setUser}) => {
   const [movies, setMovies] = useState([])
   const [movieID, setMovieID] = useState(false)
   const [errors, setErrors] = useState([])
-  // console.log("in movies", user)
+  console.log("in movies", user)
     useEffect(() => {
       fetch('/movies')
         .then((response) => response.json())
@@ -24,8 +24,8 @@ const Movies = ({user}) => {
     }, [])
   
   const addMovie = (newMovie) => {
-    console.log("movies",[movies])
     setMovies((movies) => [...movies, newMovie])
+    console.log("movies",[movies])
   }
 
   const enterMovieEditMode = (movie_id) => {
@@ -65,10 +65,12 @@ const Movies = ({user}) => {
     key={uuidv4()} 
     user={user} 
     movie={movie} 
+    movies={movies}
     reviews={movie.reviews}
     onDeleteMovie={onDeleteMovie}
     enterMovieEditMode={enterMovieEditMode}
     setMovies={setMovies}
+    setUser={setUser}
     />
     
   ))
@@ -79,7 +81,6 @@ const Movies = ({user}) => {
       <button onClick={() => setMovieID(false)}>Add Movie</button>
       <div>
         {renderMovieForm()}
-
         {MovieListCards}
       </div>
       <div>

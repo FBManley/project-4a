@@ -28,9 +28,13 @@ const startingState = {
         }).then(response => {
             if (response.ok) {
                 response.json().then(review => {
+                
                 setReviewFormData(reviewFormData)
+                
                 addReview(review)
+                // console.log("got here")
                 handleClear()
+                
             })
             } else {
                 response.json().then((errors) => {
