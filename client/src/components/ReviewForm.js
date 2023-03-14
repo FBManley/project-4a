@@ -6,7 +6,7 @@ const startingState = {
  const ReviewForm = ({  addReview, user, movie }) => {
     const {id: user_id} = user
     const {id: movie_id} = movie
-    const [reviewFormData, setReviewFormData] = useState({startingState, user_id: user_id, movie_id: movie_id})
+    const [reviewFormData, setReviewFormData] = useState({...startingState, user_id: user_id, movie_id: movie_id})
     const [errors, setErrors] = useState([])
 
 

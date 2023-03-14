@@ -13,7 +13,7 @@ function App() {
       if (response.ok) {
         response.json().then((user) => {
           setUser(user);
-          console.log(user);
+          // console.log(user);
         });
       } else {
         setUser(null);
@@ -27,7 +27,7 @@ function App() {
       <Navigation user={user} setUser={setUser}/>
       {user ? (
         <Routes>
-          <Route exact path="/" element={<Home user={user}/>} />
+          <Route exact path="/" element={<Home user={user} />} />
           <Route path='*' element={<Home user={user} setUser={setUser}/>} />
         </Routes>
       ) : ( 

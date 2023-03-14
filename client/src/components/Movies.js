@@ -3,12 +3,6 @@ import {v4 as uuidv4} from 'uuid'
 import MovieCard from './MovieCard'
 import MovieForm from './MovieForm'
 import MovieEditForm from './MovieEditForm'
-// q. when a movie is added or edited, the newly added review on any movie is removed. Why?
-// a. because the movie card is re-rendered and the review is not added to the movie card
-// q. why is the movie card re-rendered when a movie is added or edited?
-// a. because the movie card is a child of the movies component and the movies component is re-rendered
-// q. how do I fix this?
-// q. I need to pass the movie card the reviews for the movie. how?
 
 
 const Movies = ({user, setUser}) => {
@@ -90,3 +84,4 @@ const Movies = ({user, setUser}) => {
   )
 }
 export default Movies;
+
