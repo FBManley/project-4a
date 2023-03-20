@@ -18,6 +18,9 @@ class UsersController < ApplicationController
             user = User.find_by(id: session[:user_id])
             render json: user, status: 200
         end
+        def search 
+            searched_user = User.where()
+        end
 
         
     

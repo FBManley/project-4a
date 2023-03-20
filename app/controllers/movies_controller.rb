@@ -1,8 +1,5 @@
 class MoviesController < ApplicationController
-    # before_action :find_movie, only: [:update, :delete]
-    # before_action :authorized only: [:update, :delete]
     before_action :authorization, only: [:update, :delete]
-    # before_action :authorize_user, only: [:update, :delete]
     skip_before_action :authorized, only: [:index, :show]
     skip_before_action :authorized, only: [:update]
     
@@ -51,6 +48,15 @@ class MoviesController < ApplicationController
             render json: { errors: @movie.errors.full_messages }, status: 422
         end
     end
+    # using scope method to find liked movies
+    def liked_movies
+        @liked_movies = current_user.liked 
+        render json: @liked_movies
+    end
+    def old_posts
+        @old_posts = Post.created_before(1.year.ago)
+        render json: @old_posts
+    end
     
 
     private 
@@ -69,19 +75,3 @@ class MoviesController < ApplicationController
     # end
 
 end
-
-  # def index
-    #     movies = Movie.all 
-    #     render json: movies.to_json()
-    # end
-    # def show 
-    #     @movie = Movie.includes(:reviews).find(params[:id])
-    #     render json: @movie.to_json(include: [:reviews, :movies])
-    # end
-    # def show 
-    #     movie = Movie.find_by(id: params[:id])
-    #     render json: movie, include: review
-    # end
-    # def find_movie
-    #     @movie = Movie.find_by_id(params[:id])
-    # end
