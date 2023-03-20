@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   # RESTful
   resources :reviews, only: [:index, :show, :create]
   resources :movies, only: [:index, :show, :create, :update]
+  # custom route, get /movies/search/:term -> search action in movies controller
+  get "/movies/search/:term", to: "movies#search"
+
   # NOT RESTful
   delete "/movies/:id", to: "movies#destroy"
   get "/users/:user_id/reviews", to: "reviews#index"

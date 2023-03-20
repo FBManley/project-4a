@@ -3,6 +3,10 @@ class MoviesController < ApplicationController
     skip_before_action :authorized, only: [:index, :show]
     skip_before_action :authorized, only: [:update]
     
+    def search 
+        searched_movie = Movie.all.filter {|movie| movie.title.downcase.include?(params[:term].downcase)}
+        render json: searched_movie, status: 201
+    end
 
     # GET /movies/:id
     def show 

@@ -9,19 +9,8 @@ const MovieCard = ({reviews, movie, onDeleteMovie, enterMovieEditMode, user, set
   // destructure movie object
   const {id, title, genre, director, release_date, summary} = movie
 
-  // state for reviews
-// const [cardReviews, setCardReviews] = useState([...reviews])
-// const [cardReviews, setCardReviews] = useState({reviews: []})
-// state is not iterable- currentMovie.reviews
-// const [reviewArray, setReviewArray] = useState([])
-  // console.log("in movie card", movies[1].reviews)
-  // reviews is an array of review objects
-  // must update movie object : {[], [], []} use movie_id to match new review to correct movie. 
-  // console.log("imported review from movie object",reviews)
   const addReview = (newReview) => {
-    // get current movie updated with new review = updatedMovie
     const updatedReview = [...movie.reviews, newReview]
-    console.log("updated review", updatedReview)
     const updatedMovie = {...movie, reviews: updatedReview}
     const updatedMoviesCollection = movies.map((m) => {
       if (movie.id === m.id) {
