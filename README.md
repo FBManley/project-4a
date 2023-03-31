@@ -1,4 +1,4 @@
-Test Test test
+
 # Project Template: React/ TEST Rails API
 Movie Reviewer MVP: -Sign up for an account (create/read) -Log in to the site & remain logged in - sessions -Log out - delete session -View movie listings -create, read, update, delete REVIEW (CREATE and View) -create and read new order (create/read) () stetch: -see available houses on a map -filter avalability by location/proximity, filter by rating, filter by price
 
