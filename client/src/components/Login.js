@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
  const Login = ({setUser}) => {
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errors, setError] = useState("")
   const navigate = useNavigate()
-  
+  const user  = useSelector(store => store.usersReducer.currentUser)
+  console.log("in login",user)
+
   const handleSubmit = (e) => {
     e.preventDefault()
     fetch('/login', {

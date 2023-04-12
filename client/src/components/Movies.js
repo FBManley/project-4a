@@ -9,7 +9,7 @@ const Movies = ({user, setUser}) => {
   const [movies, setMovies] = useState([])
   const [movieID, setMovieID] = useState(false)
   const [errors, setErrors] = useState([])
-  console.log("in movies", user)
+  // console.log("in movies", user)
     useEffect(() => {
       fetch('/movies')
         .then((response) => response.json())
