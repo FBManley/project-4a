@@ -10,6 +10,7 @@ import { createStore } from 'redux';
 // export default = not a named export
 import rootReducer from './components/reducers/reducer';
 import * as actions from './components/actionTypes';
+import thunk from 'redux-thunk';
 
 // const reducer = () => {
 //   return []
