@@ -5,12 +5,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter } from 'react-router-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 // import postReducer from './components/reducers/postReducer';
 // export default = not a named export
 import rootReducer from './components/reducers/reducer';
 import * as actions from './components/actionTypes';
 import thunk from 'redux-thunk';
+import { composeWithDevTools } from '@redux-devtools/extension';
 
 // const reducer = () => {
 //   return []
@@ -27,7 +28,7 @@ import thunk from 'redux-thunk';
 // elseif (action.type === "userdeleted")
 //   return state.filter((user) => user.id !== action.payload);
 // // }
-const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 // reducers are functions that return a piece of the state-> currently an empty array
 console.log(store)
 //   store.dispatch(userAdded("user1"))
