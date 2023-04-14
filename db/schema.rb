@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_14_012246) do
+ActiveRecord::Schema.define(version: 2023_04_14_183556) do
 
   create_table "blogs", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -33,7 +34,6 @@ ActiveRecord::Schema.define(version: 2023_02_14_012246) do
     t.integer "movie_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "like"
     t.index ["movie_id"], name: "index_reviews_on_movie_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end

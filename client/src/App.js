@@ -4,13 +4,16 @@ import Home from "./components/Home";
 import Navigation from "./components/Navigation";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {postReducer} from "./components/reducers/postsReducer";
+import {blogsReducer} from "./components/reducers/blogsReducer";
+import {loagBlogs} from "./components/actions/blogs";
 
 function App() {
   const [user, setUser] = useState([]);
-  const reduxState = useSelector((store) => store.postReducer);
+  const reduxState = useSelector((store) => store.blogsReducer);
   console.log("in app",reduxState);
+  const dispatch = useDispatch();
   // useEffect(() => {
   //   fetch('/me')
   //   .then((response) => {
@@ -24,7 +27,10 @@ function App() {
   //     }
   //   });
   // }, []);
-  // 
+  useEffect(() => {
+    // returns a function = thunk middleware takes over
+    dispatch(loadBlogs());
+  }, [dispatch()])
 
   return (
     <div>

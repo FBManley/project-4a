@@ -7,6 +7,7 @@ class User < ApplicationRecord
     #  rails automatically validates password/password_confirmation and makes sure they match
     has_many :reviews, dependent: :destroy
     has_many :movies, through: :reviews
+    has_many :blogs
 
     validates :username, presence: true, uniqueness: true
     validates :password_digest, presence: true

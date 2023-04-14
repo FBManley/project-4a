@@ -1,10 +1,13 @@
-const loadBlogs = () => {
+export const loadBlogs = () => {
 
     return dispatch = {
         // asynchronous calls to backend
-        // dispatch({type: "LOAD_BLOGS", payload: blogs})
-        fetch('/movies')
+        fetch('http://localhost:3000/blogs')
         .then(response => response.json())
-        .then(blogs => dispatch({type: "LOAD_BLOGS", payload: blogs}))
+        // console.log(response)
+        .then(blogs => {
+            const action = {type: "LOAD_BLOGS", payload: blogs}
+            dispatch(action) // dispatching the action to the reducer
+        })
     }
 }
