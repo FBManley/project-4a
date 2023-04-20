@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useEffect} from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Navigation from "./components/Navigation";
@@ -7,37 +7,45 @@ import Signup from "./components/Signup";
 import { useSelector, useDispatch } from "react-redux";
 import {postReducer} from "./components/reducers/postsReducer";
 import {blogsReducer} from "./components/reducers/blogsReducer";
-import {loagBlogs} from "./components/actions/blogs";
+import {loadBlogs} from "./components/actions/blogs";
+import {BrowserRouter } from 'react-router-dom';
+import {userProvider} from "./components/reducers/userReducer";
+import {addUser} from "./components/actions/user";
 
 function App() {
-  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState([]);
   const reduxState = useSelector((store) => store.blogsReducer);
   console.log("in app",reduxState);
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   fetch('/me')
-  //   .then((response) => {
-  //     if (response.ok) {
-  //       response.json().then((user) => {
-  //         setUser(user);
-  //         // console.log(user);
-  //       });
-  //     } else {
-  //       setUser(null);
-  //     }
-  //   });
-  // }, []);
+  const user = useSelector((store) => (store.user));
+  
   useEffect(() => {
-    // returns a function = thunk middleware takes over
-    dispatch(loadBlogs());
-  }, [dispatch()])
+    fetch('/me')
+    .then((response) => {
+      if (response.ok) {
+        response.json().then((user) => {
+          dispatch(addUser(user))
+          // setUser(user);
+          // console.log(user);
+        });
+      } else {
+        // setUser(null);
+      }
+    });
+  }, []);
+  // useEffect(() => {
+  //   // returns a function = thunk middleware takes over
+  //   dispatch(loadBlogs());
+  // }, [dispatch()])
 
   return (
     <div>
+      <BrowserRouter>
       <Navigation/>
       <Routes>
         <Route exact path="/" element={<Home />} />
       </Routes>
+      </BrowserRouter>
     </div>
   )
 }

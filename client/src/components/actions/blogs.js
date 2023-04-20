@@ -1,6 +1,6 @@
 export const loadBlogs = () => {
 
-    return dispatch = {
+    return dispatch => {
         // asynchronous calls to backend
         fetch('http://localhost:3000/blogs')
         .then(response => response.json())

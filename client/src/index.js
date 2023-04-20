@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 // import postReducer from './components/reducers/postReducer';
 // export default = not a named export
@@ -30,16 +29,16 @@ import { composeWithDevTools } from '@redux-devtools/extension';
 // // }
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 // reducers are functions that return a piece of the state-> currently an empty array
-console.log(store)
+console.log("store-indexjs", store)
 //   store.dispatch(userAdded("user1"))
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    
     <Provider store={store}> 
       <App />
     </Provider>
-    </BrowserRouter>
+
   </React.StrictMode>,
   document.getElementById('root')
 );
