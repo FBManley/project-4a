@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
- const Login = ({setUser}) => {
+import { useSelector, useDispatch } from 'react-redux';
+import { addUser } from './actions/user';
+
+ const Login = () => {
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errors, setError] = useState("")
   const navigate = useNavigate()
-  const user  = useSelector(store => store.usersReducer.currentUser)
-  console.log("in login",user)
+  const dispatch = useDispatch()
+
+  // const user  = useSelector(store => store.usersReducer.currentUser)
+  // console.log("in login",user)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -23,13 +27,14 @@ import { useSelector } from 'react-redux';
     .then(response => {
        if (response.ok) {
           response.json().then((user) => {
-            setUser(user)
+            dispatch(addUser(user))
+            // setUser(user)
             navigate('/')
           })
        } else {
         response.json().then((errors) =>{ 
           setError(errors.errors)
-          console.log(errors.errors)
+          console.log("login error", errors.errors)
        })
        }
     })

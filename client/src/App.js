@@ -13,12 +13,11 @@ import {userProvider} from "./components/reducers/userReducer";
 import {addUser} from "./components/actions/user";
 
 function App() {
-  // const [user, setUser] = useState([]);
   const reduxState = useSelector((store) => store.blogsReducer);
   console.log("in app",reduxState);
   const dispatch = useDispatch();
   const user = useSelector((store) => (store.user));
-  
+
   useEffect(() => {
     fetch('/me')
     .then((response) => {
@@ -33,10 +32,7 @@ function App() {
       }
     });
   }, []);
-  // useEffect(() => {
-  //   // returns a function = thunk middleware takes over
-  //   dispatch(loadBlogs());
-  // }, [dispatch()])
+ 
 
   return (
     <div>
@@ -44,6 +40,7 @@ function App() {
       <Navigation/>
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/login" element={<Login />} />
       </Routes>
       </BrowserRouter>
     </div>
@@ -69,3 +66,7 @@ export default App;
     //     </Routes>
     //   )}
     // </div>
+     // useEffect(() => {
+    //   // returns a function = thunk middleware takes over
+    //   dispatch(loadBlogs());
+    // }, [dispatch()])
