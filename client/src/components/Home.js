@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import { useDispatch } from 'react-redux';
 import Movies from './Movies';
 import {loadBlogs} from './actions/blogs';
-import blogs from './reducers/blogs';
+// import blogs from './reducers/blogs';
 
 const Home = ({user}) => {
   const dispatch = useDispatch();
