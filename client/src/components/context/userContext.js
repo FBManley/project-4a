@@ -12,13 +12,20 @@ const UserProvider = ({ children }) => {
         .then(response => {
             if (response.ok) {
                 response.json().then(user => {
-                    setUser(user)
+                    loginUser(user)
                 })
             } else {
                 setUser(null)
             }
         })
     }, [])
+
+    const loginUser = user => {
+        setCurrentUser(user);
+        setLoggedIn(true);
+    }
     // add user, delete user 
+    return <UserContext.Provider value={{ user, setUser, currentUser, setCurrentUser, loggedIn, setLoggedIn, loginUser }}>{children}</UserContext.Provider>
 
 }
+export { UserContext, UserProvider };

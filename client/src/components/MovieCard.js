@@ -1,40 +1,53 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import {v4 as uuidv4} from 'uuid'
 import ReviewForm from './ReviewForm'
 import ReviewDeatils from './ReviewDeatils'
 
-// selected card to be edited removes new review
+// FLOW: 1. create action to be able to dispatch to reducer to... 2. create reducer to update state. 3. create action creator to be able to dispatch action. 4. create component to dispatch action creator. 5. create component to display state.
+// create action creator for this card
+
 
 const MovieCard = ({reviews, movie, onDeleteMovie, enterMovieEditMode, user, setUser, setMovies, movies}) => {
   // destructure movie object
   const {id, title, genre, director, release_date, summary} = movie
 
-  const addReview = (newReview) => {
-    const updatedReview = [...movie.reviews, newReview]
-    const updatedMovie = {...movie, reviews: updatedReview}
-    const updatedMoviesCollection = movies.map((m) => {
-      if (movie.id === m.id) {
-        return updatedMovie
-      } else {
-        return m
-      }
-    })
-    // setUser({...user, movies: updatedMoviesCollection})
-    // setCurrentMovie(updatedMovie)
-    setMovies(updatedMoviesCollection)
-    // setReviewArray(updatedReview)
-
-    // const newReviews = [...cardReviews.reviews, review]
-    // cardReviews.reviews = newReviews
-
-    console.log("updated movie", updatedReview)
-    // console.log("curr",cardReviews)
-    // console.log("updated movie", Movie)
-    // setCardReviews(updatedReview)
-    // setMovies({...movies, reviews: updatedReviewCollection})
-
-
+  const dispatch = useDispatch();
+  // const { currentUser } = useContext(UserContext);
+  const addReview = (review) => {
+    return {
+      type: "ADD_REVIEW",
+      payload: review
+    }
   }
+  const addMovie = (movie) => {
+    return {
+      type: "ADD_MOVIE",
+      payload: movie
+    }
+  }
+  // const addReview = (newReview) => {
+  //   const updatedReview = [...movie.reviews, newReview]
+  //   const updatedMovie = {...movie, reviews: updatedReview}
+  //   const updatedMoviesCollection = movies.map((m) => {
+  //     if (movie.id === m.id) {
+  //       return updatedMovie
+  //     } else {
+  //       return m
+  //     }
+  //   })
+  //   // setUser({...user, movies: updatedMoviesCollection})
+  //   // setCurrentMovie(updatedMovie)
+  //   setMovies(updatedMoviesCollection)
+  //   // setReviewArray(updatedReview)\
+  //   // const newReviews = [...cardReviews.reviews, review]
+  //   // cardReviews.reviews = newReviews
+  //   console.log("updated movie", updatedReview)
+  //   // console.log("curr",cardReviews)
+  //   // console.log("updated movie", Movie)
+  //   // setCardReviews(updatedReview)
+  //   // setMovies({...movies, reviews: updatedReviewCollection})
+  // }
   // add review function
   // const addReview = (newReview) => {
   //   // console.log("in addReview", newReview)

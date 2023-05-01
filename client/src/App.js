@@ -14,7 +14,9 @@ import {addUser} from "./components/actions/user";
 
 function App() {
   const reduxState = useSelector((store) => store.blogsReducer);
-  console.log("in app",reduxState);
+  const userState = useSelector((store) => store.userReducer);
+  console.log("in app",userState);
+  // give react access and ensures its loaded properly
   const dispatch = useDispatch();
   const user = useSelector((store) => (store.user));
 
@@ -23,7 +25,9 @@ function App() {
     .then((response) => {
       if (response.ok) {
         response.json().then((user) => {
+          // 
           dispatch(addUser(user))
+          // add user returns a function so thunk middleware can handle it
           // setUser(user);
           // console.log(user);
         });
@@ -31,7 +35,7 @@ function App() {
         // setUser(null);
       }
     });
-  }, []);
+  }, [dispatch]);
  
 
   return (

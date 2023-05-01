@@ -10,12 +10,12 @@ const Movies = ({user, setUser}) => {
   const [movieID, setMovieID] = useState(false)
   const [errors, setErrors] = useState([])
   // console.log("in movies", user)
-    useEffect(() => {
-      fetch('/movies')
-        .then((response) => response.json())
-        .then((movies) => setMovies(movies))
-        .catch((error) => setErrors(error))
-    }, [])
+    // useEffect(() => {
+    //   fetch('/movies')
+    //     .then((response) => response.json())
+    //     .then((movies) => setMovies(movies))
+    //     .catch((error) => setErrors(error))
+    // }, [])
   
   const addMovie = (newMovie) => {
     setMovies((movies) => [...movies, newMovie])

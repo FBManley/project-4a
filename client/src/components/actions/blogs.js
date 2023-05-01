@@ -11,4 +11,18 @@ export const loadBlogs = () => {
             
         })
     }
+
+}
+
+export const deleteBlog = (id) => {
+    return dispatch => {
+        fetch(`/blogs/${id}`, {
+            method: "DELETE"
+        })
+        .then(response => response.json())
+        .then(blog => {
+            const action = {type: "DELETE_BLOG", payload: id}
+            dispatch(action)
+        })
+    }
 }
