@@ -11,7 +11,7 @@ const Home = ({user}) => {
   useEffect (() => {
     dispatch(loadBlogs())
     dispatch(loadMovies())
-  })
+  }, [dispatch])
 
   return (
     <div>

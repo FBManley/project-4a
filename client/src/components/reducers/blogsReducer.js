@@ -7,6 +7,14 @@ const blogsReducer = (state = [], action) => {
             return action.payload
         case "DELETE_BLOG":
             return state.filter(blog => blog.id !== action.payload.id)
+        case "EDIT_BLOG":
+            return state.map(blog => {
+                if (blog.id === action.payload.id) {
+                    return action.payload
+                } else {
+                    return blog
+                }
+            })
         default:
             return state
             // action.payload is the blogs array from the backend

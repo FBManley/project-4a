@@ -11,6 +11,7 @@ import {loadBlogs} from "./components/actions/blogs";
 import {BrowserRouter } from 'react-router-dom';
 import {userProvider} from "./components/reducers/userReducer";
 import {addUser} from "./components/actions/user";
+import {loadUser} from "./components/actions/user";
 
 function App() {
   const reduxState = useSelector((store) => store.blogsReducer);
@@ -26,7 +27,7 @@ function App() {
       if (response.ok) {
         response.json().then((user) => {
           // 
-          dispatch(addUser(user))
+          dispatch(loadUser(user))
           // add user returns a function so thunk middleware can handle it
           // setUser(user);
           // console.log(user);

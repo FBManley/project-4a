@@ -14,18 +14,18 @@ const MovieCard = ({reviews, movie, onDeleteMovie, enterMovieEditMode, user, set
 
   const dispatch = useDispatch();
   // const { currentUser } = useContext(UserContext);
-  const addReview = (review) => {
-    return {
-      type: "ADD_REVIEW",
-      payload: review
-    }
-  }
-  const addMovie = (movie) => {
-    return {
-      type: "ADD_MOVIE",
-      payload: movie
-    }
-  }
+  // const addReview = (review) => {
+  //   return {
+  //     type: "ADD_REVIEW",
+  //     payload: review
+  //   }
+  // }
+  // const addMovie = (movie) => {
+  //   return {
+  //     type: "ADD_MOVIE",
+  //     payload: movie
+  //   }
+  // }
   // const addReview = (newReview) => {
   //   const updatedReview = [...movie.reviews, newReview]
   //   const updatedMovie = {...movie, reviews: updatedReview}
@@ -101,7 +101,7 @@ const MovieCard = ({reviews, movie, onDeleteMovie, enterMovieEditMode, user, set
       {/* {movieReviews} */}
       <ReviewDeatils reviews={reviews} />
       <div>
-          <ReviewForm key={uuidv4()} movie={movie} user={user}reviews={reviews} addReview={addReview} />
+          <ReviewForm key={uuidv4()} movie={movie} user={user}reviews={reviews}  />
         </div>
     </div>
   )

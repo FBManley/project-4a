@@ -26,3 +26,22 @@ export const deleteBlog = (id) => {
         })
     }
 }
+
+export const editBlog = (id, navigate, formData) => {
+    return dispatch => {
+        fetch(`/blogs/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(blog => {
+            const action = {type: "EDIT_BLOG", payload: formData}
+            dispatch(action)
+            navigate(`/blogs`)
+        })
+    }
+}
