@@ -6,7 +6,7 @@ import {loadMovies} from './actions/movies';
 // import blogs from './reducers/blogs';
 
 
-const Home = ({user}) => {
+const Home = () => {
   const dispatch = useDispatch();
   useEffect (() => {
     dispatch(loadBlogs())
@@ -16,7 +16,7 @@ const Home = ({user}) => {
   return (
     <div>
         <>
-          <h1>{user.username}'s Home Page</h1>
+          <h1> Home Page</h1>
           <Movies/>
           {/* <blogs/> */}
         </>

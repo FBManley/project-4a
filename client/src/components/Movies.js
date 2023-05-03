@@ -1,12 +1,12 @@
 import React, { useState, useEffect} from 'react'
-import {v4 as uuidv4} from 'uuid'
 import MovieCard from './MovieCard'
 import MovieForm from './MovieForm'
 import MovieEditForm from './MovieEditForm'
 import {useDispatch, useSelector} from 'react-redux';
+// import {loadMovies} from './actions/movies';
 
 
-const Movies = ({user, setUser}) => {
+const Movies = () => {
   // const [movies, setMovies] = useState([])
   // const [movieID, setMovieID] = useState(false)
   const movies = useSelector((store) => store.movies);
@@ -16,8 +16,7 @@ const Movies = ({user, setUser}) => {
     // useEffect(() => {
     //   fetch('/movies')
     //     .then((response) => response.json())
-    //     .then((movies) => setMovies(movies))
-    //     .catch((error) => setErrors(error))
+    //     .then((movies) => loadMovies(movies))
     // }, [])
   
   // const addMovie = (newMovie) => {
@@ -61,10 +60,22 @@ const Movies = ({user, setUser}) => {
     (<MovieCard 
     key={movie.id}
     movie={movie} 
-    movies={movies}
-    reviews={movie.reviews}
+    // reviews={movie.reviews}
     />
   ))
+  // q. why is mapo getting an error here?
+  // a. because the movie object is empty.
+  // q. why is the movie object empty?
+  // a. because the movie object is empty in the store.
+  // q. how do i have the movie object contain the movies from my database?
+  // a. by using the loadMovies action in the useEffect hook.
+  // q. call loadMovies in which useEffect?
+  // q. show me an example of a useEffect hook that calls loadMovies.
+  // a. see client/src/components/Home.js line 8.
+  // q. that line is empty
+  // a. yes, but it is calling loadMovies.
+  // q. then it shouldnt be empty, right?
+
 
   return (
     <div>Movies List
