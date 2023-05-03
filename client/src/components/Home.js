@@ -15,17 +15,11 @@ const Home = ({user}) => {
 
   return (
     <div>
-      {user ? (
         <>
           <h1>{user.username}'s Home Page</h1>
           <Movies/>
           {/* <blogs/> */}
         </>
-      ) : (
-        <div>
-          <h1>Home Page: Please login or signup</h1>
-        </div>
-      )}
     </div>
   )
 }

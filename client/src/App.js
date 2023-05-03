@@ -14,13 +14,13 @@ import {addUser} from "./components/actions/user";
 import {loadUser} from "./components/actions/user";
 
 function App() {
-  const reduxState = useSelector((store) => store.blogsReducer);
-  const userState = useSelector((store) => store.userReducer);
-  console.log("in app",userState);
+  // const reduxState = useSelector((store) => store.blogsReducer);
+  // const userState = useSelector((store) => store.user);
+  
   // give react access and ensures its loaded properly
   const dispatch = useDispatch();
   const user = useSelector((store) => (store.user));
-
+  console.log("in app", user);
   useEffect(() => {
     fetch('/me')
     .then((response) => {
@@ -30,7 +30,7 @@ function App() {
           dispatch(loadUser(user))
           // add user returns a function so thunk middleware can handle it
           // setUser(user);
-          // console.log(user);
+          console.log(user);
         });
       } else {
         // setUser(null);
@@ -43,11 +43,18 @@ function App() {
     <div>
       <BrowserRouter>
       <Navigation/>
+      {user ? (
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/signup" element={<Signup />} />
       </Routes>
+      ) : (
+        <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path = "*" element={<Login />} />
+        </Routes>
+      )}
       </BrowserRouter>
     </div>
   )

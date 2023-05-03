@@ -29,9 +29,11 @@ import { composeWithDevTools } from '@redux-devtools/extension';
 // // }
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 // reducers are functions that return a piece of the state-> currently an empty array
-console.log("store-indexjs", store)
+// console.log("store-indexjs", store)
 //   store.dispatch(userAdded("user1"))
-
+// provider-provides the store- global state to the app. addMovies lives. Reducers. Access state (lives in store) vs modifying state. useSelector hook- takes in callback, then we seelct out of store what state we want.
+// component -> useSelector->store->store.reducer
+// component -> addMovie -> dispatchAction-> type:ADD_MOVIE, payload: movie
 ReactDOM.render(
   <React.StrictMode>
     

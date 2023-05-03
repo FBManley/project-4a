@@ -11,3 +11,10 @@ const userReducer = (state=[], action) => {
 }
 export default userReducer;
 // This reducer takes the current state of the application and an action, and returns a new state based on the action. 
+// q. is LOAD_USERS correct or hsould it be called ADD_USERS?
+// a. LOAD_USERS is correct because we are loading users from the database
+// a. yes, because we are loading users from the database
+// q. what is the payload?
+// a. the payload is the users array from the database
+// q. should initial state be an empty array?
+// a. yes, because we are loading users from the database
