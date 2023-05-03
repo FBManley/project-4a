@@ -28,6 +28,7 @@ import { composeWithDevTools } from '@redux-devtools/extension';
 //   return state.filter((user) => user.id !== action.payload);
 // // }
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+// const root = ReactDOM.createRoot(document.getElementById('root'));
 // reducers are functions that return a piece of the state-> currently an empty array
 // console.log("store-indexjs", store)
 //   store.dispatch(userAdded("user1"))

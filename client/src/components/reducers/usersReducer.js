@@ -1,4 +1,9 @@
-const userReducer = (state=[], action) => {
+const initialState = {
+    users: [],
+    currentUser: null,
+    loggedIn: false
+}
+const usersReducer = (state=initialState, action) => {
     switch (action.type) {
         case "ADD_USER":
             return action.payload
@@ -9,7 +14,7 @@ const userReducer = (state=[], action) => {
 
     }
 }
-export default userReducer;
+export default usersReducer;
 // This reducer takes the current state of the application and an action, and returns a new state based on the action. 
 // q. is LOAD_USERS correct or hsould it be called ADD_USERS?
 // a. LOAD_USERS is correct because we are loading users from the database

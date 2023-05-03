@@ -5,7 +5,7 @@ import ReviewForm from './ReviewForm'
 import ReviewDeatils from './ReviewDeatils'
 
 // FLOW: 1. create action to be able to dispatch to reducer to... 2. create reducer to update state. 3. create action creator to be able to dispatch action. 4. create component to dispatch action creator. 5. create component to display state.
-// create action creator for this card
+// create action creator for this card. 
 
 
 const MovieCard = ({reviews, movie, onDeleteMovie, enterMovieEditMode, user, setUser, setMovies, movies}) => {

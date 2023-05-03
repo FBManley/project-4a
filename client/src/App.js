@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {blogsReducer} from "./components/reducers/blogsReducer";
 import {loadBlogs} from "./components/actions/blogs";
 import {BrowserRouter } from 'react-router-dom';
-import {userProvider} from "./components/reducers/userReducer";
+import {userProvider} from "./components/reducers/usersReducer";
 import {addUser} from "./components/actions/user";
 import {loadUser} from "./components/actions/user";
 
@@ -18,7 +18,7 @@ function App() {
   
   // give react access and ensures its loaded properly
   const dispatch = useDispatch();
-  const user = useSelector((store) => (store.user));
+  const user = useSelector((store) => (store.userReducer));
   console.log("in app", user);
   useEffect(() => {
     fetch('/me')
