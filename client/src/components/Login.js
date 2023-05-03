@@ -9,7 +9,7 @@ import { addUser } from './actions/user';
   const [password, setPassword] = useState("")
   const [errors, setError] = useState("")
   // const movies = useSelector((store) => store.moviesReducer.movies);
-  const user = useSelector((store) => store.userReducer.currentUser);
+  const user = useSelector((store) => store.userReducer);
   console.log("in login", user)
   const navigate = useNavigate()
   const dispatch = useDispatch()
