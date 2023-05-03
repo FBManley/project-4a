@@ -9,9 +9,9 @@ export const loadMovies = () => {
     }
 }
 
-const addComment = (comment, movieId) => {
+// const addComment = (comment, movieId) => {
     
-}
+// }
 
 
 

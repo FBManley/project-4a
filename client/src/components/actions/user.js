@@ -1,16 +1,22 @@
-export const loadUser = () => {
-    return dispatch => {
-        dispatch({ type: "user_loading" });
-        fetch("/me")
-            .then(res => res.json())
-            .then(data => {
-                dispatch({ type: "user_loaded", payload: data });
-            })
-            .catch(err => {
-                dispatch({ type: "user_error", payload: err });
-            });
-    }
-}
+// export const loadUser = () => {
+//     return dispatch => {
+//         dispatch({ type: "user_loading" });
+//         fetch("/me")
+//             .then(res => res.json())
+//             .then(data => {
+//                 dispatch({ type: "user_loaded", payload: data });
+//             })
+//             .catch(err => {
+//                 dispatch({ type: "user_error", payload: err });
+//             });
+//     }
+// }
+// export const loadUser = () => {
+//   return {
+//     type: "LOAD_USER",
+//     payload: user
+//   }
+// }
 export const addUser = (user) => {
     return {
       type: "ADD_USER",

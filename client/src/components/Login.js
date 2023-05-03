@@ -30,6 +30,9 @@ import { addUser } from './actions/user';
             dispatch(addUser(user))
             // setUser(user)
             navigate('/')
+            setUsername("")
+            setPassword("")
+            setError([])
           })
        } else {
         response.json().then((errors) =>{ 

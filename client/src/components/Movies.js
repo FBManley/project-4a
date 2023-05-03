@@ -8,7 +8,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 const Movies = ({user, setUser}) => {
   // const [movies, setMovies] = useState([])
-  const [movieID, setMovieID] = useState(false)
+  // const [movieID, setMovieID] = useState(false)
   const movies = useSelector((store) => store.movies);
   const dispatch = useDispatch();
   // const [errors, setErrors] = useState([])
@@ -60,19 +60,16 @@ const Movies = ({user, setUser}) => {
   const MovieListCards = movies.map((movie) => 
     (<MovieCard 
     key={movie.id}
-    user={user} 
     movie={movie} 
     movies={movies}
     reviews={movie.reviews}
-    setUser={setUser}
     />
-    
   ))
 
   return (
     <div>Movies List
       <br></br>
-      <button onClick={() => setMovieID(false)}>Add Movie</button>
+      {/* <button onClick={() => setMovieID(false)}>Add Movie</button> */}
       <div>
         {/* {renderMovieForm()} */}
         {MovieListCards}

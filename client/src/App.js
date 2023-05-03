@@ -5,7 +5,6 @@ import Navigation from "./components/Navigation";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { useSelector, useDispatch } from "react-redux";
-import {postReducer} from "./components/reducers/postsReducer";
 import {blogsReducer} from "./components/reducers/blogsReducer";
 import {loadBlogs} from "./components/actions/blogs";
 import {BrowserRouter } from 'react-router-dom';
@@ -27,7 +26,7 @@ function App() {
       if (response.ok) {
         response.json().then((user) => {
           // 
-          dispatch(loadUser(user))
+          dispatch(addUser(user))
           // add user returns a function so thunk middleware can handle it
           // setUser(user);
           console.log(user);
