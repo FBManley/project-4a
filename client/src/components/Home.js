@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import { useDispatch } from 'react-redux';
 import Movies from './Movies';
-import {loadBlogs} from './actions/blogs';
+// import {loadBlogs} from './actions/blogs';
 import {loadMovies} from './actions/movies';
 // import blogs from './reducers/blogs';
 
@@ -9,7 +9,7 @@ import {loadMovies} from './actions/movies';
 const Home = () => {
   const dispatch = useDispatch();
   useEffect (() => {
-    dispatch(loadBlogs())
+    // dispatch(loadBlogs())
     dispatch(loadMovies())
   }, [dispatch])
 

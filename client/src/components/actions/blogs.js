@@ -1,5 +1,4 @@
 export const loadBlogs = () => {
-
     return dispatch => {
         // asynchronous calls to backend
         fetch('/blogs')

@@ -11,6 +11,7 @@ import rootReducer from './components/reducers/reducer';
 import * as actions from './components/actionTypes';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from '@redux-devtools/extension';
+import {BrowserRouter } from 'react-router-dom';
 
 // const reducer = () => {
 //   return []
@@ -37,11 +38,11 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk
 // component -> addMovie -> dispatchAction-> type:ADD_MOVIE, payload: movie
 ReactDOM.render(
   <React.StrictMode>
-    
+    <BrowserRouter>
     <Provider store={store}> 
       <App />
     </Provider>
-
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,16 +1,17 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Navigation from "./components/Navigation";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { useSelector, useDispatch } from "react-redux";
-import {blogsReducer} from "./components/reducers/blogsReducer";
+// import {blogsReducer} from "./components/reducers/blogsReducer";
 import {loadBlogs} from "./components/actions/blogs";
-import {BrowserRouter } from 'react-router-dom';
+import {useNavigate} from "react-router-dom";
 import {userProvider} from "./components/reducers/usersReducer";
 import {addUser} from "./components/actions/user";
 import {loadUser} from "./components/actions/user";
+import { loadMovies } from "./components/actions/movies";
 
 function App() {
   // const reduxState = useSelector((store) => store.blogsReducer);
@@ -18,43 +19,42 @@ function App() {
   
   // give react access and ensures its loaded properly
   const dispatch = useDispatch();
-  const user = useSelector((store) => (store.userReducer));
-  console.log("in app", user);
+  const navigate = useNavigate();
+  const user = useSelector((store) => (store.user));
+  const movies = useSelector((store) => (store.movies));
+  
   useEffect(() => {
-    fetch('/me')
-    .then((response) => {
+    fetch('/me').then((response) => {
       if (response.ok) {
         response.json().then((user) => {
-          // 
-          dispatch(addUser(user))
+          dispatch(loadUser(user))
+          dispatch(loadMovies(movies))
+          // dispatch(loadMovies())
           // add user returns a function so thunk middleware can handle it
           // setUser(user);
-          console.log(user);
+          console.log("in app.js", user);
+          console.log("in app.js", movies);
+          navigate("/");
         });
-      } else {
-        // setUser(null);
-      }
+      } 
     });
   }, [dispatch]);
- 
 
   return (
     <div>
-      <BrowserRouter>
       <Navigation/>
       {user ? (
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
       </Routes>
       ) : (
         <Routes>
         <Route path="/" element={<Home />} />
-        <Route path = "*" element={<Login />} />
+        <Route path = "login" element={<Login />} />
+        <Route path = "signup" element={<Signup />} />
         </Routes>
       )}
-      </BrowserRouter>
     </div>
   )
 }

@@ -3,21 +3,23 @@ import MovieCard from './MovieCard'
 import MovieForm from './MovieForm'
 import MovieEditForm from './MovieEditForm'
 import {useDispatch, useSelector} from 'react-redux';
-// import {loadMovies} from './actions/movies';
+import {loadMovies} from './actions/movies';
 
 
 const Movies = () => {
   // const [movies, setMovies] = useState([])
-  // const [movieID, setMovieID] = useState(false)
+  // const [movieID, setMovieID] = useState(false)   
   const movies = useSelector((store) => store.movies);
+ 
   const dispatch = useDispatch();
   // const [errors, setErrors] = useState([])
   // console.log("in movies", user)
-    // useEffect(() => {
-    //   fetch('/movies')
-    //     .then((response) => response.json())
-    //     .then((movies) => loadMovies(movies))
-    // }, [])
+    useEffect(() => {
+      fetch('/movies')
+        .then((response) => response.json())
+        .then((movies) => dispatch(loadMovies(movies))
+        // console.log("in movies", movies)
+    )}, [])
   
   // const addMovie = (newMovie) => {
   //   setMovies((movies) => [...movies, newMovie])
@@ -56,13 +58,13 @@ const Movies = () => {
   //     return filteredMoviesArray 
   //   })
   // }
-  const MovieListCards = movies.map((movie) => 
-    (<MovieCard 
-    key={movie.id}
-    movie={movie} 
-    // reviews={movie.reviews}
-    />
-  ))
+  // const MovieListCards = movies.map((movie) => 
+  //   (<MovieCard 
+  //   key={movie.id}
+  //   movie={movie} 
+  //   // reviews={movie.reviews}
+  //   />
+  // ))
   // q. why is mapo getting an error here?
   // a. because the movie object is empty.
   // q. why is the movie object empty?
@@ -83,7 +85,8 @@ const Movies = () => {
       {/* <button onClick={() => setMovieID(false)}>Add Movie</button> */}
       <div>
         {/* {renderMovieForm()} */}
-        {MovieListCards}
+        {/* {MovieListCards} */}
+        <li>{movies}</li>
       </div>
       <div>
         {/* {[errors]} */}
