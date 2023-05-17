@@ -1,16 +1,26 @@
 export const loadMovies = () => {
-    return dispatch => {
+    // type: "LOAD_MOVIES" ? 
+    return (dispatch) => {
         dispatch({type: "movies_loading"})
         fetch("/movies")
         .then(response => response.json())
-        .then(data => {
-            dispatch({type: "movies_loaded", payload: data})
+        .then(movies => {
+            dispatch({type: "movies_loaded", payload: movies})
+            console.log("in loadMovies action", movies)
         })
         .catch(err => {
             dispatch({type: "movies_error", payload: err})
         }
     )}
 }
+
+
+export const addMovie = (user) => {
+    return {
+      type: "ADD_USER",
+      payload: user
+    }
+  }
 
 // payload is data from backed, dispatched to reducer
 // const addComment = (comment, movieId) => {

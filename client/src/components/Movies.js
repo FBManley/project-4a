@@ -10,17 +10,29 @@ const Movies = () => {
   // const [movies, setMovies] = useState([])
   // const [movieID, setMovieID] = useState(false)   
   const movies = useSelector((store) => store.movies);
- 
+  // q.why is movies undefined?
+  // a. because it's not in the store yet. 
+  // q. how do we get it in the store?
+  // a. dispatch(loadMovies())
+  // q. where do we dispatch(loadMovies())?
+  // a. in the useEffect hook
+  // q. which useEffect hook?
+  // a. the one in Home.js
+  // q. lets pick up here- i want to see movies in the store ND I want to see movies in the movies component and display movies here.
+  // a. ok
+  // q. so what do we do?
+  // a. we need to dispatch(loadMovies()) in the useEffect hook in Home.js
+  console.log("in movies", movies)
   const dispatch = useDispatch();
   // const [errors, setErrors] = useState([])
   // console.log("in movies", user)
-    useEffect(() => {
-      fetch('/movies')
-        .then((response) => response.json())
-        .then((movies) => dispatch(loadMovies(movies))
-        // console.log("in movies", movies)
-    )}, [])
-  
+    // useEffect(() => {
+    //   fetch('/movies')
+    //     .then((response) => response.json())
+    //     .then((movies) => dispatch(loadMovies(movies)
+    //     )
+    // )}, [])
+    // console.log("in movies", movies)
   // const addMovie = (newMovie) => {
   //   setMovies((movies) => [...movies, newMovie])
   //   console.log("movies",[movies])
@@ -59,34 +71,23 @@ const Movies = () => {
   //   })
   // }
   // const MovieListCards = movies.map((movie) => 
-  //   (<MovieCard 
+  //   <MovieCard 
   //   key={movie.id}
   //   movie={movie} 
-  //   // reviews={movie.reviews}
   //   />
-  // ))
-  // q. why is mapo getting an error here?
-  // a. because the movie object is empty.
-  // q. why is the movie object empty?
-  // a. because the movie object is empty in the store.
-  // q. how do i have the movie object contain the movies from my database?
-  // a. by using the loadMovies action in the useEffect hook.
-  // q. call loadMovies in which useEffect?
-  // q. show me an example of a useEffect hook that calls loadMovies.
-  // a. see client/src/components/Home.js line 8.
-  // q. that line is empty
-  // a. yes, but it is calling loadMovies.
-  // q. then it shouldnt be empty, right?
+  // )
 
 
   return (
-    <div>Movies List
+    <div>Movies List-loads movie cards
+      {/* <h1>{movies}</h1> */}
       <br></br>
       {/* <button onClick={() => setMovieID(false)}>Add Movie</button> */}
       <div>
         {/* {renderMovieForm()} */}
         {/* {MovieListCards} */}
-        <li>{movies}</li>
+        {/* <li>{MovieListCards}</li> */}
+        {/* <Movies/> */}
       </div>
       <div>
         {/* {[errors]} */}

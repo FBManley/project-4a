@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import {v4 as uuidv4} from 'uuid'
+import { useDispatch, useSelector } from 'react-redux'
 import ReviewForm from './ReviewForm'
 import ReviewDeatils from './ReviewDeatils'
+import { loadMovies } from './actions/movies'
 
 // FLOW: 1. create action to be able to dispatch to reducer to... 2. create reducer to update state. 3. create action creator to be able to dispatch action. 4. create component to dispatch action creator. 5. create component to display state.
 // create action creator for this card. 
 
 
-const MovieCard = ({reviews, movie, onDeleteMovie, enterMovieEditMode, user, setUser, setMovies, movies}) => {
+const MovieCard = ({movie}) => {
   // destructure movie object
-  const {id, title, genre, director, release_date, summary} = movie
-
+  // const {id, title, genre, director, release_date, summary} = movie
+  // const select = useSelector((store) => store.movies);
   const dispatch = useDispatch();
   // const { currentUser } = useContext(UserContext);
   // const addReview = (review) => {
@@ -68,17 +68,17 @@ const MovieCard = ({reviews, movie, onDeleteMovie, enterMovieEditMode, user, set
   // }
   
   // delete function for movie
-  const handleMovieDeleteClick = (movie_id) => {
-    fetch(`/movies/${movie_id}`, {
-      method: 'DELETE'
-    })
-    .then(response => response.json())
-    .then(() => onDeleteMovie(movie_id))
-  }
+  // const handleMovieDeleteClick = (movie_id) => {
+  //   fetch(`/movies/${movie_id}`, {
+  //     method: 'DELETE'
+  //   })
+  //   .then(response => response.json())
+  //   .then(() => onDeleteMovie(movie_id))
+  // }
 
-  const handleEditClick = (movie_id) => {
-    enterMovieEditMode(movie_id)
-  }
+  // const handleEditClick = (movie_id) => {
+  //   enterMovieEditMode(movie_id)
+  // }
   // const movieReviews = cardReviews.map((review) => {
   //   return (
   //     <div key={uuidv4()}>
@@ -88,21 +88,21 @@ const MovieCard = ({reviews, movie, onDeleteMovie, enterMovieEditMode, user, set
   // })
   return (
     <div>
-      <h3>Title: {title}</h3>
-      <h3>Genre: {genre}</h3>
-      <h3>Release Date: {release_date}</h3>
-      <h3>Description: {summary}</h3>
-      <h3>Director: {director}</h3>
+      <h3>Title: {movie.title}</h3>
+      <h3>Genre: {movie.genre}</h3>
+      <h3>Release Date: {movie.release_date}</h3>
+      <h3>Description: {movie.summary}</h3>
+      <h3>Director: {movie.director}</h3>
       <br></br>
-      <button onClick={() => handleMovieDeleteClick(id)}>Delete</button>
-      <button onClick={() => handleEditClick(id)}>Edit</button>
+      {/* <button onClick={() => handleMovieDeleteClick(id)}>Delete</button> */}
+      {/* <button onClick={() => handleEditClick(id)}>Edit</button> */}
       <br></br>
       <h4>Reviews:</h4>
       {/* {movieReviews} */}
-      <ReviewDeatils reviews={reviews} />
-      <div>
+      {/* <ReviewDeatils reviews={reviews} /> */}
+      {/* <div>
           <ReviewForm key={uuidv4()} movie={movie} user={user}reviews={reviews}  />
-        </div>
+        </div> */}
     </div>
   )
   

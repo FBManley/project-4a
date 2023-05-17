@@ -1,17 +1,20 @@
 export const loadBlogs = () => {
-    return dispatch => {
+    return (dispatch) => {
         // asynchronous calls to backend
         fetch('/blogs')
         .then(response => response.json())
         // console.log(response)
         .then(blogs => {
-            const action = {type: "LOAD_BLOGS", payload: blogs}
+            const action = {type: "blogs_loaded", payload: blogs}
             dispatch(action) // dispatching the action to the reducer
+            console.log("in loadBlogs action", blogs)
             
         })
     }
 
 }
+
+
 
 export const deleteBlog = (id) => {
     return dispatch => {
