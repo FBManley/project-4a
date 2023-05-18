@@ -1,38 +1,36 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
- const Navigation = ({user, setUser}) => {
+ const Navigation = () => {
 
     // const navigate = useNavigate()
     // delete session hash
-    const logoutUser = () => {
-        fetch('/logout', {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json'}
-        })
-        .then(() => {
-            setUser(null)
-        })
-    }
+    // const logoutUser = () => {
+    //     fetch('/logout', {
+    //         method: 'DELETE',
+    //         headers: { 'Content-Type': 'application/json'}
+    //     })
+    //     .then(() => {
+    //         setUser(null)
+    //     })
+    // }
     return (
         <div>
-            {user ? (
           <div className="Navigation">
             <ul>
-              <li><NavLink onClick={logoutUser}>Logout</NavLink></li>
-              <li><NavLink to='/'>Home</NavLink></li>       
+              {/* <li><NavLink onClick={logoutUser}>Logout</NavLink></li> */}
+              {/* <li><NavLink to='/'>Home</NavLink></li>        */}
             </ul>
           </div>
-          ):(
-          <div className="Navigation">
+
+          {/* <div className="Navigation">
             <ul>
               <li><NavLink to='/signup'>Sign-Up</NavLink></li>
               <li><NavLink to='/login'>Log In</NavLink></li>
               <li><NavLink to='/'>Home</NavLink></li>
-              {/* <li><NavLink to='user/reviews'>ReviewDetails</NavLink></li> */}
+              <li><NavLink to='user/reviews'>ReviewDetails</NavLink></li>
             </ul>
-          </div>
-        )}
+          </div> */}
         </div>
     )
     // if (loggedIn) {
