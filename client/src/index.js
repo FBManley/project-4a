@@ -13,21 +13,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from '@redux-devtools/extension';
 import {BrowserRouter } from 'react-router-dom';
 
-// const reducer = () => {
-//   return []
-// }
-// const reducer = (state = [], action) => {
-//   if (action.type === "useradded")
-//     return [...state, 
-//   {
-//    id: 1,
-//   description: "First Post", 
-//   resolved: false
-//   }
-// ];
-// elseif (action.type === "userdeleted")
-//   return state.filter((user) => user.id !== action.payload);
-// // }
+
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // reducers are functions that return a piece of the state-> currently an empty array

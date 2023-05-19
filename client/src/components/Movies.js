@@ -10,18 +10,7 @@ const Movies = () => {
   // const [movies, setMovies] = useState([])
   // const [movieID, setMovieID] = useState(false)   
   const movies = useSelector((store) => store.movies);
-  // q.why is movies undefined?
-  // a. because it's not in the store yet. 
-  // q. how do we get it in the store?
-  // a. dispatch(loadMovies())
-  // q. where do we dispatch(loadMovies())?
-  // a. in the useEffect hook
-  // q. which useEffect hook?
-  // a. the one in Home.js
-  // q. lets pick up here- i want to see movies in the store ND I want to see movies in the movies component and display movies here.
-  // a. ok
-  // q. so what do we do?
-  // a. we need to dispatch(loadMovies()) in the useEffect hook in Home.js
+
   console.log("in movies", movies)
   const dispatch = useDispatch();
   // const [errors, setErrors] = useState([])
@@ -70,12 +59,12 @@ const Movies = () => {
   //     return filteredMoviesArray 
   //   })
   // }
-  // const MovieListCards = movies.map((movie) => 
-  //   <MovieCard 
-  //   key={movie.id}
-  //   movie={movie} 
-  //   />
-  // )
+  const MovieListCards = movies.map((movie) => 
+    <MovieCard 
+    key={movie.id}
+    movie={movie} 
+    />
+  )
 
 
   return (
@@ -85,7 +74,7 @@ const Movies = () => {
       {/* <button onClick={() => setMovieID(false)}>Add Movie</button> */}
       <div>
         {/* {renderMovieForm()} */}
-        {/* {MovieListCards} */}
+        {MovieListCards}
         {/* <li>{MovieListCards}</li> */}
         {/* <Movies/> */}
       </div>

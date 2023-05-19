@@ -8,14 +8,12 @@ import { addUser } from './actions/user';
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errors, setError] = useState("")
-  // const movies = useSelector((store) => store.moviesReducer.movies);
+ 
   const user = useSelector((store) => store.userReducer);
   console.log("in login", user)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  // const user  = useSelector(store => store.usersReducer.currentUser)
-  // console.log("in login",user)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -31,7 +29,6 @@ import { addUser } from './actions/user';
        if (response.ok) {
           response.json().then((user) => {
             dispatch(addUser(user))
-            // setUser(user)
             navigate('/')
             setUsername("")
             setPassword("")

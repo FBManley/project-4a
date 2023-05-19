@@ -8,7 +8,6 @@ import {loadBlogs} from './actions/blogs';
 import {increment, decrement} from './actions/counterAction';
 import reducer from './reducers/reducer';
 
-// import blogsReducer from './reducers/blogsReducer';
 
 
 const Home = () => {
@@ -18,7 +17,6 @@ const Home = () => {
   // why didnt anyone say "accessing the store" is the same as prop drilling. id be running state.counter.count if I was passing it down as a prop-in redux you're just using the useSelector hook, and passing in the same name as the reducer-which bundled in combined reducers, if yoou have to access the store just import the reducer file jesusu fucking christ why didnt anyone just say that. store.counter is specifying the counter key frim the key value pair in reducer- state.propIwant.specififcly
   const movies = useSelector((store) => (store.movies));
   console.log(movies)
-  // const displayedMovies = movies.map(movies)
 
   useEffect (() => {
     // dispatch(loadBlogs())
@@ -33,13 +31,7 @@ const Home = () => {
           <h1> Home Page</h1>
           <div>
       {/* <h1>Counter: {count}</h1> */}
-      <h1>{}</h1>
-      {movies.map((movie) => (
-        <div key={movie.id}>
-          <h3>{movie.title}</h3>
-          {/* Display other movie details */}
-        </div>
-      ))}
+      <Movies/>
       {/* <button onClick={() => dispatch(increment())}>Increment</button> */}
       {/* <button onClick={() => dispatch(decrement())}>Decrement</button> */}
       </div>
@@ -51,3 +43,9 @@ const Home = () => {
 }
 
 export default Home;
+// {movies.map((movie) => (
+//   <div key={movie.id}>
+//     <h3>{movie.title}</h3>
+//     {/* Display other movie details */}
+//   </div>
+// ))}

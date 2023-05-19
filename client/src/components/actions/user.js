@@ -1,17 +1,17 @@
-export const loadUser = () => {
-    return dispatch => {
-      dispatch({ type: "user_loading" });
-        fetch("/me")
-        .then(res => res.json())
-        .then(data => {
-            dispatch({ type: "user_loaded", payload: data });
-            console.log("in loadUser action", data);
-        })
-        .catch(err => {
-          dispatch({ type: "user_error", payload: err });
-        });
-    }
-}
+// export const loadUser = () => {
+//     return dispatch => {
+//       dispatch({ type: "LOAD_USER" });
+//         fetch("/me")
+//         .then(res => res.json())
+//         .then(data => {
+//             dispatch({ type: "user_loaded", payload: data });
+//             console.log("in loadUser action", data);
+//         })
+//         .catch(err => {
+//           dispatch({ type: "user_error", payload: err });
+//         });
+//     }
+// }
 // export const loadUser = () => {
 //   return {
 //     type: "LOAD_USER",
@@ -25,12 +25,12 @@ export const addUser = (user) => {
     }
   }
   
-// export const deleteUser = (user) => {
-//     return {
-//       type: "DELETE_USER",
-//       payload: user
-//     }
-// }
+export const deleteUser = (user) => {
+    return {
+      type: "DELETE_USER",
+      payload: user
+    }
+}
 // payload: data is from backend same as saying setUser(data)
 // Actions are created by action creators, which are functions that return an action object. Action objects have a type property that indicates what type of action is being performed and any additional data necessary to make the change.
 // When an action is dispatched, it is sent to the store using the store.dispatch() method. This method takes the action object as an argument.
