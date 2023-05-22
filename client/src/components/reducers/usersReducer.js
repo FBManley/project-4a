@@ -1,14 +1,17 @@
+const initialState = {
+    users: [], 
+    currentUser: null, 
+    loading: false
+}
 
-
-const usersReducer = (state=[], action) => {
+const usersReducer = (state=initialState, action) => {
     switch (action.type) {
-        case "ADD_USER":
+        case "LOAD_USER":
             // console.log("ADD_USER", action.payload)
-            return action.payload
-        case "DELETE_USER":
-            // state = initialState
-            return state
-            // state.filter(user => user.id !== action.payload.id)
+            return {...state, users: action.payload}
+        // case "DELETE_USER":
+        //     // state = initialState
+        //     return state.filter(user => user.id !== action.payload.id)
         default:
             return state
 

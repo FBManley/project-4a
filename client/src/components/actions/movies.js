@@ -5,7 +5,8 @@ export const loadMovies = () => {
         fetch("/movies")
         .then(response => response.json())
         .then(data => {
-            dispatch({type: "LOAD_MOVIES", payload: data})
+            const action = {type: "LOAD_MOVIES", payload: data}
+            dispatch(action)
             console.log("in loadMovies action", data)
         })
         .catch(err => {

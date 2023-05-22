@@ -22,7 +22,8 @@ import { deleteUser } from './actions/user'
             {user ? (
               <ul>
                 <li><NavLink to='/'>Home</NavLink></li>  
-                <li><NavLink to='signin' onClick={logoutUser}>Logout</NavLink></li> 
+                <li><NavLink to='/login' onClick={logoutUser}>Logout</NavLink></li> 
+                {/* <li><NavLink to='/logout'> Logout<NavLink/> </li> */}
               </ul>
             ) : (
               <ul>
@@ -34,6 +35,9 @@ import { deleteUser } from './actions/user'
           </div>
         </div>
     )
+
+}
+export default Navigation;
     // if (loggedIn) {
     //     return (
     //         <div>
@@ -52,5 +56,3 @@ import { deleteUser } from './actions/user'
     //     </div>   
     //     )
     // }
-}
-export default Navigation;

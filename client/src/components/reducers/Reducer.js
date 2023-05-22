@@ -7,7 +7,7 @@ import counterReducer from "./counterReducer";
 
 export default combineReducers({
     errorsReducer,
-    usersReducer, 
+    user: usersReducer, 
     blogsReducer, 
     movies: moviesReducer,
     counter: counterReducer

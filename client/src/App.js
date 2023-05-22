@@ -24,7 +24,6 @@ function App() {
   // give react access and ensures its loaded properly
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const user = useSelector((store) => (store.user));
   // const count = useSelector((store) => store.counter);
   // const movies = useSelector((store) => (store.movies));
   // console.log("user-in App", user)
@@ -57,18 +56,18 @@ function App() {
     <div>
       <Navigation/>
       {/* <Container/> */}
-       {/* <h1>User: {user}</h1> */}
+       {/* <h1>Welcome, {user}</h1> */}
        {user ? (
-        <Routes>
+        <Routes >
         <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="*" element={<NoRoutes />} />
+        {/* <Route path="/movies" element={<Movies />} /> */}
+        {/* <Route path="*" element={<Home />} /> */}
 
         {/* <Route path="/logout" element={<Logout />} /> */}
       </Routes>
        ) : (
         <Routes>
-        <Route path="*" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path = "/login" element={<Login />} />
         <Route path = "/about" element={<About />} />
         {/* <Route path = "signup" element={<Signup />} /> */}

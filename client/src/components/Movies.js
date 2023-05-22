@@ -68,7 +68,7 @@ const Movies = () => {
 
 
   return (
-    <div>Movies List-loads movie cards
+    <div>Movies 
       {/* <h1>{movies}</h1> */}
       <br></br>
       {/* <button onClick={() => setMovieID(false)}>Add Movie</button> */}
