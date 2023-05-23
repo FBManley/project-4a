@@ -3,16 +3,19 @@ import MovieCard from './MovieCard'
 import MovieForm from './MovieForm'
 import MovieEditForm from './MovieEditForm'
 import {useDispatch, useSelector} from 'react-redux';
-import {loadMovies} from './actions/movies';
+import { loadMovies } from './actions/movies';
+
+
 
 
 const Movies = () => {
   // const [movies, setMovies] = useState([])
   // const [movieID, setMovieID] = useState(false)   
   const movies = useSelector((store) => store.movies);
-
+  
   console.log("in movies", movies)
   const dispatch = useDispatch();
+  
   // const [errors, setErrors] = useState([])
   // console.log("in movies", user)
     // useEffect(() => {
@@ -59,6 +62,7 @@ const Movies = () => {
   //     return filteredMoviesArray 
   //   })
   // }
+
   const MovieListCards = movies.map((movie) => 
     <MovieCard 
     key={movie.id}
@@ -69,10 +73,12 @@ const Movies = () => {
 
   return (
     <div>Movies 
+      <MovieForm/>
       {/* <h1>{movies}</h1> */}
       <br></br>
       {/* <button onClick={() => setMovieID(false)}>Add Movie</button> */}
       <div>
+        
         {/* {renderMovieForm()} */}
         {MovieListCards}
         {/* <li>{MovieListCards}</li> */}

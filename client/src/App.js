@@ -53,6 +53,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/movies" element={<Movies/>}/>
         <Route path="/users" element={<UsersList/>}/>
+        <Route path="/about" element={<About/>}/>
        </Routes>
        {/* {user ? (
         <Routes >

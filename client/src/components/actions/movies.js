@@ -15,6 +15,27 @@ export const loadMovies = () => {
     )}
 }
 
+export const addMovie = (movie) => {
+    return {
+        type: "ADD_MOVIE",
+        payload: movie
+    }
+}
+
+export const deleteMovie = (movie) => {
+    return {
+        type: "DELETE_MOVIE",
+        payload: movie
+    }
+}
+
+export const updateMovie = (movie) => {
+    return {
+        type: "UPDATE_MOVIE",
+        payload: movie
+    }
+}
+
 
 // export const addMovie = (movie) => {
 //     return {

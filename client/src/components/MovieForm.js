@@ -1,4 +1,7 @@
 import React, {useState} from 'react'
+import {useDispatch} from 'react-redux'
+import {addMovie} from './actions/movies'
+
 const startingState = {
     title: '',
     genre: '',
@@ -7,9 +10,11 @@ const startingState = {
     release_date: ''
   }
 
-const CreateMovie = ({addMovie}) => {
+const CreateMovie = () => {
+    // const [showForm, setShowForm] = useState(false)
     const [movieFormInput, setMovieFormInput] = useState(startingState)
     const [errors, setErrors] = useState([])
+    const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -23,7 +28,8 @@ const CreateMovie = ({addMovie}) => {
             if (response.ok) {
                 response.json().then(movie => {
                 setMovieFormInput(movieFormInput)
-                addMovie(movie)
+                dispatch(addMovie(movie))
+                // addMovie(movie)
                 handleClear()
             })
             } else {

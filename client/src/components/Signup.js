@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
+import { Navigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
  const Signup = ({ setUser }) => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errors, setErrors] = useState("")
+  const { loggedIn } = useSelector((store) => store.usersReducer)
+  
+  // const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
     e.preventDefault();
