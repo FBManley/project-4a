@@ -2,7 +2,7 @@ class UsersController < ApplicationController
         # POST /signup MUST BE IN USER OBJECT FOR USE_PARAMS
         before_action :authorized, only: [:show]
        
-        skip_before_action :authorized, only: [:create]
+        skip_before_action :authorized, only: [:create, :index]
 
         def index
             render json: User.all
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
                 render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
             end
         end
-        # GET /me
+        # GET /me = current user
         def show 
             user = User.find_by(id: session[:user_id])
             render json: user, status: 200

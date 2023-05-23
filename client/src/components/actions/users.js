@@ -1,6 +1,7 @@
 import React from 'react'
+import { Navigate } from 'react-router-dom'
 
-const loadUsers = () => {
+export const loadUsers = () => {
   return dispatch => {
     // dispatch({type: "LOAD_USERS"})
     fetch("/users")
@@ -16,4 +17,21 @@ const loadUsers = () => {
   }
 }
 
-export default loadUsers
+
+export const loadCurrentUser = () => {
+    return dispatch => {
+        fetch("/me")
+        .then(response => response.json())
+        .then(data => {
+            const action = {type: "LOGIN_USER", payload: data}
+            dispatch(action)
+            // Navigate("/movies")
+        })
+    }
+}
+
+export const logoutUser = () => {
+    return {
+        type: "LOGOUT_USER"
+    }
+}

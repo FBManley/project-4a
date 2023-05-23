@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addUser } from './actions/user';
+import { loginUser } from './actions/users';
+// import { loadUser } from './actions/user';
+import { loadCurrentUser } from './actions/users';
 
  const Login = () => {
 
@@ -28,8 +31,11 @@ import { addUser } from './actions/user';
     .then(response => {
        if (response.ok) {
           response.json().then((user) => {
-            dispatch(addUser(user))
-            navigate('/')
+            dispatch(loadCurrentUser(user))
+            // dispatch(addUser(user))
+            // dispatch(loginUser(user))
+            // dispatch(loadUser(user))
+            navigate('/movies')
             setUsername("")
             setPassword("")
             setError([])
@@ -45,6 +51,7 @@ import { addUser } from './actions/user';
 
   return (
     <div>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
       <label>Username:</label>
         <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)}></input> 

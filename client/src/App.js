@@ -13,9 +13,11 @@ import {useNavigate} from "react-router-dom";
 import { loadMovies } from "./components/actions/movies";
 // import { moviesReducer } from "./components/reducers/moviesReducer";
 import { addUser } from "./components/actions/user";
-import NoRoutes  from "./components/NoRoutes";
+// import NoRoutes  from "./components/NoRoutes";
 import About from "./components/About";
 import Movies from "./components/Movies";
+import UsersList from "./components/UsersList";
+import { loadCurrentUser, loadUsers } from "./components/actions/users";
 
 function App() {
   // const reduxState = useSelector((store) => store.blogsReducer);
@@ -31,20 +33,9 @@ function App() {
 
   
   useEffect(() => {
-    fetch('/me').then((response) => {
-      if (response.ok) {
-        response.json().then((user) => {
-          dispatch(addUser(user))
-          // dispatch(loadMovies(movies))
-          // dispatch(loadMovies())
-          // add user returns a function so thunk middleware can handle it
-          // setUser(user);
-          console.log("in app.js", user);
-          // console.log("in app.js", movies);
-          navigate("/");
-        });
-      } 
-    });
+    dispatch(loadMovies())
+    dispatch(loadUsers())
+    dispatch(loadCurrentUser())
   }, [dispatch]);
   // useEffect(() => {
   //   dispatch(addUser(user))
@@ -57,23 +48,29 @@ function App() {
       <Navigation/>
       {/* <Container/> */}
        {/* <h1>Welcome, {user}</h1> */}
-       {user ? (
+       <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/movies" element={<Movies/>}/>
+        <Route path="/users" element={<UsersList/>}/>
+       </Routes>
+       {/* {user ? (
         <Routes >
         <Route path="/" element={<Home />} />
-        {/* <Route path="/movies" element={<Movies />} /> */}
-        {/* <Route path="*" element={<Home />} /> */}
+        <Route path="/movies" element={<Movies />} />
+        <Route path="*" element={<Home />} />
 
-        {/* <Route path="/logout" element={<Logout />} /> */}
+        <Route path="/logout" element={<Logout />} />
       </Routes>
        ) : (
         <Routes>
         <Route path="/" element={<Login />} />
         <Route path = "/login" element={<Login />} />
         <Route path = "/about" element={<About />} />
-        {/* <Route path = "signup" element={<Signup />} /> */}
+        <Route path = "signup" element={<Signup />} />
         </Routes>
        )
-      }
+      } */}
     </div>
   )
 }
@@ -118,3 +115,19 @@ export default App;
 //             return state
 //     }
 // }
+// fetch('/me').then((response) => {
+//   if (response.ok) {
+//     response.json().then((user) => {
+//       // dispatch(addUser(user))
+//       dispatch(loadUsers())
+//       // dispatch(loadCurrentUser(user)
+//       // dispatch(loadMovies(movies))
+//       // dispatch(loadMovies())
+//       // add user returns a function so thunk middleware can handle it
+//       // setUser(user);
+//       console.log("in app.js", user);
+//       // console.log("in app.js", movies);
+//       navigate("/");
+//     });
+//   } 
+// });

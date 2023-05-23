@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   # CREATE session for specific user data
   post "/login", to: "sessions#create"
   post "/signup", to: "users#create"
-  
+  get "/users", to: "users#index"
   get "users/search", to: "users#search", as: "search"
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

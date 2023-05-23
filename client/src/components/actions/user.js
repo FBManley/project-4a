@@ -18,19 +18,23 @@
 //     payload: user
 //   }
 // }
-export const addUser = (user) => {
-    return {
-      type: "ADD_USER",
-      payload: user
-    }
-  }
+// export const addUser = (user) => {
+//     return {
+//       type: "ADD_USER",
+//       payload: user
+//     }
+//   }
   
-export const deleteUser = (user) => {
-    return {
-      type: "DELETE_USER",
-      payload: user
-    }
-}
+// export const deleteUser = (user) => {
+//     return {
+//       type: "DELETE_USER",
+//       payload: user
+//     }
+// }
+
+// export const loginUser = () => {
+
+// }
 // payload: data is from backend same as saying setUser(data)
 // Actions are created by action creators, which are functions that return an action object. Action objects have a type property that indicates what type of action is being performed and any additional data necessary to make the change.
 // When an action is dispatched, it is sent to the store using the store.dispatch() method. This method takes the action object as an argument.

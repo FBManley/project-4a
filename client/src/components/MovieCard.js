@@ -13,6 +13,8 @@ const MovieCard = ({movie}) => {
   // const {id, title, genre, director, release_date, summary} = movie
   // const select = useSelector((store) => store.movies);
   const dispatch = useDispatch();
+  const currentUser = useSelector((store) => store.currentUser);
+  console.log("in movie card", currentUser)
   // const { currentUser } = useContext(UserContext);
   // const addReview = (review) => {
   //   return {
