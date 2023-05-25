@@ -10,7 +10,7 @@ import { loadMovies } from './actions/movies';
 
 const Movies = () => {
   // const [movies, setMovies] = useState([])
-  // const [movieID, setMovieID] = useState(false)   
+    
   const movies = useSelector((store) => store.movies);
   
   console.log("in movies", movies)
@@ -30,9 +30,7 @@ const Movies = () => {
   //   console.log("movies",[movies])
   // }
 
-  // const enterMovieEditMode = (movie_id) => {
-  //   setMovieID(movie_id)
-  // }
+  
 
   // const renderMovieForm = () => {
   //    if (!movieID) {
@@ -43,6 +41,7 @@ const Movies = () => {
   // }
 
   // const onEditMovie = (updatedMov) => {
+  //   // 
   //   setMovies(movies => {
   //     const newMovArray = movies.map(movie => {
   //       if (movie.id === updatedMov.id) {
@@ -72,7 +71,7 @@ const Movies = () => {
 
 
   return (
-    <div>Movies 
+    <div>
       <MovieForm/>
       {/* <h1>{movies}</h1> */}
       <br></br>

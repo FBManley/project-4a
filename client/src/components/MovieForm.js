@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {useDispatch} from 'react-redux'
 import {addMovie} from './actions/movies'
-
+import {FormWrapper} from '../components/styles/StyledForm'
 const startingState = {
     title: '',
     genre: '',
@@ -45,8 +45,9 @@ const CreateMovie = () => {
     }
 
   return (
+    <FormWrapper>
     <div>
-        <h3>CreateMovie</h3>
+        <h3>AddMovie</h3>
         <form onSubmit={handleSubmit}>
             <label>Title</label>
             <input type="string" name="title" value={movieFormInput.title} onChange={handleChange} />
@@ -66,6 +67,7 @@ const CreateMovie = () => {
             {errors}
         </div>
     </div>
+    </FormWrapper>
   )
 }
 

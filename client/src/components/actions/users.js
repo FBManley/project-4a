@@ -30,6 +30,7 @@ export const loadCurrentUser = () => {
     }
 }
 
+
 export const logoutUser = () => {
     return {
         type: "LOGOUT_USER"

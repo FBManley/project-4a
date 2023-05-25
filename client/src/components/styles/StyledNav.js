@@ -3,20 +3,28 @@ import styled from 'styled-components'
 
 export const NavbarLink = styled(NavLink)`
 color: black;
-font-size: x-large;
+font-size: large;
 text-decoration: underlined;
+margin: 1px;
 display: flex;
-margin: 15px;
+flex-direction: row;
+justify-content: space-between;
+
+
 `
 
 export const NavigationContainer = styled.nav `
+  align-items: center;
   display: flex;
-  width: 100%;
-  height: 50px;
-  background-color: lightgrey; `
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  width: calc(100% - 20px);
 
-  export const usedNavigate = styled(useNavigate)`
-  color: black;
-  `
+`
+
+// export const useNavigate = styled(useNavigate)`
+// color: black;
+// `
 
   

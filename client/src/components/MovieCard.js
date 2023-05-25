@@ -4,17 +4,20 @@ import ReviewForm from './ReviewForm'
 import ReviewDeatils from './ReviewDeatils'
 import { loadMovies } from './actions/movies'
 import { deleteMovie } from './actions/movies'
+import { MovieCardWrapper } from '../components/styles/StyledMovie'
 // FLOW: 1. create action to be able to dispatch to reducer to... 2. create reducer to update state. 3. create action creator to be able to dispatch action. 4. create component to dispatch action creator. 5. create component to display state.
 // create action creator for this card. 
 
 
 const MovieCard = ({movie}) => {
+  const [movieID, setMovieID] = useState(false) 
+  const [showForm, setShowForm] = useState(false)
   // destructure movie object
   const {id, title, genre, director, release_date, summary} = movie
   // const select = useSelector((store) => store.movies);
   const dispatch = useDispatch();
   const currentUser = useSelector((store) => store.currentUser);
-  // const updatedMovies = useSelector((store) => store.movies);
+  const updatedMovies = useSelector((store) => store.movies);
   // deconstruct movie object from store to get movie id
 
   // const {id, movie, title, genre, release_date, summary, director} = useSelector((store) => store.movies.movie);
@@ -81,27 +84,56 @@ const MovieCard = ({movie}) => {
     .then(response => response.json())
     .then(() => {
       dispatch(deleteMovie(id))
-      dispatch(loadMovies())
+      dispatch(loadMovies(updatedMovies))
     }
     
     )
     // update movies state
   }
-  // need to set movie to edit movie state then run PATCH
-  const handleEditClick = (id) => {
-    fetch`/movies/${id}`, {
-      method: 'PATCH', 
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ movie })
-    }
-    .then(response => response.json())
-    .then(() => {
-      dispatch(loadMovies())
-    })
-    // select card to enter edit mode
-
-    // enterMovieEditMode(movie_id)
+  const enterMovieEditMode = (movie_id) => {
+    setMovieID(movie_id)
+    dispatch({type: "EDIT_MOVIE", payload: movie_id})
   }
+  const handleEditMovieClick = (id) => {
+    // if logged in - enter edit mode
+    //  if not display error
+    enterMovieEditMode(id)
+      // const enterMovieEditMode = (movie_id) => {
+  //   setMovieID(movie_id)
+  // }
+      // set 
+
+  }
+
+  // const onEditMovie = (updatedMov) => {
+  //   // 
+  //   setMovies(movies => {
+  //     const newMovArray = movies.map(movie => {
+  //       if (movie.id === updatedMov.id) {
+  //         return updatedMov
+  //       } else {
+  //         return movie
+  //       }
+  //     })
+  //     return newMovArray
+  //   })
+  // }
+  // need to set movie to edit movie state then run PATCH
+  // const handleEditClick = (id) => {
+  //   fetch`/movies/${id}`, {
+  //     method: 'PATCH', 
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ movie })
+  //   }
+  //   .then(response => response.json())
+  //   .then(() => {
+  //     dispatch(loadMovies())
+  //   })
+  // }
+  //   // select card to enter edit mode
+
+  //   // enterMovieEditMode(movie_id)
+  // }
   // const movieReviews = cardReviews.map((review) => {
   //   return (
   //     <div key={uuidv4()}>
@@ -109,7 +141,10 @@ const MovieCard = ({movie}) => {
   //     </div>
   //   )
   // })
+
+
   return (
+    <MovieCardWrapper>
     <div>
       <h3>ID: {id}</h3>
       <h3>Title: {title}</h3>
@@ -119,7 +154,7 @@ const MovieCard = ({movie}) => {
       <h3>Director: {director}</h3>
       <br></br>
       <button onClick={() => handleMovieDeleteClick(movie.id)}>Delete</button>
-      <button onClick={() => handleEditClick(movie.id)}>Edit</button>
+      {/* <button onClick={() => handleEditMovieClick(movie.id)}>Edit</button> */}
       <br></br>
       <h4>Reviews:</h4>
       {/* {movieReviews} */}
@@ -128,6 +163,7 @@ const MovieCard = ({movie}) => {
           <ReviewForm key={uuidv4()} movie={movie} user={user}reviews={reviews}  />
         </div> */}
     </div>
+    </MovieCardWrapper>
   )
   
 }

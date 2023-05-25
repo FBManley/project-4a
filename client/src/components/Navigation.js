@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 // import { deleteUser } from './actions/user'
 import { logoutUser } from './actions/users'
+import { NavbarLink } from "../components/styles/StyledNav";
 
  const Navigation = () => {
     // const user = useSelector((store) => store.user)
@@ -27,18 +28,19 @@ import { logoutUser } from './actions/users'
           <div className="Navigation">
             {currentUser ? (
               <ul>
-                <li><NavLink to='/'>Home</NavLink></li>  
-                <li><NavLink to='/login' onClick={logOut}>Logout</NavLink></li> 
-                <li><NavLink to='/users'>Users</NavLink></li>
-                <li><NavLink to='/movies'>Movies</NavLink></li>
+                
+                <li><NavbarLink to='/'>Home</NavbarLink></li>  
+                <li><NavbarLink to='/login' onClick={logOut}>Logout</NavbarLink></li> 
+                <li><NavbarLink to='/users'>Users</NavbarLink></li>
+                <li><NavbarLink to='/movies'>Movies</NavbarLink></li>
 
                 {/* <li><NavLink to='/logout'> Logout<NavLink/> </li> */}
               </ul>
             ) : (
               <ul>
-                <li><NavLink to='/signup'>Sign-Up</NavLink></li>
-                <li><NavLink to='/login'>Log In</NavLink></li>
-                <li><NavLink to='/about'>About</NavLink></li> 
+                <li><NavbarLink to='/signup'>Sign-Up</NavbarLink></li>
+                <li><NavbarLink to='/login'>Log In</NavbarLink></li>
+                <li><NavbarLink to='/about'>About</NavbarLink></li> 
               </ul>
             ) }
           </div>

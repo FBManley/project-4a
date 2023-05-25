@@ -18,6 +18,8 @@ import About from "./components/About";
 import Movies from "./components/Movies";
 import UsersList from "./components/UsersList";
 import { loadCurrentUser, loadUsers } from "./components/actions/users";
+import { NavigationContainer } from "./components/styles/StyledNav";
+
 
 function App() {
   // const reduxState = useSelector((store) => store.blogsReducer);
@@ -45,7 +47,10 @@ function App() {
 
   return (
     <div>
-      <Navigation/>
+      <NavigationContainer>
+        <Navigation/>
+      </NavigationContainer>
+      
       {/* <Container/> */}
        {/* <h1>Welcome, {user}</h1> */}
        <Routes>

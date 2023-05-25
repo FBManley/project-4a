@@ -14,8 +14,8 @@ import { loadCurrentUser } from './actions/users';
  
   const user = useSelector((store) => store.userReducer);
   const { loggedIn } = useSelector((store) => store.usersReducer);
-  console.log("in login", user)
-  console.log("in login", loggedIn)
+  // console.log("in login", user)
+  // console.log("in login", loggedIn)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
