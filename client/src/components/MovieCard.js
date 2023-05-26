@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ReviewForm from './ReviewForm'
 import ReviewDeatils from './ReviewDeatils'
-import { loadMovies } from './actions/movies'
+import { loadMovies, updateMovie } from './actions/movies'
 import { deleteMovie } from './actions/movies'
 import { MovieCardWrapper } from '../components/styles/StyledMovie'
 // FLOW: 1. create action to be able to dispatch to reducer to... 2. create reducer to update state. 3. create action creator to be able to dispatch action. 4. create component to dispatch action creator. 5. create component to display state.
@@ -12,69 +12,35 @@ import { MovieCardWrapper } from '../components/styles/StyledMovie'
 const MovieCard = ({movie}) => {
   const [movieID, setMovieID] = useState(false) 
   const [showForm, setShowForm] = useState(false)
-  // destructure movie object
+  const [formMovie, setFormMovie] = useState({});
+  const [errors, setErrors] = useState([])
+
   const {id, title, genre, director, release_date, summary} = movie
-  // const select = useSelector((store) => store.movies);
+
   const dispatch = useDispatch();
   const currentUser = useSelector((store) => store.currentUser);
   const updatedMovies = useSelector((store) => store.movies);
-  // deconstruct movie object from store to get movie id
+  const showEditMovieForm = () => setShowForm(!showForm)
 
-  // const {id, movie, title, genre, release_date, summary, director} = useSelector((store) => store.movies.movie);
+  const isMovie = (movie) => {
+    if (movie.id === null)
+      return (
+        <div onClick={showEditMovieForm}>
+          edit movie
+        </div>
+      )
+      else (
+        <div onClick={showEditMovieForm}>
+          <p>{title}</p>
+          <p>{genre}</p>
+          <p>{director}</p>
+          <p>{release_date}</p>
+          <p>{summary}</p>
+        </div>
+      )
+  }
   console.log("in movie card", currentUser)
-  // const { currentUser } = useContext(UserContext);
-  // const addReview = (review) => {
-  //   return {
-  //     type: "ADD_REVIEW",
-  //     payload: review
-  //   }
-  // }
-  // const addMovie = (movie) => {
-  //   return {
-  //     type: "ADD_MOVIE",
-  //     payload: movie
-  //   }
-  // }
-  // const addReview = (newReview) => {
-  //   const updatedReview = [...movie.reviews, newReview]
-  //   const updatedMovie = {...movie, reviews: updatedReview}
-  //   const updatedMoviesCollection = movies.map((m) => {
-  //     if (movie.id === m.id) {
-  //       return updatedMovie
-  //     } else {
-  //       return m
-  //     }
-  //   })
-  //   // setUser({...user, movies: updatedMoviesCollection})
-  //   // setCurrentMovie(updatedMovie)
-  //   setMovies(updatedMoviesCollection)
-  //   // setReviewArray(updatedReview)\
-  //   // const newReviews = [...cardReviews.reviews, review]
-  //   // cardReviews.reviews = newReviews
-  //   console.log("updated movie", updatedReview)
-  //   // console.log("curr",cardReviews)
-  //   // console.log("updated movie", Movie)
-  //   // setCardReviews(updatedReview)
-  //   // setMovies({...movies, reviews: updatedReviewCollection})
-  // }
-  // add review function
-  // const addReview = (newReview) => {
-  //   // console.log("in addReview", newReview)
-  //   // console.log("in addReview", cardReviews)
 
-  //   setCardReviews((cardReviews) => [...cardReviews, newReview])
-  //   setMovies((movies) => {
-  //     const newMovArray = movies.map(movie => {
-  //       if (movie.id === newReview.movie_id) {
-  //         return newReview
-  //       } else {
-  //         return movie
-  //       }
-  //     })
-  //     return newMovArray
-  //   })
-  //   console.log(cardReviews)  
-  // }
   
   // delete function for movie
   const handleMovieDeleteClick = (id) => {
@@ -86,61 +52,82 @@ const MovieCard = ({movie}) => {
       dispatch(deleteMovie(id))
       dispatch(loadMovies(updatedMovies))
     }
-    
     )
-    // update movies state
-  }
-  const enterMovieEditMode = (movie_id) => {
-    setMovieID(movie_id)
-    dispatch({type: "EDIT_MOVIE", payload: movie_id})
-  }
-  const handleEditMovieClick = (id) => {
-    // if logged in - enter edit mode
-    //  if not display error
-    enterMovieEditMode(id)
-      // const enterMovieEditMode = (movie_id) => {
-  //   setMovieID(movie_id)
-  // }
-      // set 
-
   }
 
-  // const onEditMovie = (updatedMov) => {
-  //   // 
-  //   setMovies(movies => {
-  //     const newMovArray = movies.map(movie => {
-  //       if (movie.id === updatedMov.id) {
-  //         return updatedMov
-  //       } else {
-  //         return movie
-  //       }
-  //     })
-  //     return newMovArray
-  //   })
-  // }
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    fetch('/movies', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({movie: formMovie})
+    }).then((response) => {
+        if (response.ok) {
+            response.json().then(movie => {
+            // setMovieFormInput(movieFormInput)
+            dispatch(updateMovie(movie))
+            // addMovie(movie)
+        })
+        } else {
+            response.json().then((errors) => (setErrors(errors.errors)))
+        }
+    })
+}
+const editMovie = (movie) => {
+   {
+    return (
+      <form onSubmit={handleFormSubmit}>
+          <input
+            type="string"
+            name="title"
+            value={formMovie.title || ''}
+            onChange={handleInputChange}
+          />
+          <input
+            type="string"
+            name="genre"
+            value={formMovie.genre || ''}
+            onChange={handleInputChange}
+          />
+          <input
+          type="text"
+          name="summary"
+          value={formMovie.summary || ''}
+          onChange={handleInputChange}
+          />
+          <input
+          type="string"
+          name="director"
+          value={formMovie.director || ''}
+          onChange={handleInputChange}
+          />
+          <input
+          type="integer"
+          value={formMovie.release_date || ''}
+          onChange={handleInputChange}
+          />
+          <button type="submit" onClick={handleFormSubmit}>Save</button>
+        </form>
+    )
+   }
+}
+
+
   // need to set movie to edit movie state then run PATCH
-  // const handleEditClick = (id) => {
-  //   fetch`/movies/${id}`, {
-  //     method: 'PATCH', 
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({ movie })
-  //   }
-  //   .then(response => response.json())
-  //   .then(() => {
-  //     dispatch(loadMovies())
-  //   })
-  // }
-  //   // select card to enter edit mode
+  const handleEditClick = (id) => {
+      setShowForm(true)
+      setFormMovie(movie)
 
-  //   // enterMovieEditMode(movie_id)
-  // }
-  // const movieReviews = cardReviews.map((review) => {
-  //   return (
-  //     <div key={uuidv4()}>
-  //       <h4>{review.review}</h4>
-  //     </div>
-  //   )
-  // })
+  }
+ 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormMovie({ ...formMovie, [name]: value });
+  }
+ 
 
 
   return (
@@ -153,6 +140,8 @@ const MovieCard = ({movie}) => {
       <h3>Description: {summary}</h3>
       <h3>Director: {director}</h3>
       <br></br>
+      <button onClick={() => handleEditClick(id)}>Edit</button>
+      {showForm ? editMovie(movie) : isMovie(movie)}
       <button onClick={() => handleMovieDeleteClick(movie.id)}>Delete</button>
       {/* <button onClick={() => handleEditMovieClick(movie.id)}>Edit</button> */}
       <br></br>
@@ -162,6 +151,9 @@ const MovieCard = ({movie}) => {
       {/* <div>
           <ReviewForm key={uuidv4()} movie={movie} user={user}reviews={reviews}  />
         </div> */}
+        <>
+        {errors}
+        </>
     </div>
     </MovieCardWrapper>
   )
@@ -401,3 +393,135 @@ export default MovieCard;
   
 // }
 // export default MovieCard;
+
+  // const { currentUser } = useContext(UserContext);
+  // const addReview = (review) => {
+  //   return {
+  //     type: "ADD_REVIEW",
+  //     payload: review
+  //   }
+  // }
+  // const addMovie = (movie) => {
+  //   return {
+  //     type: "ADD_MOVIE",
+  //     payload: movie
+  //   }
+  // }
+  // const addReview = (newReview) => {
+  //   const updatedReview = [...movie.reviews, newReview]
+  //   const updatedMovie = {...movie, reviews: updatedReview}
+  //   const updatedMoviesCollection = movies.map((m) => {
+  //     if (movie.id === m.id) {
+  //       return updatedMovie
+  //     } else {
+  //       return m
+  //     }
+  //   })
+  //   // setUser({...user, movies: updatedMoviesCollection})
+  //   // setCurrentMovie(updatedMovie)
+  //   setMovies(updatedMoviesCollection)
+  //   // setReviewArray(updatedReview)\
+  //   // const newReviews = [...cardReviews.reviews, review]
+  //   // cardReviews.reviews = newReviews
+  //   console.log("updated movie", updatedReview)
+  //   // console.log("curr",cardReviews)
+  //   // console.log("updated movie", Movie)
+  //   // setCardReviews(updatedReview)
+  //   // setMovies({...movies, reviews: updatedReviewCollection})
+  // }
+  // add review function
+  // const addReview = (newReview) => {
+  //   // console.log("in addReview", newReview)
+  //   // console.log("in addReview", cardReviews)
+
+  //   setCardReviews((cardReviews) => [...cardReviews, newReview])
+  //   setMovies((movies) => {
+  //     const newMovArray = movies.map(movie => {
+  //       if (movie.id === newReview.movie_id) {
+  //         return newReview
+  //       } else {
+  //         return movie
+  //       }
+  //     })
+  //     return newMovArray
+  //   })
+  //   console.log(cardReviews)  
+  // }
+    // const enterMovieEditMode = (movie_id) => {
+  //   setMovieID(movie_id)
+  //   dispatch({type: "EDIT_MOVIE", payload: movie_id})
+  // }
+  // const handleEditMovieClick = (id) => {
+  //   // if logged in - enter edit mode
+  //   //  if not display error
+  //   enterMovieEditMode(id)
+  //     // const enterMovieEditMode = (movie_id) => {
+  // //   setMovieID(movie_id)
+  // // }
+  //     // set 
+
+  // }
+
+  // const onEditMovie = (updatedMov) => {
+  //   // 
+  //   setMovies(movies => {
+  //     const newMovArray = movies.map(movie => {
+  //       if (movie.id === updatedMov.id) {
+  //         return updatedMov
+  //       } else {
+  //         return movie
+  //       }
+  //     })
+  //     return newMovArray
+  //   })
+  // }
+    // const handleFormSubmit = (formMovie, id) => {
+   
+  //   useEffect(() => {
+  //     fetch(`/movies/${id}`, {
+  //       method: 'PATCH', 
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({ movie: formMovie })
+  //     })
+  //       .then(response => response.json())
+  //       .then(() => {
+  //         dispatch(loadMovies());
+  //       });
+  //     console.log("handleformSubmit", formMovie);
+  //   }, [formMovie, id]);
+  // };
+      // fetch`/movies/${id}`, {
+    //   method: 'PATCH', 
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ movie })
+    // }
+    // .then(response => response.json())
+    // .then(() => {
+    //   dispatch(loadMovies())
+    // })
+     // const handleFormSubmit = (e) => {
+  //   e.preventDefault()
+  //   useEffect(() => {fetch`/movies/${id}`, {
+  //     method: 'PATCH', 
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ movie })
+  //   }
+  //   .then(response => response.json())
+  //   .then(() => {
+  //     dispatch(loadMovies())
+  //   })
+  //   console.log("handleformSubmit",formMovie);}, [updatedMovies])
+    
+  // }
+
+   //   // select card to enter edit mode
+
+  //   // enterMovieEditMode(movie_id)
+  // }
+  // const movieReviews = cardReviews.map((review) => {
+  //   return (
+  //     <div key={uuidv4()}>
+  //       <h4>{review.review}</h4>
+  //     </div>
+  //   )
+  // })
