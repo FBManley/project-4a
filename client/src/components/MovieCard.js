@@ -55,11 +55,11 @@ const MovieCard = ({movie}) => {
     )
   }
 
-
+// must fix pathc here
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    fetch('/movies', {
-        method: 'POST',
+    fetch('/movies/${movie.id}', {
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
         },
