@@ -66,7 +66,7 @@ class MoviesController < ApplicationController
     private 
 
     def movie_params 
-        params.require(:movieFormInput).permit(:title, :genre, :summary, :director, :release_date)
+        params.require(:movie).permit(:title, :genre, :summary, :director, :release_date)
     end
     def authorization
         return render json: { errors: ["Not authorized"] }, status: 401 unless session.include? :user_id

@@ -55,10 +55,10 @@ const MovieCard = ({movie}) => {
     )
   }
 
-// must fix pathc here
+// must fix path here
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    fetch('/movies/${movie.id}', {
+    fetch(`/movies/${id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -73,13 +73,19 @@ const MovieCard = ({movie}) => {
         })
         } else {
             response.json().then((errors) => (setErrors(errors.errors)))
-        }
+        };
     })
 }
-const editMovie = (movie) => {
+const editMovie = (id) => {
    {
     return (
       <form onSubmit={handleFormSubmit}>
+        {/* <label 
+        type="intger"
+        name="id"
+        value={formMovie.id || ''}
+        onChange={handleInputChange}
+        /> */}
           <input
             type="string"
             name="title"
@@ -141,7 +147,7 @@ const editMovie = (movie) => {
       <h3>Director: {director}</h3>
       <br></br>
       <button onClick={() => handleEditClick(id)}>Edit</button>
-      {showForm ? editMovie(movie) : isMovie(movie)}
+      {showForm ? editMovie(id) : isMovie(movie)}
       <button onClick={() => handleMovieDeleteClick(movie.id)}>Delete</button>
       {/* <button onClick={() => handleEditMovieClick(movie.id)}>Edit</button> */}
       <br></br>
