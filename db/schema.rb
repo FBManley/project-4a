@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_26_163507) do
+ActiveRecord::Schema.define(version: 2023_05_28_210704) do
 
   create_table "blogs", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -39,6 +39,26 @@ ActiveRecord::Schema.define(version: 2023_04_26_163507) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
+  create_table "socials", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "socials_users", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "social_id", null: false
+  end
+
+  create_table "user_socials", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "social_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["social_id"], name: "index_user_socials_on_social_id"
+    t.index ["user_id"], name: "index_user_socials_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -48,4 +68,6 @@ ActiveRecord::Schema.define(version: 2023_04_26_163507) do
 
   add_foreign_key "reviews", "movies"
   add_foreign_key "reviews", "users"
+  add_foreign_key "user_socials", "socials"
+  add_foreign_key "user_socials", "users"
 end

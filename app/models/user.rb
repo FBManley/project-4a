@@ -8,6 +8,8 @@ class User < ApplicationRecord
     has_many :reviews, dependent: :destroy
     has_many :movies, through: :reviews
     has_many :blogs
+    has_many :socials, through: :user_socials
+    has_many :user_socials
 
     validates :username, presence: true, uniqueness: true
     validates :password_digest, presence: true

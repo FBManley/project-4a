@@ -33,6 +33,7 @@ import { NavbarLink } from "../components/styles/StyledNav";
                 <li><NavbarLink to='/login' onClick={logOut}>Logout</NavbarLink></li> 
                 <li><NavbarLink to='/users'>Users</NavbarLink></li>
                 <li><NavbarLink to='/movies'>Movies</NavbarLink></li>
+                <li><NavbarLink to= '/socials'>Socials</NavbarLink></li>
 
                 {/* <li><NavLink to='/logout'> Logout<NavLink/> </li> */}
               </ul>

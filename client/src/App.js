@@ -19,7 +19,7 @@ import Movies from "./components/Movies";
 import UsersList from "./components/UsersList";
 import { loadCurrentUser, loadUsers } from "./components/actions/users";
 import { NavigationContainer } from "./components/styles/StyledNav";
-
+import Socials from "./components/Socials";
 
 function App() {
   // const reduxState = useSelector((store) => store.blogsReducer);
@@ -59,6 +59,7 @@ function App() {
         <Route path="/movies" element={<Movies/>}/>
         <Route path="/users" element={<UsersList/>}/>
         <Route path="/about" element={<About/>}/>
+        <Route path="/socials" element={<Socials/>}/>
        </Routes>
        {/* {user ? (
         <Routes >

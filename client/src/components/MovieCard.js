@@ -20,6 +20,8 @@ const MovieCard = ({movie}) => {
   const dispatch = useDispatch();
   const currentUser = useSelector((store) => store.currentUser);
   const updatedMovies = useSelector((store) => store.movies);
+  const reviews = useSelector((store) => store.movies.reviews);
+  console.log("in movie card", reviews)
   const showEditMovieForm = () => setShowForm(!showForm)
 
   const isMovie = (movie) => {
@@ -133,7 +135,12 @@ const editMovie = (id) => {
     const { name, value } = e.target;
     setFormMovie({ ...formMovie, [name]: value });
   }
- 
+  // const rev = reviews.map((review) => {
+  //   return (
+  //     <ReviewDeatils key={review.id} review={review} />
+  //   ));
+
+  
 
 
   return (
@@ -152,6 +159,7 @@ const editMovie = (id) => {
       {/* <button onClick={() => handleEditMovieClick(movie.id)}>Edit</button> */}
       <br></br>
       <h4>Reviews:</h4>
+      
       {/* {movieReviews} */}
       {/* <ReviewDeatils reviews={reviews} /> */}
       {/* <div>
