@@ -3,10 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Navigation from "./components/Navigation";
 import Login from "./components/Login";
-// import Signup from "./components/Signup";
+import Signup from "./components/Signup";
 import { useSelector, useDispatch, connect } from "react-redux";
 // import {blogsReducer} from "./components/reducers/blogsReducer";
-import {loadBlogs} from "./components/actions/blogs";
 import {useNavigate} from "react-router-dom";
 // import {userProvider} from "./components/reducers/usersReducer";
 // import {loadUser} from "./components/actions/user";
@@ -20,6 +19,8 @@ import UsersList from "./components/UsersList";
 import { loadCurrentUser, loadUsers } from "./components/actions/users";
 import { NavigationContainer } from "./components/styles/StyledNav";
 import Socials from "./components/Socials";
+import { loadSocials } from "./components/actions/socials";
+import { loadReviews } from "./components/actions/reviews";
 
 function App() {
   // const reduxState = useSelector((store) => store.blogsReducer);
@@ -38,6 +39,8 @@ function App() {
     dispatch(loadMovies())
     dispatch(loadUsers())
     dispatch(loadCurrentUser())
+    dispatch(loadSocials())
+    dispatch(loadReviews())
   }, [dispatch]);
   // useEffect(() => {
   //   dispatch(addUser(user))
@@ -60,24 +63,25 @@ function App() {
         <Route path="/users" element={<UsersList/>}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/socials" element={<Socials/>}/>
+        <Route path="/signup" element={<Signup />} />
        </Routes>
-       {/* {user ? (
-        <Routes >
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="*" element={<Home />} />
 
-        <Route path="/logout" element={<Logout />} />
-      </Routes>
-       ) : (
-        <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path = "/login" element={<Login />} />
-        <Route path = "/about" element={<About />} />
-        <Route path = "signup" element={<Signup />} />
-        </Routes>
-       )
-      } */}
+      {/* <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/about" element={<About />} />
+
+        {user ? (
+          <>
+            <Route path="/movies" element={<Movies />} />
+            <Route path="/users" element={<UsersList />} />
+            <Route path="/socials" element={<Socials />} />
+          </>
+        ) : (
+          <Route path="*" element={<Login />} />
+        )}
+      </Routes> */}
     </div>
   )
 }

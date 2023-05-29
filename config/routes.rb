@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :reviews, only: [:index, :show, :create]
   resources :movies, only: [:index, :show, :create, :update]
   resources :blogs
-  resources :socials, only: [:index]
+  resources :socials, only: [:index, :show]
   # custom route, get /movies/search/:term -> search action in movies controller
   get "/movies/search/:term", to: "movies#search"
 

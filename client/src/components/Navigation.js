@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+// import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 // import { deleteUser } from './actions/user'
 import { logoutUser } from './actions/users'
@@ -8,7 +8,7 @@ import { NavbarLink } from "../components/styles/StyledNav";
  const Navigation = () => {
     // const user = useSelector((store) => store.user)
     const  currentUser  = useSelector((store) => store.usersReducer.currentUser) 
-    // deconstruct loggedIn to usersReducer
+ 
     // START HERE FIND WHERE TO INITIATE LOGGEDIN TO FALSE AND RENDER LINKS BASED ON THAT
     console.log("in navigation", currentUser)
     const dispatch = useDispatch()

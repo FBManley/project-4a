@@ -23,11 +23,11 @@ const CreateMovie = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({movieFormInput})
+            body: JSON.stringify({movie: movieFormInput})
         }).then((response) => {
             if (response.ok) {
                 response.json().then(movie => {
-                setMovieFormInput(movieFormInput)
+                setMovieFormInput({movieFormInput})
                 dispatch(addMovie(movie))
                 // addMovie(movie)
                 handleClear()
@@ -47,7 +47,7 @@ const CreateMovie = () => {
   return (
     <FormWrapper>
     <div>
-        <h3>AddMovie</h3>
+        <h3>Movie</h3>
         <form onSubmit={handleSubmit}>
             <label>Title</label>
             <input type="string" name="title" value={movieFormInput.title} onChange={handleChange} />

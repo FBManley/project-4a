@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
     before_action :authorization, only: [:update, :delete]
     skip_before_action :authorized, only: [:index, :show]
-    skip_before_action :authorized, only: [:update]
+    # skip_before_action :authorized, only: [:update]
     
     def search 
         searched_movie = Movie.all.filter {|movie| movie.title.downcase.include?(params[:term].downcase)}
@@ -71,6 +71,10 @@ class MoviesController < ApplicationController
     def authorization
         return render json: { errors: ["Not authorized"] }, status: 401 unless session.include? :user_id
     end
+    # def authorization
+    #     movie = Movie.find(params[:id])
+    #     return render json: { errors: ["Not authorized"] }, status: 401 unless session.include?(:user_id) && movie.user_id == session[:user_id]
+    #   end
     # def authorize_user 
     #     @movie = Movie.find(params[:id])
     #     unless @movie.user_id == current_user.id

@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { loadCurrentUser } from './actions/users'
 
  const Signup = ({ setUser }) => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errors, setErrors] = useState("")
   const { loggedIn } = useSelector((store) => store.usersReducer)
-  
-  // const dispatch = useDispatch()
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,9 +27,10 @@ import { useDispatch, useSelector } from 'react-redux'
     .then((response) => {
         if (response.ok) {
             response.json().then((user) => {
-                setUser(user);
+                dispatch(loadCurrentUser(user));
                 setUsername("");
                 setPassword("");
+                navigate('/movies');
             });
         } else {
             response.json().then((errors) => {

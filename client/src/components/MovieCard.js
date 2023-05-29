@@ -3,25 +3,26 @@ import { useDispatch, useSelector } from 'react-redux'
 import ReviewForm from './ReviewForm'
 import ReviewDeatils from './ReviewDeatils'
 import { loadMovies, updateMovie } from './actions/movies'
+import { loadReviews } from './actions/reviews'
 import { deleteMovie } from './actions/movies'
 import { MovieCardWrapper } from '../components/styles/StyledMovie'
 // FLOW: 1. create action to be able to dispatch to reducer to... 2. create reducer to update state. 3. create action creator to be able to dispatch action. 4. create component to dispatch action creator. 5. create component to display state.
 // create action creator for this card. 
 
 
-const MovieCard = ({movie}) => {
-  const [movieID, setMovieID] = useState(false) 
+const MovieCard = ({movie, review}) => {
+  // const [movieID, setMovieID] = useState(false) 
   const [showForm, setShowForm] = useState(false)
   const [formMovie, setFormMovie] = useState({});
   const [errors, setErrors] = useState([])
 
   const {id, title, genre, director, release_date, summary} = movie
-
+  
   const dispatch = useDispatch();
-  const currentUser = useSelector((store) => store.currentUser);
+  // const currentUser = useSelector((store) => store.currentUser);
   const updatedMovies = useSelector((store) => store.movies);
-  const reviews = useSelector((store) => store.movies.reviews);
-  console.log("in movie card", reviews)
+  // const reviews = useSelector((store) => store.reviews);
+  console.log("reviews in movie card", review)
   const showEditMovieForm = () => setShowForm(!showForm)
 
   const isMovie = (movie) => {
@@ -41,9 +42,7 @@ const MovieCard = ({movie}) => {
         </div>
       )
   }
-  console.log("in movie card", currentUser)
 
-  
   // delete function for movie
   const handleMovieDeleteClick = (id) => {
     fetch(`/movies/${id}`, {
@@ -57,7 +56,6 @@ const MovieCard = ({movie}) => {
     )
   }
 
-// must fix path here
   const handleFormSubmit = (e) => {
     e.preventDefault();
     fetch(`/movies/${id}`, {
@@ -82,12 +80,6 @@ const editMovie = (id) => {
    {
     return (
       <form onSubmit={handleFormSubmit}>
-        {/* <label 
-        type="intger"
-        name="id"
-        value={formMovie.id || ''}
-        onChange={handleInputChange}
-        /> */}
           <input
             type="string"
             name="title"
@@ -135,10 +127,11 @@ const editMovie = (id) => {
     const { name, value } = e.target;
     setFormMovie({ ...formMovie, [name]: value });
   }
-  // const rev = reviews.map((review) => {
-  //   return (
-  //     <ReviewDeatils key={review.id} review={review} />
-  //   ));
+  // const reviewDetails = review.map((review) => (
+  //   <div key={review.id}>
+  //     <ReviewDeatils review={review} />
+  //   </div>
+  // ));
 
   
 
@@ -146,7 +139,7 @@ const editMovie = (id) => {
   return (
     <MovieCardWrapper>
     <div>
-      <h3>ID: {id}</h3>
+      {/* <h3>ID: {id}</h3> */}
       <h3>Title: {title}</h3>
       <h3>Genre: {genre}</h3>
       <h3>Release Date: {release_date}</h3>
@@ -156,12 +149,11 @@ const editMovie = (id) => {
       <button onClick={() => handleEditClick(id)}>Edit</button>
       {showForm ? editMovie(id) : isMovie(movie)}
       <button onClick={() => handleMovieDeleteClick(movie.id)}>Delete</button>
-      {/* <button onClick={() => handleEditMovieClick(movie.id)}>Edit</button> */}
       <br></br>
       <h4>Reviews:</h4>
-      
+      {/* {reviewDetails} */}
       {/* {movieReviews} */}
-      {/* <ReviewDeatils reviews={reviews} /> */}
+      {/* <ReviewDeatils  /> */}
       {/* <div>
           <ReviewForm key={uuidv4()} movie={movie} user={user}reviews={reviews}  />
         </div> */}
