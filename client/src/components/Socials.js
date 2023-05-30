@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { loadSocials } from './actions/socials';
 import SocialCard from './SocialCard';
 import { updateUser } from './actions/users';
+import UserSocial from './UserSocial';
 
 const Socials = () => {
     const groups = useSelector(state => state.socials);
@@ -13,6 +14,7 @@ const Socials = () => {
 
     useEffect(() => {
         dispatch(updateUser(user_id))
+        dispatch(loadSocials(groups));
     }, [dispatch, user_id]) 
 
     const GroupListCards = groups.map((group) => 
@@ -20,7 +22,8 @@ const Socials = () => {
 
     return (
         <div>    
-            <h1>Socials</h1>
+            <UserSocial />
+            <h1>Join Socials</h1>
             {GroupListCards}
         </div>
     );

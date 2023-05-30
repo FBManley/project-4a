@@ -28,7 +28,9 @@ const Home = () => {
   return (
     <div>
         <>
-          <h1> MOOOOVIES </h1>
+          <h1> Welcome to..MOOOOVIES </h1>
+          <h3>Check out Socials to find your tribe!</h3>
+          <h3>Checkout Movies to add or comment on your favorite movie! </h3>
           <div>
       {/* <h1>Counter: {count}</h1> */}
       {/* <Movies/> */}

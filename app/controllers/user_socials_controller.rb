@@ -11,4 +11,22 @@ class UserSocialsController < ApplicationController
         render json: { message: 'User joined the group successfully' }, status: :ok
       end
     end
+    # user_socials' index action
+    def index
+        user = User.find(params[:user_id])
+        joined_socials = user.socials
+        render json: joined_socials
+    end
+
+    def user_socials
+        user = current_user # Assuming you have a method to retrieve the current user
+        user_socials = user.socials
+        render json: user_socials
+    end
+
+    private
+
+    def current_user
+        @current_user ||= User.find_by(id: session[:user_id])
+    end
 end

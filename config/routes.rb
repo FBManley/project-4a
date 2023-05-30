@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :blogs
   resources :socials, only: [:index, :show]
   post '/user_socials/join_group', to: 'user_socials#join_group', as: 'join_group'
+  get '/user/socials', to: 'user_socials#user_socials', as: 'user_socials'
   # custom route, get /movies/search/:term -> search action in movies controller
   get "/movies/search/:term", to: "movies#search"
 

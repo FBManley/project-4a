@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ReviewForm from './ReviewForm'
-import ReviewDeatils from './ReviewDeatils'
+import ReviewDetails from './ReviewDetails'
 import { loadMovies, updateMovie } from './actions/movies'
 import { loadReviews } from './actions/reviews'
 import { deleteMovie } from './actions/movies'
 import { MovieCardWrapper } from '../components/styles/StyledMovie'
-// FLOW: 1. create action to be able to dispatch to reducer to... 2. create reducer to update state. 3. create action creator to be able to dispatch action. 4. create component to dispatch action creator. 5. create component to display state.
-// create action creator for this card. 
+
 
 
 const MovieCard = ({movie, review}) => {
@@ -21,7 +20,7 @@ const MovieCard = ({movie, review}) => {
   const dispatch = useDispatch();
   // const currentUser = useSelector((store) => store.currentUser);
   const updatedMovies = useSelector((store) => store.movies);
-  // const reviews = useSelector((store) => store.reviews);
+  const reviews = useSelector((state) => state.reviews);
   console.log("reviews in movie card", review)
   const showEditMovieForm = () => setShowForm(!showForm)
 
@@ -153,7 +152,7 @@ const editMovie = (id) => {
       <h4>Reviews:</h4>
       {/* {reviewDetails} */}
       {/* {movieReviews} */}
-      {/* <ReviewDeatils  /> */}
+      <ReviewDetails  reviews={reviews}/>
       {/* <div>
           <ReviewForm key={uuidv4()} movie={movie} user={user}reviews={reviews}  />
         </div> */}
