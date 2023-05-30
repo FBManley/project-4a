@@ -58,7 +58,7 @@ const CreateMovie = () => {
             <label>Director</label>
             <input type="string" name="director" value={movieFormInput.director} onChange={handleChange} />
             <label>Release Date</label>
-            <input type="integer" name="release_date" value={movieFormInput.release_date} onChange={handleChange} />
+            <input type="integer" name="release_date" value={movieFormInput.release_date || ''} onChange={handleChange} />
             <button type="submit">Submit</button>
             <button type ="button" onClick={handleClear}>Clear</button>
         </form>
