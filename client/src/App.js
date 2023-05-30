@@ -42,6 +42,7 @@ function App() {
     dispatch(loadSocials())
     dispatch(loadReviews())
   }, [dispatch]);
+  
   // useEffect(() => {
   //   dispatch(addUser(user))
   //   // dispatch(loadBlogs())

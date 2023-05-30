@@ -6,7 +6,7 @@ const socialsReducer = (state = [], action) => {
         default: 
         return state
     }
-    
+
     
     
 }

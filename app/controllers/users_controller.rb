@@ -27,6 +27,7 @@ class UsersController < ApplicationController
             searched_user = User.where()
         end
 
+
         
     
         private 

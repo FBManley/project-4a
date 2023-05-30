@@ -6,12 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { naommit -m me: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 puts "🌱 Seeding spices..."
-# Blog.destroy_all
 User.destroy_all
 Movie.destroy_all
 Review.destroy_all
-# Social.destroy_all
-# UserSocial.destroy_all
+Social.destroy_all
+UserSocial.destroy_all
 # seed first to establish associations before we start on controllers- ensure models talk to each other correctly first. then establish attributes then connections . 
 test_user = User.create(username: "test", password: "123")
 test_user_1 = User.create(username: "test1", password: "123")
@@ -25,16 +24,15 @@ review_2 = Review.create(review: "THIS MOVIE GAVE ME SHINGLES", user: test_user_
 review_3 = Review.create(review: "I heart this flcik", user: test_user_1, movie: test_movie_1)
 review_4 = Review.create(review: "rofl", user: test_user, movie: test_movie_1)
 
-# social = Social.create(name: "80's haters club")
-# social_1 = Social.create(name: "Fiction Fanatatics")
-# social_2 = Social.create(name: "Marvel Maidens")
+social = Social.create(name: "80's haters club")
+social_1 = Social.create(name: "Fiction Fanatatics")
+social_2 = Social.create(name: "Marvel Maidens")
 
-# user_social = UserSocial.create(user: test_user, social: social)
-# user_social_1 = UserSocial.create(user: test_user, social: social_1)
-# user_social_2 = UserSocial.create(user: test_user_1, social: social_2)
-# user_social_3 = UserSocial.create(user: test_user_1, social: social_1)
+user_social = UserSocial.create(user: test_user, social: social)
+user_social_1 = UserSocial.create(user: test_user, social: social_1)
+user_social_2 = UserSocial.create(user: test_user_1, social: social_2)
+user_social_3 = UserSocial.create(user: test_user_1, social: social_1)
 
-# blog_1 = Blog.create(title: "My first blog", content: "lorem ipsum blah blah blah", user: test_user)
 puts "✅ Done seeding!"
 # rails g resource review review:text like:boolean user:belongs_to  movie:belongs_to
 

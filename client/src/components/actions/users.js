@@ -36,3 +36,9 @@ export const logoutUser = () => {
         type: "LOGOUT_USER"
     }
 }
+
+export const updateUser = () => {
+    return {
+        type: "UPDATE_USER"
+    }
+}
