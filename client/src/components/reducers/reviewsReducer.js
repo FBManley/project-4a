@@ -12,3 +12,4 @@ const reviewsreducers = (state = [], action) => {
             return state
     }
 }
+export default reviewsreducers;

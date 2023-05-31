@@ -5,7 +5,7 @@ import Movies from './Movies';
 import {loadMovies} from './actions/movies';
 // import {loadMovies} from '.reducers/moviesReducer'
 // import {increment, decrement} from './actions/counterAction';
-import reducer from './reducers/reducer';
+// import reducer from './reducers/reducer';
 
 
 
