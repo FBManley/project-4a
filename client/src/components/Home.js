@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react'
+import './styles/Home.css';  
 import { useDispatch, useSelector } from 'react-redux';
 import Movies from './Movies';
 // import {loadBlogs} from './actions/blogs';
@@ -32,7 +33,6 @@ const Home = () => {
           <h3>Check out Socials to find your tribe!</h3>
           <h3>Checkout Movies to add or comment on your favorite movie! </h3>
           <div>
-      {/* <h1>Counter: {count}</h1> */}
       {/* <Movies/> */}
       {/* <button onClick={() => dispatch(increment())}>Increment</button> */}
       {/* <button onClick={() => dispatch(decrement())}>Decrement</button> */}

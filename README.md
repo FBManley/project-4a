@@ -1,17 +1,23 @@
 
 # Project Template: React/ TEST Rails API
-FITNESS APP
+Build on top of Phase-3 Movie Rating App
+-implimented redux for state management 
+-utilize rails for MVC architecture 
 
-
+General Overview
+The user interacts with the user interface (views) built using React and CSS.
+The React components handle user interactions and manage state, such as adding movie entries and updating replies.
+The user's actions trigger requests to the Rails backend via API endpoints.
+Rails routes map these requests to the appropriate controllers and actions.
+The controllers retrieve data from the database using ActiveRecord models and pass it to the views.
+Views render the data and send the updated UI to the user.
+The user can view, add, update, or delete movioe entries, and the changes are persisted in the MySQL database through ActiveRecord.
 
 # installs
 npm install --save styled-components
 rails s
 
-BLOG LINK:
-
-
-YOUTUBELINK:
+VIDEO WALKTHROUGH:
 
 
 ## Description
